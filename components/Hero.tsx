@@ -92,11 +92,11 @@ export default function Hero() {
           <motion.div
             animate={{ rotate: paused ? 0 : 360 }}
             transition={{
-              duration: 20,
+              duration: 8,
               ease: "linear",
               repeat: Infinity,
             }}
-            className="absolute w-[500px] h-[500px]"
+            className="absolute w-[550px] h-[550px]"
           >
             {techStack.map((icon, index) => {
               const angle = (360 / techStack.length) * index;
@@ -106,7 +106,7 @@ export default function Hero() {
                   key={index}
                   className="absolute top-1/2 left-1/2"
                   style={{
-                    transform: `rotate(${angle}deg) translate(220px) rotate(-${angle}deg)`,
+                    transform: `rotate(${angle}deg) translate(250px) rotate(-${angle}deg)`,
                     transformOrigin: "center",
                   }}
                 >
