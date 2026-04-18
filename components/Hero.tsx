@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useState } from "react";
 
 const techStack = [
   "/react.svg",
@@ -15,49 +15,10 @@ const techStack = [
 ];
 
 export default function Hero() {
-  // Stable positions for hydration-safe rendering
-  const positions = useMemo(() => [8, 20, 32, 44, 56, 68, 80, 90], []);
+  const [paused, setPaused] = useState(false);
 
   return (
     <section className="relative min-h-screen flex items-center px-6 md:px-24 overflow-hidden bg-[#03050d] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(28,49,119,0.15),rgba(255,255,255,0))]">
-
-      {/* Falling Logos in Perfect Sequence */}
-      {techStack.map((src, i) => {
-        const delay = i * 1.8;
-
-        return (
-          <motion.img
-            key={i}
-            src={src}
-            initial={{ y: -120, opacity: 0 }}
-            animate={{
-              y: "110vh",
-              opacity: [0, 1, 1, 1, 0],
-            }}
-            transition={{
-              duration: 18,
-              delay,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-            whileHover={{
-              scale: 1.4,
-              y: -30,
-              transition: {
-                type: "spring",
-                stiffness: 400,
-                damping: 12,
-              },
-            }}
-            className="absolute w-14 h-14 cursor-pointer z-10"
-            style={{
-              left: `${positions[i]}%`,
-              filter:
-                "brightness(2.5) drop-shadow(0 0 35px rgba(56,189,248,0.9)) drop-shadow(0 0 10px rgba(255,255,255,0.5))",
-            }}
-          />
-        );
-      })}
 
       {/* Background Glow */}
       <div className="absolute left-[-10%] top-[10%] w-[40vw] h-[40vw] bg-indigo-600/10 blur-[150px] rounded-full pointer-events-none z-0"></div>
@@ -83,13 +44,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-display"
           >
-            <span className="text-2xl md:text-3xl font-medium text-gray-400 block mb-2 tracking-wide">
+            <span className="text-2xl md:text-3xl font-medium text-gray-400 block mb-2">
               Hey! I’m
             </span>
 
-            <span className="text-[3.5rem] sm:text-6xl md:text-[5.5rem] font-extrabold leading-[1.1] tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 block mb-3 md:mb-4 pb-2">
+            <span className="text-[3.5rem] sm:text-6xl md:text-[5.5rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 block mb-3">
               Lalbabu Singh
             </span>
 
@@ -99,50 +59,82 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-gray-400 mt-6 md:mt-8 max-w-xl text-base md:text-lg leading-relaxed font-light"
+            className="text-gray-400 mt-6 max-w-xl text-base md:text-lg leading-relaxed"
           >
             Building scalable, high-performance web applications.
             I create seamless user experiences using modern technologies.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-wrap gap-4 md:gap-6 mt-10 md:mt-12"
-          >
+          <div className="flex gap-4 mt-10">
             <a
               href="#projects"
-              className="relative group overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 md:px-8 py-3.5 md:py-4 font-semibold text-white transition-all hover:scale-105"
+              className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 font-semibold text-white hover:scale-105 transition"
             >
-              <span className="relative z-10">View Projects</span>
+              View Projects
             </a>
 
             <a
               href="#contact"
-              className="rounded-xl bg-white/5 backdrop-blur-md border border-white/10 px-6 md:px-8 py-3.5 md:py-4 font-semibold text-gray-300 transition-all hover:bg-white/10"
+              className="rounded-xl bg-white/5 border border-white/10 px-8 py-4 font-semibold text-gray-300 hover:bg-white/10 transition"
             >
               Contact Me
             </a>
-          </motion.div>
+          </div>
         </div>
 
         {/* RIGHT */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative flex justify-center items-end h-[450px] md:h-[600px] mt-12 md:mt-0 w-full"
-        >
-          <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-blue-500/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
+        <div className="relative flex justify-center items-center h-[500px] md:h-[600px]">
 
+          {/* Orbit */}
+          <motion.div
+            animate={{ rotate: paused ? 0 : 360 }}
+            transition={{
+              duration: 20,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+            className="absolute w-[500px] h-[500px]"
+          >
+            {techStack.map((icon, index) => {
+              const angle = (360 / techStack.length) * index;
+
+              return (
+                <div
+                  key={index}
+                  className="absolute top-1/2 left-1/2"
+                  style={{
+                    transform: `rotate(${angle}deg) translate(220px) rotate(-${angle}deg)`,
+                    transformOrigin: "center",
+                  }}
+                >
+                  <img
+                    src={icon}
+                    alt=""
+                    onMouseEnter={() => setPaused(true)}
+                    onMouseLeave={() => setPaused(false)}
+                    onClick={() => setPaused(!paused)}
+                    className="w-12 h-12 cursor-pointer transition hover:scale-125"
+                    style={{
+                      filter:
+                        "drop-shadow(0 0 18px rgba(59,130,246,0.9)) brightness(1.2)",
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </motion.div>
+
+          {/* Glow */}
+          <div className="absolute w-[320px] h-[320px] bg-blue-500/20 blur-[140px] rounded-full"></div>
+
+          {/* Image */}
           <img
             src="/picc.png"
             alt="Lalbabu Singh"
-            className="relative z-10 h-full w-auto object-contain drop-shadow-[0_0_20px_rgba(0,0,0,0.6)]"
+            className="relative z-10 h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.7)]"
             style={{
               maskImage:
                 "linear-gradient(to bottom, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%)",
@@ -150,7 +142,7 @@ export default function Hero() {
                 "linear-gradient(to bottom, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%)",
             }}
           />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
