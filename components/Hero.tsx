@@ -18,21 +18,21 @@ export default function Hero() {
   const [paused, setPaused] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex items-center px-6 md:px-24 overflow-hidden bg-[#03050d] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(28,49,119,0.15),rgba(255,255,255,0))]">
+    <section className="relative min-h-screen flex items-center px-4 sm:px-6 md:px-24 overflow-hidden bg-[#03050d] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(28,49,119,0.15),rgba(255,255,255,0))]">
 
       {/* Background Glow */}
       <div className="absolute left-[-10%] top-[10%] w-[40vw] h-[40vw] bg-indigo-600/10 blur-[150px] rounded-full pointer-events-none z-0"></div>
       <div className="absolute right-[-5%] bottom-[-10%] w-[35vw] h-[35vw] bg-cyan-600/10 blur-[150px] rounded-full pointer-events-none z-0"></div>
 
-      <div className="grid md:grid-cols-2 w-full max-w-7xl mx-auto items-center gap-8 md:gap-12 relative z-20 pt-24 pb-12">
+      <div className="grid md:grid-cols-2 w-full max-w-7xl mx-auto items-center gap-10 md:gap-12 relative z-20 pt-24 pb-12">
 
         {/* LEFT */}
-        <div className="relative">
+        <div className="relative text-center md:text-left">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 mb-6 md:mb-8 px-4 py-2 rounded-full bg-blue-950/40 border border-blue-500/30 backdrop-blur-md shadow-[0_0_20px_rgba(59,130,246,0.15)]"
+            className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-blue-950/40 border border-blue-500/30 backdrop-blur-md shadow-[0_0_20px_rgba(59,130,246,0.15)]"
           >
             <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
             <span className="text-sm font-medium text-blue-300 tracking-wide">
@@ -49,7 +49,7 @@ export default function Hero() {
               Hey! I’m
             </span>
 
-            <span className="text-[3.5rem] sm:text-6xl md:text-[5.5rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 block mb-3">
+            <span className="text-[2.8rem] sm:text-5xl md:text-[5.5rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 block mb-3 leading-tight">
               Lalbabu Singh
             </span>
 
@@ -62,13 +62,13 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-gray-400 mt-6 max-w-xl text-base md:text-lg leading-relaxed"
+            className="text-gray-400 mt-6 max-w-xl text-base md:text-lg leading-relaxed mx-auto md:mx-0"
           >
             Building scalable, high-performance web applications.
             I create seamless user experiences using modern technologies.
           </motion.p>
 
-          <div className="flex gap-4 mt-10">
+          <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-10">
             <a
               href="#projects"
               className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 font-semibold text-white hover:scale-105 transition"
@@ -86,7 +86,7 @@ export default function Hero() {
         </div>
 
         {/* RIGHT */}
-        <div className="relative flex justify-center items-center h-[500px] md:h-[600px]">
+        <div className="relative flex justify-center items-center h-[380px] sm:h-[450px] md:h-[600px]">
 
           {/* Orbit */}
           <motion.div
@@ -96,7 +96,7 @@ export default function Hero() {
               ease: "linear",
               repeat: Infinity,
             }}
-            className="absolute w-[550px] h-[550px]"
+            className="absolute w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] md:w-[550px] md:h-[550px]"
           >
             {techStack.map((icon, index) => {
               const angle = (360 / techStack.length) * index;
@@ -106,7 +106,7 @@ export default function Hero() {
                   key={index}
                   className="absolute top-1/2 left-1/2"
                   style={{
-                    transform: `rotate(${angle}deg) translate(250px) rotate(-${angle}deg)`,
+                    transform: `rotate(${angle}deg) translate(clamp(130px,18vw,250px)) rotate(-${angle}deg)`,
                     transformOrigin: "center",
                   }}
                 >
@@ -116,7 +116,7 @@ export default function Hero() {
                     onMouseEnter={() => setPaused(true)}
                     onMouseLeave={() => setPaused(false)}
                     onClick={() => setPaused(!paused)}
-                    className="w-12 h-12 cursor-pointer transition hover:scale-125"
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 cursor-pointer transition hover:scale-125"
                     style={{
                       filter:
                         "drop-shadow(0 0 18px rgba(59,130,246,0.9)) brightness(1.2)",
@@ -128,13 +128,13 @@ export default function Hero() {
           </motion.div>
 
           {/* Glow */}
-          <div className="absolute w-[320px] h-[320px] bg-blue-500/20 blur-[140px] rounded-full"></div>
+          <div className="absolute w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[320px] md:h-[320px] bg-blue-500/20 blur-[140px] rounded-full"></div>
 
           {/* Image */}
           <img
             src="/picc.png"
             alt="Lalbabu Singh"
-            className="relative z-10 h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.7)]"
+            className="relative z-10 h-[320px] sm:h-[400px] md:h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.7)]"
             style={{
               maskImage:
                 "linear-gradient(to bottom, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%)",
