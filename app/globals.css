@@ -2,6 +2,8 @@
 
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
@@ -9,6 +11,11 @@
 
 /* ROOT */
 :root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+.dark {
   --background: #020617;
   --foreground: #f3f4f6;
 }
@@ -19,6 +26,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @keyframes animateMesh {
@@ -34,11 +42,17 @@ body::after {
   inset: 0;
   z-index: -1;
   background: 
-    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.12), transparent 30%),
-    radial-gradient(circle at 85% 30%, rgba(34, 211, 238, 0.12), transparent 30%);
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 35%),
+    radial-gradient(circle at 85% 30%, rgba(34, 211, 238, 0.08), transparent 35%);
   background-size: 200% 200%;
   pointer-events: none;
   animation: animateMesh 15s ease infinite;
+}
+
+.dark body::after {
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.12), transparent 30%),
+    radial-gradient(circle at 85% 30%, rgba(34, 211, 238, 0.12), transparent 30%);
 }
 
 /* Premium Scrollbar */
@@ -46,14 +60,21 @@ body::after {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #cbd5e1;
   border-radius: 8px;
-  border: 2px solid #020617;
+  border: 2px solid var(--background);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border: 2px solid var(--background);
 }
 ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
   background: #334155;
 }
 
@@ -65,4 +86,11 @@ body::after {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Hide standard cursors on desktop to activate custom cursor trailing style */
+@media (min-width: 768px) {
+  html, body, a, button, input, textarea, select, [role="button"], .group {
+    cursor: none !important;
+  }
 }

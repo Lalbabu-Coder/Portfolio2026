@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Card3D from "@/components/Card3D";
 
 const cards = [
   {
@@ -74,16 +75,17 @@ export default function About() {
         transition={{ duration: 0.6 }}
         className="
           text-center text-4xl md:text-5xl font-extrabold
-          bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600
+          bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600
           bg-clip-text text-transparent
-          drop-shadow-[0_0_40px_rgba(59,130,246,0.75)]
+          drop-shadow-[0_0_40px_rgba(59,130,246,0.3)]
+          dark:drop-shadow-[0_0_40px_rgba(59,130,246,0.75)]
         "
       >
         About My Journey
       </motion.h2>
 
-      <p className="mt-6 max-w-3xl mx-auto text-center text-gray-300 leading-relaxed">
-        I’m <span className="text-blue-400 font-semibold">Lalbabu Singh</span>,  
+      <p className="mt-6 max-w-3xl mx-auto text-center text-slate-600 dark:text-gray-300 leading-relaxed font-sans">
+        I’m <span className="text-blue-500 dark:text-blue-400 font-semibold">Lalbabu Singh</span>,  
         a MERN Stack Developer passionate about building scalable, secure, and
         visually impressive web applications. I enjoy solving real-world
         problems through clean code, performance-focused design, and continuous learning.
@@ -96,44 +98,44 @@ export default function About() {
             key={i}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -14, scale: 1.04 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="
-              group relative p-8 rounded-3xl
-              bg-white/5 backdrop-blur-xl
-              border border-white/10 border-t-blue-500/20
-              shadow-[0_0_35px_rgba(59,130,246,0.15)]
-              hover:border-blue-500/50 hover:border-t-blue-400/80
-              hover:shadow-[0_0_80px_rgba(59,130,246,0.55)]
-              transition-all duration-300
-            "
+            transition={{ duration: 0.6, delay: i * 0.05 }}
           >
-            {/* Glow */}
-            <div
-              className="
-                absolute inset-0 rounded-3xl
-                opacity-0 group-hover:opacity-100
-                transition
-                bg-gradient-to-br from-blue-500/10 via-cyan-400/5 to-transparent
-              "
-            />
+            <Card3D className="
+              group relative p-8 rounded-3xl
+              bg-white/60 dark:bg-white/5 backdrop-blur-xl
+              border border-slate-200/80 dark:border-white/10 border-t-blue-500/20 dark:border-t-blue-500/20
+              shadow-[0_0_35px_rgba(59,130,246,0.06)] dark:shadow-[0_0_35px_rgba(59,130,246,0.15)]
+              hover:border-blue-500/50 hover:border-t-blue-400/80
+              hover:shadow-[0_0_80px_rgba(59,130,246,0.25)] dark:hover:shadow-[0_0_80px_rgba(59,130,246,0.55)]
+              transition-all duration-300 cursor-default
+            ">
+              {/* Glow */}
+              <div
+                className="
+                  absolute inset-0 rounded-3xl
+                  opacity-0 group-hover:opacity-100
+                  transition
+                  bg-gradient-to-br from-blue-500/5 via-cyan-400/2 to-transparent dark:from-blue-500/10 dark:via-cyan-400/5
+                "
+              />
 
-            <h3 className="relative text-xl font-semibold text-blue-400 mb-4">
-              {card.title}
-            </h3>
+              <h3 className="relative text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4 font-display" style={{ transform: "translateZ(20px)" }}>
+                {card.title}
+              </h3>
 
-            <ul className="relative space-y-2 text-gray-300 text-sm">
-              {card.points.map((point, idx) => (
-                <li key={idx} className="flex gap-2">
-                  <span className="text-blue-400">▹</span>
-                  <span>{point}</span>
-                </li>
-              ))}
-            </ul>
+              <ul className="relative space-y-2 text-slate-600 dark:text-gray-300 text-sm" style={{ transform: "translateZ(10px)" }}>
+                {card.points.map((point, idx) => (
+                  <li key={idx} className="flex gap-2">
+                    <span className="text-blue-500 dark:text-blue-400">▹</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
 
-            <span className="relative block mt-4 text-sm font-medium text-blue-500">
-              {card.time}
-            </span>
+              <span className="relative block mt-4 text-sm font-semibold text-blue-600 dark:text-blue-400" style={{ transform: "translateZ(15px)" }}>
+                {card.time}
+              </span>
+            </Card3D>
           </motion.div>
         ))}
       </div>
