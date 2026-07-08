@@ -187,20 +187,20 @@ export default function Contact() {
             <div style={{ transform: "translateZ(10px)" }}>
               <p className="text-sm text-slate-500 dark:text-gray-400 font-sans">Email</p>
               <p className="text-slate-800 dark:text-white font-semibold text-lg font-display">
-                anandk19570@gmail.com
+                lalbabusingh.dev@gmail.com
               </p>
             </div>
 
             <div style={{ transform: "translateZ(15px)" }}>
               <p className="text-sm text-slate-500 dark:text-gray-400 font-sans">Location</p>
               <p className="text-slate-800 dark:text-white font-semibold text-lg font-display">
-                Bhore, Gopalganj, Bihar, India
+                Delhi, India
               </p>
             </div>
 
             <div className="rounded-2xl overflow-hidden border border-slate-200/80 dark:border-white/10" style={{ transform: "translateZ(20px)" }}>
               <iframe
-                src="https://www.google.com/maps?q=Bhore,Gopalganj,Bihar,India&output=embed"
+                src="https://www.google.com/maps?q=Delhi,India&output=embed"
                 width="100%"
                 height="260"
                 loading="lazy"

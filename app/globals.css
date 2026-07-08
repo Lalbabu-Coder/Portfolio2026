@@ -11,12 +11,7 @@
 
 /* ROOT */
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-}
-
-.dark {
-  --background: #020617;
+  --background: #05050a;
   --foreground: #f3f4f6;
 }
 
@@ -26,13 +21,18 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-@keyframes animateMesh {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes floatGradients {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0% 20%, 80% 80%, 50% 50%;
+  }
+  50% {
+    background-position: 0px 0px, 0px 0px, 10% 30%, 70% 70%, 45% 55%;
+  }
+  100% {
+    background-position: 0px 0px, 0px 0px, 0% 20%, 80% 80%, 50% 50%;
+  }
 }
 
 /* Animated Mesh Background - Attached to body for global effect */
@@ -41,18 +41,17 @@ body::after {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: 
-    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 35%),
-    radial-gradient(circle at 85% 30%, rgba(34, 211, 238, 0.08), transparent 35%);
-  background-size: 200% 200%;
+  background-color: #05050a;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.008) 1px, transparent 1px),
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.09) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+  background-size: 60px 60px, 60px 60px, 100% 100%, 100% 100%, 100% 100%;
+  background-attachment: fixed;
   pointer-events: none;
-  animation: animateMesh 15s ease infinite;
-}
-
-.dark body::after {
-  background: 
-    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.12), transparent 30%),
-    radial-gradient(circle at 85% 30%, rgba(34, 211, 238, 0.12), transparent 30%);
+  animation: floatGradients 25s ease infinite;
 }
 
 /* Premium Scrollbar */
@@ -63,18 +62,11 @@ body::after {
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #1e293b;
   border-radius: 8px;
   border: 2px solid var(--background);
 }
-.dark ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border: 2px solid var(--background);
-}
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-.dark ::-webkit-scrollbar-thumb:hover {
   background: #334155;
 }
 
@@ -88,9 +80,15 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Hide standard cursors on desktop to activate custom cursor trailing style */
-@media (min-width: 768px) {
-  html, body, a, button, input, textarea, select, [role="button"], .group {
-    cursor: none !important;
+@keyframes borderPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.45));
   }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(6, 182, 212, 0.8)) drop-shadow(0 0 35px rgba(59, 130, 246, 0.45));
+  }
+}
+
+.neon-border-pulse {
+  animation: borderPulse 4s ease-in-out infinite;
 }

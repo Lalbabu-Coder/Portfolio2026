@@ -32,7 +32,7 @@ export default function Footer() {
             <motion.a
               whileHover={{ y: -8, scale: 1.15 }}
               transition={{ type: "spring", stiffness: 300 }}
-              href="https://wa.me/91XXXXXXXXXX"
+              href="https://wa.me/919113382362"
               target="_blank"
               className="p-3 rounded-full bg-green-500/10 text-green-500 dark:text-green-400
               shadow-[0_0_25px_rgba(34,197,94,0.2)] dark:shadow-[0_0_25px_rgba(34,197,94,0.45)] cursor-pointer"
