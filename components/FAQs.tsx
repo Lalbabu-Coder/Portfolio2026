@@ -30,7 +30,7 @@ export default function FAQs() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section id="faqs" className="py-32 px-6 md:px-20">
+    <section id="faqs" className="py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden w-full max-w-full">
 
       {/* HEADING */}
       <motion.h2
@@ -38,29 +38,30 @@ export default function FAQs() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="
-          text-center text-4xl md:text-5xl font-extrabold
+          text-center text-3xl sm:text-4xl md:text-5xl font-extrabold
           bg-gradient-to-r from-blue-500 to-cyan-400
           bg-clip-text text-transparent
           drop-shadow-[0_0_30px_rgba(59,130,246,0.3)]
           dark:drop-shadow-[0_0_30px_rgba(59,130,246,0.6)]
+          font-display
         "
       >
         Technical Insights
       </motion.h2>
 
-      <p className="text-center mt-4 text-slate-600 dark:text-gray-400 max-w-2xl mx-auto font-sans">
+      <p className="text-center mt-3 sm:mt-4 text-slate-400 text-sm sm:text-base max-w-2xl mx-auto font-sans">
         Explore my technical skills, development mindset, and how I build
         scalable, clean, and performance-driven applications.
       </p>
 
       {/* FAQ LIST */}
-      <div className="mt-16 max-w-4xl mx-auto space-y-5">
+      <div className="mt-12 sm:mt-16 max-w-4xl mx-auto space-y-4 sm:space-y-5">
 
         {faqs.map((item, i) => (
           <div key={i} className="w-full">
             <Card3D
-              tiltAngle={6}
-              translateDepth={15}
+              tiltAngle={4}
+              translateDepth={10}
               className="
                 bg-white/60 dark:bg-white/5 backdrop-blur-xl
                 border border-slate-200/80 dark:border-white/10
@@ -74,15 +75,15 @@ export default function FAQs() {
               <button
                 onClick={() => setActive(active === i ? null : i)}
                 className="
-                  w-full flex justify-between items-center
-                  px-6 py-5 text-left
-                  text-slate-800 dark:text-white font-medium text-lg cursor-pointer
+                  w-full flex justify-between items-center gap-4
+                  px-5 sm:px-6 py-4 sm:py-5 text-left
+                  text-slate-800 dark:text-white font-medium text-base sm:text-lg cursor-pointer
                 "
               >
-                {item.q}
+                <span>{item.q}</span>
                 <span
                   className={`
-                    text-2xl text-blue-500 dark:text-blue-400 transition-transform
+                    text-xl sm:text-2xl text-blue-500 dark:text-blue-400 transition-transform shrink-0
                     ${active === i ? "rotate-45" : ""}
                   `}
                 >
@@ -97,8 +98,8 @@ export default function FAQs() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="px-6 pb-5 text-slate-600 dark:text-gray-400 leading-relaxed text-sm md:text-base font-sans"
+                    transition={{ duration: 0.3 }}
+                    className="px-5 sm:px-6 pb-4 sm:pb-5 text-slate-400 leading-relaxed text-xs sm:text-sm md:text-base font-sans"
                   >
                     {item.a}
                   </motion.div>

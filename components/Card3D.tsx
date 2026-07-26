@@ -1,6 +1,6 @@
 "use client";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useRef, ReactNode } from "react";
+import { useRef, ReactNode, useEffect, useState } from "react";
 
 interface Card3DProps {
   children: ReactNode;
@@ -16,14 +16,24 @@ export default function Card3D({
   translateDepth = 30,
 }: Card3DProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [isTouch, setIsTouch] = useState(false);
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
 
-  const rotateX = useTransform(y, [0, 1], [tiltAngle, -tiltAngle]);
-  const rotateY = useTransform(x, [0, 1], [-tiltAngle, tiltAngle]);
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+      setIsTouch(true);
+    }
+  }, []);
+
+  const effectiveTilt = isTouch ? 0 : tiltAngle;
+  const effectiveDepth = isTouch ? 0 : translateDepth;
+
+  const rotateX = useTransform(y, [0, 1], [effectiveTilt, -effectiveTilt]);
+  const rotateY = useTransform(x, [0, 1], [-effectiveTilt, effectiveTilt]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    if (!cardRef.current) return;
+    if (isTouch || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
@@ -34,12 +44,13 @@ export default function Card3D({
   }
 
   function handleMouseLeave() {
+    if (isTouch) return;
     x.set(0.5);
     y.set(0.5);
   }
 
   return (
-    <div style={{ perspective: 1200 }} className="w-full h-full">
+    <div style={{ perspective: isTouch ? "none" : 1200 }} className="w-full h-full">
       <motion.div
         ref={cardRef}
         onMouseMove={handleMouseMove}
@@ -47,14 +58,14 @@ export default function Card3D({
         style={{
           rotateX,
           rotateY,
-          transformStyle: "preserve-3d",
+          transformStyle: isTouch ? "flat" : "preserve-3d",
         }}
         className={className}
       >
         <div
           style={{
-            transform: `translateZ(${translateDepth}px)`,
-            transformStyle: "preserve-3d",
+            transform: isTouch ? "none" : `translateZ(${effectiveDepth}px)`,
+            transformStyle: isTouch ? "flat" : "preserve-3d",
           }}
           className="w-full h-full"
         >
@@ -64,3 +75,4 @@ export default function Card3D({
     </div>
   );
 }
+

@@ -66,20 +66,21 @@ export default function AITerminal() {
       case "/about":
         replyLogs = [
           { text: "Retrieving 'Lalbabu Singh' profile...", type: "system", timestamp: getTimestamp() },
-          { text: "Role: Software Engineer Intern (MERN Stack) @ Graphura India Pvt Ltd.", type: "output", timestamp: getTimestamp() },
+          { text: "Role: Software Engineer Intern (GenAI & MERN Stack) @ Graphura India Pvt Ltd.", type: "output", timestamp: getTimestamp() },
           { text: "Education: B.Tech CSE Student (Gurugram University, 2023-2026).", type: "output", timestamp: getTimestamp() },
           { text: "Diploma: Computer Science Engineering (GP Hisar, 2020-2023).", type: "output", timestamp: getTimestamp() },
-          { text: "Status: Specialized in API design, Docker scaling, and MongoDB indexing.", type: "output", timestamp: getTimestamp() },
+          { text: "Status: Specialized in GenAI agents, LangChain, API design, Docker, & MongoDB.", type: "output", timestamp: getTimestamp() },
         ];
         break;
       case "skills":
       case "/skills":
         replyLogs = [
           { text: "Connecting to Skill Database...", type: "system", timestamp: getTimestamp() },
+          { text: "GenAI    : OpenAI API, LangChain, LlamaIndex, AI Agents, RAG, Prompt Engineering", type: "output", timestamp: getTimestamp() },
           { text: "Languages: JavaScript (ES6+), Python", type: "output", timestamp: getTimestamp() },
           { text: "Frontend : React.js, Next.js, Redux Toolkit, Framer Motion, Tailwind CSS", type: "output", timestamp: getTimestamp() },
           { text: "Backend  : Node.js, Express.js, RESTful APIs, JWT Auth, RBAC permissions", type: "output", timestamp: getTimestamp() },
-          { text: "Databases: MongoDB Atlas, Mongoose, MySQL, normalizations", type: "output", timestamp: getTimestamp() },
+          { text: "Databases: MongoDB Atlas, Mongoose, MySQL", type: "output", timestamp: getTimestamp() },
           { text: "DevOps   : Docker containerization, Git, GitHub Actions, Vercel", type: "output", timestamp: getTimestamp() },
         ];
         break;
@@ -148,12 +149,12 @@ export default function AITerminal() {
       </div>
 
       {/* LOGS DISPLAY */}
-      <div className="h-[280px] md:h-[320px] p-4 overflow-y-auto space-y-2 bg-[#020617]/95 scrollbar-thin scrollbar-thumb-slate-800">
+      <div className="h-[250px] sm:h-[280px] md:h-[320px] p-3 sm:p-4 overflow-y-auto space-y-2 bg-[#020617]/95 scrollbar-thin scrollbar-thumb-slate-800 text-[11px] sm:text-xs md:text-sm">
         {mounted && logs.map((log, i) => (
-          <div key={i} className="leading-relaxed flex items-start gap-2">
-            <span className="text-[10px] text-slate-600 select-none mt-0.5">[{log.timestamp}]</span>
+          <div key={i} className="leading-relaxed flex items-start gap-1.5 sm:gap-2 break-words max-w-full min-w-0">
+            <span className="text-[9px] sm:text-[10px] text-slate-600 select-none mt-0.5 shrink-0">[{log.timestamp}]</span>
             <span
-              className={
+              className={`break-words min-w-0 ${
                 log.type === "input"
                   ? "text-cyan-400 font-bold"
                   : log.type === "system"
@@ -161,7 +162,7 @@ export default function AITerminal() {
                   : log.type === "error"
                   ? "text-rose-400 font-bold"
                   : "text-emerald-400"
-              }
+              }`}
             >
               {log.text}
             </span>
@@ -171,13 +172,13 @@ export default function AITerminal() {
       </div>
 
       {/* QUICK COMMAND SHORTCUTS */}
-      <div className="p-3 bg-slate-950 border-t border-blue-500/10 flex flex-wrap gap-2 items-center">
-        <span className="text-[10px] text-slate-500 uppercase font-bold mr-1">Shortcuts:</span>
+      <div className="p-2.5 sm:p-3 bg-slate-950 border-t border-blue-500/10 flex flex-wrap gap-1.5 sm:gap-2 items-center">
+        <span className="text-[9px] sm:text-[10px] text-slate-500 uppercase font-bold mr-1">Shortcuts:</span>
         {["about", "skills", "projects", "contact", "clear"].map((cmd) => (
           <button
             key={cmd}
             onClick={() => handleCommand(cmd)}
-            className="px-3 py-1 rounded bg-slate-900 border border-blue-500/10 hover:border-cyan-500/40 text-cyan-400 hover:text-white transition-all text-xs font-semibold cursor-pointer flex items-center gap-1 hover:shadow-[0_0_10px_rgba(6,182,212,0.2)]"
+            className="px-2.5 sm:px-3 py-1 rounded bg-slate-900 border border-blue-500/10 hover:border-cyan-500/40 text-cyan-400 hover:text-white transition-all text-[11px] sm:text-xs font-semibold cursor-pointer flex items-center gap-1 hover:shadow-[0_0_10px_rgba(6,182,212,0.2)]"
           >
             <Play size={10} className="shrink-0" />
             /{cmd}
@@ -186,19 +187,19 @@ export default function AITerminal() {
       </div>
 
       {/* CLI INPUT FIELD */}
-      <div className="flex items-center gap-2 px-4 py-3 bg-[#020617] border-t border-blue-500/10">
-        <span className="text-cyan-400 font-bold select-none">$</span>
+      <div className="flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-[#020617] border-t border-blue-500/10">
+        <span className="text-cyan-400 font-bold select-none text-xs sm:text-sm">$</span>
         <input
           type="text"
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           onKeyDown={handleKeyPress}
-          placeholder="type command (e.g. 'help', 'about', 'skills')..."
-          className="flex-grow bg-transparent text-white focus:outline-none border-none caret-cyan-400 text-xs md:text-sm"
+          placeholder="type command (e.g. 'help', 'about')..."
+          className="flex-grow min-w-0 bg-transparent text-white focus:outline-none border-none caret-cyan-400 text-xs md:text-sm"
         />
         <button
           onClick={() => handleCommand(inputVal)}
-          className="px-4 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition duration-200 cursor-pointer"
+          className="px-3 sm:px-4 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-[11px] sm:text-xs transition duration-200 cursor-pointer shrink-0"
         >
           EXECUTE
         </button>

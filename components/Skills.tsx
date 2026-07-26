@@ -20,6 +20,19 @@ interface SkillCategory {
 }
 
 const skillCategories: Record<string, SkillCategory> = {
+  genai: {
+    title: "GenAI & AI Engineering",
+    themeColor: "text-purple-400 border-purple-500/20 bg-purple-500/10",
+    accentGradient: "from-cyan-400 via-blue-500 to-purple-600",
+    skills: [
+      { name: "OpenAI API & Models", level: 92, rating: "Expert", detail: "GPT-4o, Function calling, Structured JSON outputs, Fine-tuning" },
+      { name: "LangChain & LlamaIndex", level: 90, rating: "Expert", detail: "Chains, Agentic workflows, Context memory, Tools integration" },
+      { name: "Autonomous AI Agents", level: 88, rating: "Advanced", detail: "Multi-agent coordination, Task delegation, Service isolation" },
+      { name: "RAG & Vector Storage", level: 85, rating: "Advanced", detail: "Embeddings generation, Similarity search, Pinecone/ChromaDB" },
+      { name: "Prompt Engineering", level: 95, rating: "Expert", detail: "Chain-of-Thought, System instructions, Zero/Few-shot prompts" },
+      { name: "AI Microservices & APIs", level: 86, rating: "Advanced", detail: "Async queuing, FastAPI/Node.js bridges, Docker scaling" },
+    ],
+  },
   frontend: {
     title: "Frontend Development",
     themeColor: "text-cyan-600 dark:text-cyan-400 border-cyan-500/20 bg-cyan-500/5",
@@ -102,15 +115,15 @@ const skillCategories: Record<string, SkillCategory> = {
 };
 
 export default function Skills() {
-  const [activeTab, setActiveTab] = useState<string>("frontend");
+  const [activeTab, setActiveTab] = useState<string>("genai");
 
   const currentCategory = skillCategories[activeTab];
 
   return (
-    <section id="skills" className="relative py-32 px-6 md:px-20 overflow-visible">
+    <section id="skills" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden w-full max-w-full">
       {/* Background radial effects */}
-      <div className="absolute right-[5%] top-[15%] w-[35vw] h-[35vw] bg-blue-600/5 dark:bg-blue-600/10 blur-[130px] rounded-full pointer-events-none z-0" />
-      <div className="absolute left-[5%] bottom-[15%] w-[30vw] h-[30vw] bg-cyan-600/5 dark:bg-cyan-600/10 blur-[130px] rounded-full pointer-events-none z-0" />
+      <div className="absolute right-[5%] top-[15%] w-[35vw] max-w-[300px] h-[35vw] max-h-[300px] bg-blue-600/5 dark:bg-blue-600/10 blur-[130px] rounded-full pointer-events-none z-0" />
+      <div className="absolute left-[5%] bottom-[15%] w-[30vw] max-w-[280px] h-[30vw] max-h-[280px] bg-cyan-600/5 dark:bg-cyan-600/10 blur-[130px] rounded-full pointer-events-none z-0" />
 
       {/* SECTION HEADING */}
       <div className="relative z-10 text-center max-w-3xl mx-auto">
@@ -120,7 +133,7 @@ export default function Skills() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="
-            text-4xl md:text-5xl font-extrabold
+            text-3xl sm:text-4xl md:text-5xl font-extrabold
             bg-gradient-to-r from-blue-500 via-cyan-400 to-indigo-500
             bg-clip-text text-transparent
             drop-shadow-[0_0_35px_rgba(59,130,246,0.35)]
@@ -131,13 +144,13 @@ export default function Skills() {
           My Technical Arsenal
         </motion.h2>
 
-        <p className="mt-4 text-slate-500 dark:text-gray-400 text-base md:text-lg font-sans">
+        <p className="mt-3 sm:mt-4 text-slate-500 dark:text-gray-400 text-sm sm:text-base md:text-lg font-sans">
           A fully verified engineering toolkit structured for robustness, clean code, and performance optimization.
         </p>
       </div>
 
       {/* MAIN CONTAINER */}
-      <div className="relative z-10 mt-20 grid lg:grid-cols-12 gap-10 max-w-7xl mx-auto items-start">
+      <div className="relative z-10 mt-12 sm:mt-20 grid lg:grid-cols-12 gap-8 lg:gap-10 max-w-7xl mx-auto items-start">
         
         {/* LEFT COLUMN: 3D SPHERE */}
         <motion.div
@@ -145,27 +158,27 @@ export default function Skills() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="lg:col-span-5 flex flex-col items-center justify-center"
+          className="lg:col-span-5 flex flex-col items-center justify-center w-full overflow-hidden"
         >
           <Card3D className="
-            w-full rounded-3xl p-8
+            w-full rounded-3xl p-5 sm:p-8
             bg-white/60 dark:bg-white/[0.03] backdrop-blur-xl
             border border-slate-200/80 dark:border-white/10
             shadow-[0_0_50px_rgba(59,130,246,0.05)] dark:shadow-[0_0_50px_rgba(59,130,246,0.1)]
             transition-all duration-500 hover:border-blue-500/30
             hover:shadow-[0_0_80px_rgba(59,130,246,0.2)] dark:hover:shadow-[0_0_80px_rgba(59,130,246,0.35)]
           ">
-            <h3 className="text-lg font-semibold mb-2 text-blue-600 dark:text-blue-400 tracking-wide font-display text-center">
+            <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2 text-blue-600 dark:text-blue-400 tracking-wide font-display text-center">
               Interactive 3D Tech Cloud
             </h3>
-            <p className="text-xs text-slate-500 dark:text-gray-400 text-center mb-4">
-              Hover inside the sphere to guide the spin. Drag to rotate in 3D.
+            <p className="text-[11px] sm:text-xs text-slate-500 dark:text-gray-400 text-center mb-4">
+              Touch/drag inside the sphere to spin & explore tags.
             </p>
             
             <Skills3DSphere />
             
-            <div className="mt-6 pt-5 border-t border-slate-200/60 dark:border-white/10 text-center">
-              <span className="inline-block text-xs font-semibold px-3.5 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
+            <div className="mt-4 sm:mt-6 pt-4 sm:pt-5 border-t border-slate-200/60 dark:border-white/10 text-center">
+              <span className="inline-block text-[11px] sm:text-xs font-semibold px-3 py-1 sm:py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
                 ⚡ Interactive Hologram
               </span>
             </div>
@@ -178,12 +191,12 @@ export default function Skills() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="lg:col-span-7"
+          className="lg:col-span-7 w-full overflow-hidden"
         >
-          <div className="w-full rounded-3xl p-6 md:p-8 bg-white/60 dark:bg-white/[0.03] backdrop-blur-xl border border-slate-200/80 dark:border-white/10 shadow-[0_0_50px_rgba(59,130,246,0.05)] dark:shadow-[0_0_50px_rgba(59,130,246,0.1)]">
+          <div className="w-full rounded-3xl p-5 sm:p-6 md:p-8 bg-white/60 dark:bg-white/[0.03] backdrop-blur-xl border border-slate-200/80 dark:border-white/10 shadow-[0_0_50px_rgba(59,130,246,0.05)] dark:shadow-[0_0_50px_rgba(59,130,246,0.1)]">
             
             {/* TABS SELECTOR */}
-            <div className="flex flex-wrap gap-2 pb-6 border-b border-slate-200/60 dark:border-white/10">
+            <div className="flex overflow-x-auto no-scrollbar gap-2 pb-4 border-b border-slate-200/60 dark:border-white/10">
               {Object.entries(skillCategories).map(([key, category]) => {
                 const isActive = activeTab === key;
                 return (
@@ -191,7 +204,7 @@ export default function Skills() {
                     key={key}
                     onClick={() => setActiveTab(key)}
                     className={`
-                      px-4 py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 cursor-pointer border
+                      px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer border shrink-0 whitespace-nowrap
                       ${
                         isActive
                           ? "bg-blue-600 border-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.4)]"
@@ -199,7 +212,7 @@ export default function Skills() {
                       }
                     `}
                   >
-                    {category.title.split(" ")[0]} {/* First word for simplicity */}
+                    {category.title.split(" ")[0]}
                   </button>
                 );
               })}

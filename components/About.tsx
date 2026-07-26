@@ -76,9 +76,9 @@ const honors = [
 
 export default function About() {
   return (
-    <section id="about" className="relative py-32 px-6 md:px-20 overflow-visible">
+    <section id="about" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden w-full max-w-full">
       {/* Background radial highlight */}
-      <div className="absolute left-[10%] top-[10%] w-[35vw] h-[35vw] bg-indigo-600/5 dark:bg-indigo-600/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute left-[10%] top-[10%] w-[35vw] max-w-[300px] h-[35vw] max-h-[300px] bg-indigo-600/5 dark:bg-indigo-600/10 blur-[130px] rounded-full pointer-events-none -z-10" />
 
       {/* HEADING */}
       <div className="text-center max-w-3xl mx-auto z-10 relative">
@@ -88,7 +88,7 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="
-            text-4xl md:text-5xl font-extrabold
+            text-3xl sm:text-4xl md:text-5xl font-extrabold
             bg-gradient-to-r from-blue-500 via-cyan-500 to-indigo-500
             bg-clip-text text-transparent
             drop-shadow-[0_0_40px_rgba(59,130,246,0.35)]
@@ -99,12 +99,12 @@ export default function About() {
           My Journey & Experience
         </motion.h2>
 
-        <p className="mt-4 text-slate-500 dark:text-gray-400 text-base md:text-lg font-sans">
+        <p className="mt-3 sm:mt-4 text-slate-500 dark:text-gray-400 text-sm sm:text-base md:text-lg font-sans">
           A narrative of my academic foundations, engineering internships, and developer milestones.
         </p>
       </div>
 
-      <div className="mt-20 max-w-7xl mx-auto grid lg:grid-cols-12 gap-10 items-start">
+      <div className="mt-12 sm:mt-20 max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
         
         {/* LEFT PROFILE CARD */}
         <motion.div
@@ -128,13 +128,13 @@ export default function About() {
             </h3>
             
             <p className="text-sm text-blue-600 dark:text-cyan-400 font-semibold mb-6">
-              MERN Stack Developer & CSE Student
+              GenAI & MERN Stack Developer · B.Tech CSE
             </p>
 
             <p className="text-sm text-slate-600 dark:text-gray-300 leading-relaxed mb-6 font-sans">
-              I am a final-year B.Tech CSE student and a highly motivated MERN Stack Developer. 
-              I specialize in creating clean, secure, and production-ready applications with customized APIs, 
-              scalable container designs (Docker), and optimized database flows.
+              I am a final-year B.Tech CSE student and a highly motivated GenAI & MERN Stack Developer. 
+              I specialize in orchestrating autonomous AI agent workflows (LangChain, OpenAI API), designing clean RESTful APIs, 
+              building scalable microservices with Docker, and optimizing database flows.
             </p>
 
             <div className="space-y-4 pt-6 border-t border-slate-200/60 dark:border-white/10 text-xs text-slate-500 dark:text-gray-400 font-sans">

@@ -16,6 +16,12 @@ interface Tag {
 }
 
 const skillsList = [
+  { name: "GenAI", color: "text-purple-300 border-purple-400/40 bg-purple-950/40 font-bold" },
+  { name: "OpenAI API", color: "text-cyan-300 border-cyan-400/40 bg-cyan-950/30" },
+  { name: "LangChain", color: "text-emerald-300 border-emerald-400/40 bg-emerald-950/30" },
+  { name: "AI Agents", color: "text-indigo-300 border-indigo-400/40 bg-indigo-950/30 font-bold" },
+  { name: "RAG / Vector DB", color: "text-amber-300 border-amber-400/40 bg-amber-950/30" },
+  { name: "Prompt Eng", color: "text-rose-300 border-rose-400/40 bg-rose-950/30" },
   { name: "React", color: "text-cyan-400 border-cyan-500/30 bg-cyan-950/20" },
   { name: "Next.js", color: "text-white border-white/20 bg-white/5" },
   { name: "Redux", color: "text-purple-400 border-purple-500/30 bg-purple-950/20" },
@@ -29,17 +35,10 @@ const skillsList = [
   { name: "Git", color: "text-orange-400 border-orange-500/30 bg-orange-950/20" },
   { name: "GitHub", color: "text-slate-200 border-slate-500/30 bg-slate-800/20" },
   { name: "Vercel", color: "text-zinc-300 border-zinc-500/30 bg-zinc-950/20" },
-  { name: "AWS", color: "text-amber-500 border-amber-500/30 bg-amber-950/20" },
   { name: "REST APIs", color: "text-teal-400 border-teal-500/30 bg-teal-950/20" },
-  { name: "JWT", color: "text-pink-400 border-pink-500/30 bg-pink-950/20" },
+  { name: "JWT Auth", color: "text-pink-400 border-pink-500/30 bg-pink-950/20" },
   { name: "RBAC", color: "text-rose-400 border-rose-500/30 bg-rose-950/20" },
-  { name: "HTML5", color: "text-orange-500 border-orange-500/30 bg-orange-950/20" },
-  { name: "CSS3", color: "text-sky-500 border-sky-500/30 bg-sky-950/20" },
-  { name: "Postman", color: "text-orange-400 border-orange-500/30 bg-orange-950/20" },
   { name: "Microservices", color: "text-violet-400 border-violet-500/30 bg-violet-950/20" },
-  { name: "MySQL", color: "text-cyan-500 border-cyan-500/30 bg-cyan-950/20" },
-  { name: "Mongoose", color: "text-red-400 border-red-500/30 bg-red-950/20" },
-  { name: "CI/CD", color: "text-emerald-500 border-emerald-500/30 bg-emerald-950/20" },
 ];
 
 export default function Skills3DSphere() {
@@ -64,20 +63,19 @@ export default function Skills3DSphere() {
     if (!container) return;
 
     const rect = container.getBoundingClientRect();
-    const width = rect.width || 380;
-    const radius = Math.min(width * 0.4, 180); // Sphere radius
+    const width = rect.width || 340;
+    // Scale sphere radius dynamically to prevent screen overflow on mobile (width <= 480px)
+    const isMobile = width < 480;
+    const radius = isMobile ? Math.min(width * 0.3, 115) : Math.min(width * 0.36, 160);
     const cameraDistance = radius * 1.5;
 
     // Fibonacci Sphere distribution
     const numTags = skillsList.length;
     const initialTags: Tag[] = skillsList.map((skill, i) => {
-      // theta goes from acos(1) = 0 to acos(-1) = PI
       const k = -1 + (2 * i + 1) / numTags;
       const theta = Math.acos(k);
-      // golden ratio spacing
       const phi = Math.sqrt(numTags * Math.PI) * theta;
 
-      // 3D coordinates
       const x = radius * Math.sin(theta) * Math.cos(phi);
       const y = radius * Math.sin(theta) * Math.sin(phi);
       const z = radius * Math.cos(theta);
@@ -99,12 +97,10 @@ export default function Skills3DSphere() {
     let animationId: number;
 
     const updateRotation = () => {
-      // Apply constant drag rotation deceleration if not dragging
       if (!isDraggingRef.current) {
         speedXRef.current *= 0.95;
         speedYRef.current *= 0.95;
 
-        // Maintain minimum floating rotation
         if (Math.abs(speedXRef.current) < 0.0002) speedXRef.current = (speedXRef.current > 0 ? 1 : -1) * 0.0002;
         if (Math.abs(speedYRef.current) < 0.0002) speedYRef.current = (speedYRef.current > 0 ? 1 : -1) * 0.0002;
       }
@@ -118,21 +114,16 @@ export default function Skills3DSphere() {
       const sinY = Math.sin(ry);
 
       localTags = localTags.map((tag, idx) => {
-        // Rotate around Y-axis
         let x1 = tag.x * cosY - tag.z * sinY;
         let z1 = tag.x * sinY + tag.z * cosY;
 
-        // Rotate around X-axis
         let y2 = tag.y * cosX - z1 * sinX;
         let z2 = tag.y * sinX + z1 * cosX;
 
-        // Calculate 2D perspective projection details
-        // Camera distance acts as the offset
         const scale = cameraDistance / (cameraDistance + z2);
         const x2d = x1 * scale;
         const y2d = y2 * scale;
 
-        // Depth shading: closer tags (z < 0) are opaque, farther ones are transparent
         const opacity = Math.min(1.0, Math.max(0.18, 0.6 + (radius - z2) / (2 * radius) * 0.4));
 
         return {
@@ -153,28 +144,27 @@ export default function Skills3DSphere() {
 
     updateRotation();
 
-    // Mouse movement to influence spin direction
-    const handleMouseMove = (e: MouseEvent) => {
+    // Mouse & Touch movement listeners
+    const handleMove = (clientX: number, clientY: number) => {
       if (isDraggingRef.current) {
-        const deltaX = e.clientX - startMouseXRef.current;
-        const deltaY = e.clientY - startMouseYRef.current;
-        speedYRef.current = deltaX * 0.0001;
-        speedXRef.current = -deltaY * 0.0001;
-        startMouseXRef.current = e.clientX;
-        startMouseYRef.current = e.clientY;
+        const deltaX = clientX - startMouseXRef.current;
+        const deltaY = clientY - startMouseYRef.current;
+        speedYRef.current = deltaX * 0.00015;
+        speedXRef.current = -deltaY * 0.00015;
+        startMouseXRef.current = clientX;
+        startMouseYRef.current = clientY;
       } else {
         const bounds = container.getBoundingClientRect();
         const centerX = bounds.left + bounds.width / 2;
         const centerY = bounds.top + bounds.height / 2;
-        const relativeX = e.clientX - centerX;
-        const relativeY = e.clientY - centerY;
+        const relativeX = clientX - centerX;
+        const relativeY = clientY - centerY;
 
-        // Hover within boundary speeds up rotation towards mouse angle
         if (
-          e.clientX >= bounds.left &&
-          e.clientX <= bounds.right &&
-          e.clientY >= bounds.top &&
-          e.clientY <= bounds.bottom
+          clientX >= bounds.left &&
+          clientX <= bounds.right &&
+          clientY >= bounds.top &&
+          clientY <= bounds.bottom
         ) {
           speedYRef.current = relativeX * 0.00001;
           speedXRef.current = -relativeY * 0.00001;
@@ -182,44 +172,68 @@ export default function Skills3DSphere() {
       }
     };
 
-    const handleMouseDown = (e: MouseEvent) => {
+    const handleStart = (clientX: number, clientY: number) => {
       const bounds = container.getBoundingClientRect();
       if (
-        e.clientX >= bounds.left &&
-        e.clientX <= bounds.right &&
-        e.clientY >= bounds.top &&
-        e.clientY <= bounds.bottom
+        clientX >= bounds.left &&
+        clientX <= bounds.right &&
+        clientY >= bounds.top &&
+        clientY <= bounds.bottom
       ) {
         isDraggingRef.current = true;
-        startMouseXRef.current = e.clientX;
-        startMouseYRef.current = e.clientY;
+        startMouseXRef.current = clientX;
+        startMouseYRef.current = clientY;
       }
     };
 
-    const handleMouseUp = () => {
+    const handleEnd = () => {
       isDraggingRef.current = false;
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mousedown", handleMouseDown);
-    window.addEventListener("mouseup", handleMouseUp);
+    const onMouseMove = (e: MouseEvent) => handleMove(e.clientX, e.clientY);
+    const onMouseDown = (e: MouseEvent) => handleStart(e.clientX, e.clientY);
+    const onMouseUp = () => handleEnd();
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        handleMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        handleStart(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+    const onTouchEnd = () => handleEnd();
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
+
+    container.addEventListener("touchstart", onTouchStart, { passive: true });
+    container.addEventListener("touchmove", onTouchMove, { passive: true });
+    container.addEventListener("touchend", onTouchEnd);
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mousedown", handleMouseDown);
-      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
+
+      container.removeEventListener("touchstart", onTouchStart);
+      container.removeEventListener("touchmove", onTouchMove);
+      container.removeEventListener("touchend", onTouchEnd);
     };
   }, [hoveredIndex]);
 
   return (
     <div
       ref={containerRef}
-      className="relative flex items-center justify-center w-full h-[400px] select-none cursor-grab active:cursor-grabbing overflow-visible"
+      className="relative flex items-center justify-center w-full h-[320px] sm:h-[380px] md:h-[400px] select-none cursor-grab active:cursor-grabbing overflow-hidden rounded-2xl"
     >
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         {/* Core sphere ambient glow */}
-        <div className="w-[180px] h-[180px] rounded-full bg-blue-500/5 dark:bg-blue-500/10 blur-[40px] pointer-events-none" />
+        <div className="w-[140px] sm:w-[180px] h-[140px] sm:h-[180px] rounded-full bg-blue-500/5 dark:bg-blue-500/10 blur-[40px] pointer-events-none" />
       </div>
 
       <div className="relative w-0 h-0 overflow-visible">
@@ -230,7 +244,7 @@ export default function Skills3DSphere() {
           return (
             <motion.div
               key={idx}
-              className={`absolute flex items-center justify-center px-4 py-1.5 rounded-full border text-xs md:text-sm font-semibold tracking-wide backdrop-blur-md transition-shadow duration-300 ${tag.color}`}
+              className={`absolute flex items-center justify-center px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full border text-[10px] sm:text-xs md:text-sm font-semibold tracking-wide backdrop-blur-md transition-shadow duration-300 ${tag.color}`}
               style={{
                 left: tag.x2d,
                 top: tag.y2d,
@@ -255,7 +269,7 @@ export default function Skills3DSphere() {
               }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
             >
-              <span className="flex items-center gap-1.5">
+              <span className="flex items-center gap-1 sm:gap-1.5 whitespace-nowrap">
                 <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
                 {tag.text}
               </span>

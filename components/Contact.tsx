@@ -35,7 +35,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-32 px-6 md:px-20">
+    <section id="contact" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden w-full max-w-full">
 
       {/* HEADING */}
       <motion.h2
@@ -43,23 +43,24 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="
-          text-center text-4xl md:text-5xl font-extrabold
+          text-center text-3xl sm:text-4xl md:text-5xl font-extrabold
           bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600
           bg-clip-text text-transparent
           drop-shadow-[0_0_40px_rgba(59,130,246,0.3)]
           dark:drop-shadow-[0_0_40px_rgba(59,130,246,0.8)]
+          font-display
         "
       >
         Get In Touch
       </motion.h2>
 
-      <p className="mt-6 max-w-3xl mx-auto text-center text-slate-600 dark:text-gray-300 font-sans">
+      <p className="mt-4 sm:mt-6 max-w-3xl mx-auto text-center text-slate-400 text-sm sm:text-base font-sans">
         Have a project in mind or want to discuss opportunities?
         I’d love to hear from you.
       </p>
 
       {/* TWO CARDS */}
-      <div className="mt-20 grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+      <div className="mt-12 sm:mt-20 grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
 
         {/* SEND MESSAGE CARD */}
         <motion.div
@@ -69,7 +70,7 @@ export default function Contact() {
           className="w-full"
         >
           <Card3D className="
-            relative p-10 rounded-3xl
+            relative p-6 sm:p-10 rounded-3xl
             bg-white/60 dark:bg-white/5 backdrop-blur-xl
             border border-slate-200/80 dark:border-white/10
             shadow-[0_0_40px_rgba(59,130,246,0.06)] dark:shadow-[0_0_40px_rgba(59,130,246,0.15)]
@@ -77,7 +78,7 @@ export default function Contact() {
             hover:shadow-[0_0_80px_rgba(59,130,246,0.25)] dark:hover:shadow-[0_0_80px_rgba(59,130,246,0.45)]
             transition-all duration-300 cursor-default
           ">
-            <h3 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400 mb-8 drop-shadow-[0_0_10px_rgba(59,130,246,0.2)] dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.3)] font-display" style={{ transform: "translateZ(10px)" }}>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400 mb-6 sm:mb-8 drop-shadow-[0_0_10px_rgba(59,130,246,0.2)] dark:drop-shadow-[0_0_10px_rgba(59,130,246,0.3)] font-display">
               Send a Message
             </h3>
 
