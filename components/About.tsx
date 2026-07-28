@@ -2,7 +2,25 @@
 
 import { motion } from "framer-motion";
 import Card3D from "@/components/Card3D";
-import { Briefcase, GraduationCap, Award, MapPin } from "lucide-react";
+import { 
+  Briefcase, 
+  GraduationCap, 
+  Award, 
+  MapPin, 
+  Sparkles, 
+  CheckCircle2, 
+  Code2, 
+  Cpu, 
+  Layers, 
+  Rocket 
+} from "lucide-react";
+
+const stats = [
+  { label: "Full-Stack Projects", value: "7+" },
+  { label: "APIs Integrated", value: "15+" },
+  { label: "API Speed Boost", value: "30%" },
+  { label: "Bug Resolution", value: "40+" },
+];
 
 const experiences = [
   {
@@ -10,6 +28,7 @@ const experiences = [
     company: "Graphura India Private Limited",
     location: "Delhi, India",
     time: "Dec 2025 – Present",
+    current: true,
     points: [
       "Developed and maintained scalable MERN stack CRM and business solutions, delivering production-ready modules.",
       "Containerized backend services with Docker, facilitating seamless, uniform deployments across development & production.",
@@ -24,6 +43,7 @@ const experiences = [
     company: "Infowizz Software Solutions",
     location: "Chandigarh, India",
     time: "Aug 2022 – Sep 2022",
+    current: false,
     points: [
       "Developed interactive and responsive user interfaces using Python, HTML5, CSS3, and JavaScript.",
       "Followed clean coding patterns during debugging, compatibility testing, and SDLC alignments."
@@ -76,89 +96,143 @@ const honors = [
 
 export default function About() {
   return (
-    <section id="about" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#070709] text-white w-full max-w-full border-t border-white/10">
-      {/* Front-page matching purple/cyan ambient neon glows */}
-      <div className="absolute left-[-10%] top-[20%] w-[40vw] max-w-[450px] h-[40vw] max-h-[450px] bg-purple-700/20 blur-[160px] rounded-full pointer-events-none z-0" />
-      <div className="absolute right-[-10%] bottom-[20%] w-[40vw] max-w-[450px] h-[40vw] max-h-[450px] bg-cyan-600/20 blur-[160px] rounded-full pointer-events-none z-0" />
+    <section id="about" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-16 overflow-hidden bg-[#070709] text-white w-full max-w-full border-t border-white/10">
+      
+      {/* Background Ambient Glows (Consistent with Hero theme) */}
+      <div className="absolute left-[-5%] top-[15%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-purple-900/20 blur-[160px] rounded-full pointer-events-none z-0" />
+      <div className="absolute right-[-5%] bottom-[15%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-orange-600/15 blur-[160px] rounded-full pointer-events-none z-0" />
 
-      {/* HEADING */}
+      {/* SECTION HEADER */}
       <div className="text-center max-w-3xl mx-auto z-10 relative">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-semibold uppercase tracking-wider mb-4"
+        >
+          <Sparkles size={14} />
+          <span>About Me</span>
+        </motion.div>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight font-display tracking-tight"
         >
           My Journey & <span className="text-orange-500">Experience</span>
         </motion.h2>
 
-        <p className="mt-3 sm:mt-4 text-slate-300 text-sm sm:text-base md:text-lg font-sans">
-          A narrative of my academic foundations, engineering internships, and developer milestones.
-        </p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-4 text-slate-300 text-sm sm:text-base md:text-lg font-sans"
+        >
+          Engineering scalable web architectures, autonomous AI workflows, and high-performance backend systems.
+        </motion.p>
       </div>
 
-      <div className="mt-12 sm:mt-20 max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+      {/* MAIN GRID CONTENT */}
+      <div className="mt-14 sm:mt-20 max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-10 items-start relative z-10">
         
-        {/* LEFT PROFILE CARD */}
+        {/* LEFT COLUMN: PROFILE CARD & QUICK STATS */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="lg:col-span-4"
+          className="lg:col-span-4 space-y-6"
         >
+          {/* Main Card */}
           <Card3D className="
-            relative p-8 rounded-3xl
-            bg-white/60 dark:bg-white/[0.03] backdrop-blur-xl
-            border border-slate-200/80 dark:border-white/10
-            shadow-[0_0_45px_rgba(59,130,246,0.06)] dark:shadow-[0_0_45px_rgba(59,130,246,0.12)]
-            hover:border-blue-500/40 transition-all duration-300 cursor-default
+            relative p-6 sm:p-8 rounded-3xl
+            bg-slate-950/70 backdrop-blur-2xl
+            border border-white/10
+            shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]
+            hover:border-orange-500/40 transition-all duration-300 cursor-default
           ">
-            <div className="absolute top-0 right-0 w-28 h-28 bg-blue-500/10 dark:bg-blue-500/20 blur-[30px] rounded-full pointer-events-none" />
+            {/* Status Pill */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Available for Hire</span>
+              </div>
+              <span className="text-xs text-slate-400 font-mono">B.Tech CSE</span>
+            </div>
             
-            <h3 className="text-2xl font-bold text-slate-800 dark:text-white font-display mb-4">
+            <h3 className="text-2xl font-black text-white font-display">
               Lalbabu Singh
             </h3>
             
-            <p className="text-sm text-blue-600 dark:text-cyan-400 font-semibold mb-6">
-              GenAI & MERN Stack Developer · B.Tech CSE
+            <p className="text-sm text-orange-400 font-semibold mt-1 mb-4 font-mono">
+              GenAI & MERN Stack Developer
             </p>
 
-            <p className="text-sm text-slate-600 dark:text-gray-300 leading-relaxed mb-6 font-sans">
-              I am a final-year B.Tech CSE student and a highly motivated GenAI & MERN Stack Developer. 
-              I specialize in orchestrating autonomous AI agent workflows (LangChain, OpenAI API), designing clean RESTful APIs, 
-              building scalable microservices with Docker, and optimizing database flows.
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 font-sans">
+              I am a software engineer specializing in building autonomous AI agent systems (LangChain, OpenAI API), 
+              scalable MERN stack platforms, containerized microservices (Docker), and optimized database pipelines.
             </p>
 
-            <div className="space-y-4 pt-6 border-t border-slate-200/60 dark:border-white/10 text-xs text-slate-500 dark:text-gray-400 font-sans">
+            {/* Quick Location & Work Specs */}
+            <div className="space-y-3 pt-6 border-t border-white/10 text-xs text-slate-300 font-sans">
               <div className="flex items-center gap-3">
-                <MapPin size={16} className="text-blue-500" />
-                <span>Delhi, India (Open to Relocation)</span>
+                <div className="p-2 rounded-lg bg-orange-500/10 text-orange-400">
+                  <MapPin size={16} />
+                </div>
+                <span>Delhi, India &middot; Open to Relocation / Remote</span>
               </div>
               <div className="flex items-center gap-3">
-                <Briefcase size={16} className="text-blue-500" />
+                <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400">
+                  <Briefcase size={16} />
+                </div>
                 <span>Software Intern @ Graphura India</span>
               </div>
               <div className="flex items-center gap-3">
-                <GraduationCap size={16} className="text-blue-500" />
+                <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400">
+                  <GraduationCap size={16} />
+                </div>
                 <span>Gurugram University CSE Student</span>
               </div>
             </div>
           </Card3D>
+
+          {/* Quick Metrics Grid */}
+          <div className="grid grid-cols-2 gap-4">
+            {stats.map((stat, idx) => (
+              <div
+                key={idx}
+                className="p-4 rounded-2xl bg-slate-950/50 border border-white/10 backdrop-blur-xl text-center group hover:border-orange-500/30 transition-all"
+              >
+                <div className="text-xl sm:text-2xl font-black text-white font-display group-hover:text-orange-400 transition-colors">
+                  {stat.value}
+                </div>
+                <div className="text-[11px] text-slate-400 font-medium mt-1">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
-        {/* RIGHT DETAILS GRID */}
+        {/* RIGHT COLUMN: TIMELINE & DETAILS */}
         <div className="lg:col-span-8 space-y-12">
           
-          {/* SECTION: EXPERIENCE */}
+          {/* 1. PROFESSIONAL EXPERIENCE */}
           <div className="space-y-6">
-            <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-3 font-display">
-              <Briefcase className="text-blue-500" size={22} />
-              Professional Experience
-            </h3>
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                <Briefcase size={20} />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-white font-display">
+                Professional Experience
+              </h3>
+            </div>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-6">
               {experiences.map((exp, i) => (
                 <motion.div
                   key={i}
@@ -168,26 +242,35 @@ export default function About() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <Card3D className="
-                    p-6 rounded-2xl h-full
-                    bg-white/60 dark:bg-white/[0.02] backdrop-blur-md
-                    border border-slate-200/80 dark:border-white/5
-                    shadow-[0_0_30px_rgba(59,130,246,0.03)] dark:shadow-[0_0_30px_rgba(59,130,246,0.06)]
-                    hover:border-blue-500/30 hover:shadow-[0_0_50px_rgba(59,130,246,0.15)]
+                    p-6 sm:p-7 rounded-2xl h-full
+                    bg-slate-950/60 backdrop-blur-xl
+                    border border-white/10
+                    shadow-[0_4px_25px_rgba(0,0,0,0.4)]
+                    hover:border-orange-500/30 hover:shadow-[0_0_35px_rgba(249,115,22,0.12)]
                     transition-all duration-300
                   ">
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/10">
-                      {exp.time}
-                    </span>
-                    <h4 className="text-base font-bold text-slate-800 dark:text-white mt-3 font-display">
+                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                      <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${
+                        exp.current 
+                          ? "bg-orange-500/10 text-orange-400 border-orange-500/20 font-mono" 
+                          : "bg-white/5 text-slate-300 border-white/10 font-mono"
+                      }`}>
+                        {exp.time}
+                      </span>
+                      <span className="text-xs text-slate-400 font-sans">{exp.location}</span>
+                    </div>
+
+                    <h4 className="text-lg font-bold text-white mt-2 font-display">
                       {exp.role}
                     </h4>
-                    <p className="text-xs text-slate-500 dark:text-gray-400 mt-1 font-sans">
-                      {exp.company} &middot; {exp.location}
+                    <p className="text-xs font-semibold text-cyan-400 mt-0.5 font-mono">
+                      {exp.company}
                     </p>
-                    <ul className="mt-4 space-y-2 text-xs text-slate-600 dark:text-gray-300 font-sans list-inside">
+
+                    <ul className="mt-4 space-y-2.5 text-xs sm:text-sm text-slate-300 font-sans">
                       {exp.points.map((point, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <span className="text-blue-500 shrink-0 mt-0.5">▹</span>
+                        <li key={idx} className="flex items-start gap-2.5">
+                          <CheckCircle2 size={15} className="text-orange-400 shrink-0 mt-0.5" />
                           <span>{point}</span>
                         </li>
                       ))}
@@ -198,12 +281,16 @@ export default function About() {
             </div>
           </div>
 
-          {/* SECTION: EDUCATION */}
+          {/* 2. EDUCATION HISTORY */}
           <div className="space-y-6">
-            <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-3 font-display">
-              <GraduationCap className="text-blue-500" size={24} />
-              Education History
-            </h3>
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                <GraduationCap size={20} />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-white font-display">
+                Education History
+              </h3>
+            </div>
             
             <div className="grid md:grid-cols-2 gap-6">
               {education.map((edu, i) => (
@@ -216,25 +303,25 @@ export default function About() {
                 >
                   <Card3D className="
                     p-6 rounded-2xl h-full
-                    bg-white/60 dark:bg-white/[0.02] backdrop-blur-md
-                    border border-slate-200/80 dark:border-white/5
-                    shadow-[0_0_30px_rgba(59,130,246,0.03)] dark:shadow-[0_0_30px_rgba(59,130,246,0.06)]
-                    hover:border-blue-500/30 hover:shadow-[0_0_50px_rgba(59,130,246,0.15)]
+                    bg-slate-950/60 backdrop-blur-xl
+                    border border-white/10
+                    shadow-[0_4px_25px_rgba(0,0,0,0.4)]
+                    hover:border-cyan-500/30 hover:shadow-[0_0_35px_rgba(6,182,212,0.12)]
                     transition-all duration-300
                   ">
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/10">
+                    <span className="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-mono">
                       {edu.time}
                     </span>
-                    <h4 className="text-base font-bold text-slate-800 dark:text-white mt-3 font-display">
+                    <h4 className="text-base font-bold text-white mt-3 font-display">
                       {edu.degree}
                     </h4>
-                    <p className="text-xs text-slate-500 dark:text-gray-400 mt-1 font-sans">
+                    <p className="text-xs text-slate-400 mt-1 font-sans">
                       {edu.institution} &middot; {edu.location}
                     </p>
-                    <ul className="mt-4 space-y-2 text-xs text-slate-600 dark:text-gray-300 font-sans list-inside">
+                    <ul className="mt-4 space-y-2 text-xs text-slate-300 font-sans">
                       {edu.points.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <span className="text-blue-500 shrink-0 mt-0.5">▹</span>
+                          <span className="text-cyan-400 shrink-0 mt-0.5">▹</span>
                           <span>{point}</span>
                         </li>
                       ))}
@@ -245,12 +332,16 @@ export default function About() {
             </div>
           </div>
 
-          {/* SECTION: HONORS & CREDENTIALS */}
+          {/* 3. ACHIEVEMENTS & CERTIFICATIONS */}
           <div className="space-y-6">
-            <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-3 font-display">
-              <Award className="text-blue-500" size={22} />
-              Achievements & Certifications
-            </h3>
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                <Award size={20} />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-white font-display">
+                Achievements & Credentials
+              </h3>
+            </div>
             
             <div className="grid md:grid-cols-2 gap-6">
               {honors.map((honor, i) => (
@@ -263,22 +354,22 @@ export default function About() {
                 >
                   <Card3D className="
                     p-6 rounded-2xl h-full
-                    bg-white/60 dark:bg-white/[0.02] backdrop-blur-md
-                    border border-slate-200/80 dark:border-white/5
-                    shadow-[0_0_30px_rgba(59,130,246,0.03)] dark:shadow-[0_0_30px_rgba(59,130,246,0.06)]
-                    hover:border-blue-500/30 hover:shadow-[0_0_50px_rgba(59,130,246,0.15)]
+                    bg-slate-950/60 backdrop-blur-xl
+                    border border-white/10
+                    shadow-[0_4px_25px_rgba(0,0,0,0.4)]
+                    hover:border-purple-500/30 hover:shadow-[0_0_35px_rgba(168,85,247,0.12)]
                     transition-all duration-300
                   ">
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/10">
+                    <span className="text-xs font-semibold px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 font-mono">
                       {honor.time}
                     </span>
-                    <h4 className="text-base font-bold text-slate-800 dark:text-white mt-3 font-display">
+                    <h4 className="text-base font-bold text-white mt-3 font-display">
                       {honor.title}
                     </h4>
-                    <ul className="mt-4 space-y-2.5 text-xs text-slate-600 dark:text-gray-300 font-sans list-inside">
+                    <ul className="mt-4 space-y-2.5 text-xs text-slate-300 font-sans">
                       {honor.points.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <span className="text-blue-500 shrink-0 mt-0.5">▹</span>
+                          <span className="text-purple-400 shrink-0 mt-0.5">▹</span>
                           <span>{point}</span>
                         </li>
                       ))}
