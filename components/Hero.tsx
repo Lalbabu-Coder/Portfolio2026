@@ -7,9 +7,34 @@ import AITerminal from "@/components/AITerminal";
 import { ArrowRight, Terminal as TerminalIcon, Sparkles } from "lucide-react";
 
 const roles = [
-  { main: "GenAI & MERN", sub: "Developer" },
-  { main: "Autonomous AI", sub: "Engineer" },
-  { main: "Full Stack", sub: "Developer" }
+  { 
+    badge: "MERN Stack Specialist",
+    main: "Full Stack", 
+    sub: "Developer", 
+    gradient: "from-orange-400 via-amber-300 to-yellow-400",
+    glow: "rgba(249, 115, 22, 0.5)"
+  },
+  { 
+    badge: "LangChain & Vector DBs",
+    main: "GenAI & LLM", 
+    sub: "Engineer", 
+    gradient: "from-cyan-400 via-sky-300 to-emerald-400",
+    glow: "rgba(6, 182, 212, 0.5)"
+  },
+  { 
+    badge: "Autonomous AI Workflows",
+    main: "AI Agent", 
+    sub: "Architect", 
+    gradient: "from-purple-400 via-fuchsia-300 to-indigo-400",
+    glow: "rgba(168, 85, 247, 0.5)"
+  },
+  { 
+    badge: "Docker & Microservices",
+    main: "Backend System", 
+    sub: "Developer", 
+    gradient: "from-rose-400 via-orange-300 to-amber-300",
+    glow: "rgba(244, 63, 94, 0.5)"
+  }
 ];
 
 const bottomSkills = [
@@ -26,9 +51,11 @@ export default function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 2800);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  const currentRole = roles[roleIndex];
 
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#070709] text-white w-full max-w-full pt-28 pb-10">
@@ -60,34 +87,71 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 my-auto grid lg:grid-cols-12 gap-8 items-center pt-8">
         
         {/* LEFT COLUMN: MAIN HEADLINE */}
-        <div className="lg:col-span-6 flex flex-col justify-center">
+        <div className="lg:col-span-7 flex flex-col justify-center">
           
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
+          {/* TOP ACCENT BADGE */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-orange-500 font-bold text-base sm:text-lg md:text-xl tracking-tight mb-2 block font-display"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 backdrop-blur-md w-fit mb-3 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
           >
-            Hey, I'm a
-          </motion.span>
+            <Sparkles size={14} className="text-orange-400 animate-pulse" />
+            <span className="text-orange-400 font-bold text-xs sm:text-sm tracking-wide font-mono">
+              Hey, I'm Lalbabu Singh
+            </span>
+          </motion.div>
 
-          <AnimatePresence mode="wait">
-            <motion.h1
-              key={roleIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[1.02] tracking-tight font-display"
-            >
-              <span className="block text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
-                {roles[roleIndex].main}
-              </span>
-              <span className="block text-white/95">
-                {roles[roleIndex].sub}
-              </span>
-            </motion.h1>
-          </AnimatePresence>
+          {/* DYNAMIC STYLISH SWITCHING HEADLINE */}
+          <div className="min-h-[140sm:min-h-[160px] md:min-h-[190px] flex flex-col justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={roleIndex}
+                initial={{ opacity: 0, y: 25, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -25, scale: 0.98 }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
+                className="space-y-1"
+              >
+                {/* Role Category Tag */}
+                <div className="text-xs sm:text-sm font-semibold tracking-wider uppercase font-mono text-slate-400 flex items-center gap-2 mb-1">
+                  <span className="w-2 h-2 rounded-full bg-orange-400 animate-ping" />
+                  <span>{currentRole.badge}</span>
+                </div>
+
+                {/* Stylish Gradient Role Title */}
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-black leading-[1.03] tracking-tight font-display">
+                  <span 
+                    className={`block bg-gradient-to-r ${currentRole.gradient} bg-clip-text text-transparent pb-1`}
+                    style={{
+                      filter: `drop-shadow(0 0 35px ${currentRole.glow})`
+                    }}
+                  >
+                    {currentRole.main}
+                  </span>
+                  <span className="block text-white font-extrabold tracking-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+                    {currentRole.sub}
+                  </span>
+                </h1>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* ROLE SWITCHER PILL INDICATORS */}
+          <div className="flex items-center gap-2 my-4">
+            {roles.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setRoleIndex(idx)}
+                aria-label={`Select role ${idx + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  idx === roleIndex 
+                    ? "w-8 bg-orange-500 shadow-[0_0_12px_rgba(249,115,22,0.8)]" 
+                    : "w-2 bg-white/20 hover:bg-white/40"
+                }`}
+              />
+            ))}
+          </div>
 
           <motion.div
             initial={{ opacity: 0 }}
