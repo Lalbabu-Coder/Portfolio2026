@@ -8,30 +8,30 @@ import { ArrowRight, Terminal as TerminalIcon, Sparkles } from "lucide-react";
 
 const roles = [
   { 
-    badge: "MERN Stack Specialist",
-    main: "Full Stack", 
+    badge: "AI Agents & MERN Stack",
+    main: "GenAI & MERN Stack", 
     sub: "Developer", 
     gradient: "from-orange-400 via-amber-300 to-yellow-400",
     glow: "rgba(249, 115, 22, 0.5)"
   },
   { 
-    badge: "LangChain & Vector DBs",
-    main: "GenAI & LLM", 
-    sub: "Engineer", 
+    badge: "React & Next.js Architecture",
+    main: "Full Stack", 
+    sub: "Developer", 
     gradient: "from-cyan-400 via-sky-300 to-emerald-400",
     glow: "rgba(6, 182, 212, 0.5)"
   },
   { 
-    badge: "Autonomous AI Workflows",
-    main: "AI Agent", 
-    sub: "Architect", 
+    badge: "Backend & Systems",
+    main: "Software", 
+    sub: "Developer", 
     gradient: "from-purple-400 via-fuchsia-300 to-indigo-400",
     glow: "rgba(168, 85, 247, 0.5)"
   },
   { 
-    badge: "Docker & Microservices",
-    main: "Backend System", 
-    sub: "Developer", 
+    badge: "LangChain & Vector DBs",
+    main: "Autonomous AI", 
+    sub: "Engineer", 
     gradient: "from-rose-400 via-orange-300 to-amber-300",
     glow: "rgba(244, 63, 94, 0.5)"
   }
@@ -58,69 +58,68 @@ export default function Hero() {
   const currentRole = roles[roleIndex];
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#070709] text-white w-full max-w-full pt-28 pb-10">
+    <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#070709] text-white w-full max-w-full pt-24 sm:pt-28 pb-8 sm:pb-10">
       
       {/* 1. CLEAN HIGH-CONTRAST PORTRAIT BACKGROUND WITH AMBIENT NEON GLOW */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         
         {/* Ambient Neon Glows BEHIND the Image */}
-        <div className="absolute -left-20 top-1/3 w-[35vw] max-w-[450px] h-[35vw] max-h-[450px] bg-purple-600/20 blur-[140px] rounded-full" />
-        <div className="absolute right-10 top-1/4 w-[40vw] max-w-[500px] h-[40vw] max-h-[500px] bg-orange-600/25 blur-[150px] rounded-full" />
+        <div className="absolute -left-20 top-1/3 w-[50vw] sm:w-[35vw] max-w-[450px] h-[50vw] sm:h-[35vw] max-h-[450px] bg-purple-600/20 blur-[120px] sm:blur-[140px] rounded-full" />
+        <div className="absolute right-0 top-1/4 w-[50vw] sm:w-[40vw] max-w-[500px] h-[50vw] sm:h-[40vw] max-h-[500px] bg-orange-600/20 blur-[130px] sm:blur-[150px] rounded-full" />
 
-        {/* Crisp Portrait Image Container */}
-        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[52%] h-full opacity-90 lg:opacity-100">
+        {/* Mobile & Desktop Optimized Portrait Container */}
+        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[52%] h-full opacity-35 sm:opacity-75 lg:opacity-100">
           <img
             src="/hero-bg.png"
             alt="Lalbabu Singh"
             className="w-full h-full object-cover object-top filter contrast-105 brightness-110 saturate-105"
           />
-          {/* Smooth Left Side Blend (Only fades left edge where text sits) */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#070709] via-[#070709]/70 to-transparent lg:via-[#070709]/30" />
-          {/* Soft Bottom & Top Blends */}
+          {/* Smooth Gradient Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070709] via-[#070709]/85 sm:via-[#070709]/70 to-transparent lg:via-[#070709]/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#070709] via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#070709]/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#070709]/80 via-transparent to-transparent" />
         </div>
 
       </div>
 
       {/* 2. MAIN HERO CONTENT GRID */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 my-auto grid lg:grid-cols-12 gap-8 items-center pt-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 my-auto grid lg:grid-cols-12 gap-8 items-center pt-4 sm:pt-8">
         
         {/* LEFT COLUMN: MAIN HEADLINE */}
-        <div className="lg:col-span-7 flex flex-col justify-center">
+        <div className="lg:col-span-8 flex flex-col justify-center">
           
           {/* TOP ACCENT BADGE */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 backdrop-blur-md w-fit mb-3 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+            className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-slate-900/90 border border-white/10 backdrop-blur-md w-fit mb-3 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
           >
-            <Sparkles size={14} className="text-orange-400 animate-pulse" />
+            <Sparkles size={14} className="text-orange-400 animate-pulse shrink-0" />
             <span className="text-orange-400 font-bold text-xs sm:text-sm tracking-wide font-mono">
               Hey, I'm Lalbabu Singh
             </span>
           </motion.div>
 
-          {/* DYNAMIC STYLISH SWITCHING HEADLINE */}
-          <div className="min-h-[140sm:min-h-[160px] md:min-h-[190px] flex flex-col justify-center">
+          {/* DYNAMIC STYLISH SWITCHING HEADLINE - OPTIMIZED FOR MOBILE */}
+          <div className="min-h-[130px] sm:min-h-[160px] md:min-h-[190px] flex flex-col justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={roleIndex}
-                initial={{ opacity: 0, y: 25, scale: 0.98 }}
+                initial={{ opacity: 0, y: 20, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -25, scale: 0.98 }}
-                transition={{ duration: 0.45, ease: "easeOut" }}
+                exit={{ opacity: 0, y: -20, scale: 0.98 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
                 className="space-y-1"
               >
                 {/* Role Category Tag */}
-                <div className="text-xs sm:text-sm font-semibold tracking-wider uppercase font-mono text-slate-400 flex items-center gap-2 mb-1">
-                  <span className="w-2 h-2 rounded-full bg-orange-400 animate-ping" />
+                <div className="text-[11px] sm:text-xs md:text-sm font-semibold tracking-wider uppercase font-mono text-slate-300 flex items-center gap-2 mb-1">
+                  <span className="w-2 h-2 rounded-full bg-orange-400 animate-ping shrink-0" />
                   <span>{currentRole.badge}</span>
                 </div>
 
                 {/* Stylish Gradient Role Title */}
-                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-black leading-[1.03] tracking-tight font-display">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[5rem] font-black leading-[1.05] tracking-tight font-display">
                   <span 
                     className={`block bg-gradient-to-r ${currentRole.gradient} bg-clip-text text-transparent pb-1`}
                     style={{
@@ -138,7 +137,7 @@ export default function Hero() {
           </div>
 
           {/* ROLE SWITCHER PILL INDICATORS */}
-          <div className="flex items-center gap-2 my-4">
+          <div className="flex items-center gap-2 my-3 sm:my-4">
             {roles.map((_, idx) => (
               <button
                 key={idx}
@@ -153,25 +152,26 @@ export default function Hero() {
             ))}
           </div>
 
+          {/* MOBILE OPTIMIZED BUTTONS */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6 flex flex-wrap items-center gap-3"
+            className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto"
           >
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm transition-all duration-300 shadow-[0_0_25px_rgba(249,115,22,0.4)] hover:shadow-[0_0_35px_rgba(249,115,22,0.6)] cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-3 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm transition-all duration-300 shadow-[0_0_25px_rgba(249,115,22,0.4)] hover:shadow-[0_0_35px_rgba(249,115,22,0.6)] cursor-pointer text-center"
             >
               <span>Let's Build Together</span>
-              <div className="w-7 h-7 rounded-full bg-white text-orange-600 flex items-center justify-center font-bold">
-                <ArrowRight size={14} />
+              <div className="w-6 h-6 rounded-full bg-white text-orange-600 flex items-center justify-center font-bold">
+                <ArrowRight size={13} />
               </div>
             </a>
 
             <button
               onClick={() => setShowTerminalModal(true)}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-gray-200 text-sm font-semibold transition duration-300 backdrop-blur-md cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-gray-200 text-sm font-semibold transition duration-300 backdrop-blur-md cursor-pointer text-center"
             >
               <TerminalIcon size={16} className="text-cyan-400" />
               <span>Launch AI Terminal</span>
