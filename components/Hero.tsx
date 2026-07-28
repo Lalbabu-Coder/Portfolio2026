@@ -33,30 +33,27 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#070709] text-white w-full max-w-full pt-28 pb-10">
       
-      {/* 1. CINEMATIC HERO BACKGROUND WITH PORTRAIT & DUAL NEON LIGHTING (EXACT MATCH TO SCREENSHOT) */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      {/* 1. CLEAN HIGH-CONTRAST PORTRAIT BACKGROUND WITH AMBIENT NEON GLOW */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         
-        {/* Background Image of User Portrait */}
-        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[65%] h-full opacity-60 lg:opacity-90">
+        {/* Ambient Neon Glows BEHIND the Image */}
+        <div className="absolute -left-20 top-1/3 w-[35vw] max-w-[450px] h-[35vw] max-h-[450px] bg-purple-600/20 blur-[140px] rounded-full" />
+        <div className="absolute right-10 top-1/4 w-[40vw] max-w-[500px] h-[40vw] max-h-[500px] bg-orange-600/25 blur-[150px] rounded-full" />
+
+        {/* Crisp Portrait Image Container */}
+        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[52%] h-full opacity-90 lg:opacity-100">
           <img
             src="/hero-bg.png"
             alt="Lalbabu Singh"
-            className="w-full h-full object-cover object-center lg:object-top filter contrast-110 brightness-95"
+            className="w-full h-full object-cover object-top filter contrast-105 brightness-110 saturate-105"
           />
-          {/* Gradient Masks for Seamless Blending */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#070709] via-[#070709]/80 to-transparent lg:via-[#070709]/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#070709] via-transparent to-[#070709]/60" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#070709]/50 via-transparent to-[#070709]" />
+          {/* Smooth Left Side Blend (Only fades left edge where text sits) */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070709] via-[#070709]/70 to-transparent lg:via-[#070709]/30" />
+          {/* Soft Bottom & Top Blends */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#070709] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#070709]/70 via-transparent to-transparent" />
         </div>
 
-        {/* Purple/Magenta Glow on Left */}
-        <div className="absolute -left-20 top-1/4 w-[40vw] max-w-[500px] h-[40vw] max-h-[500px] bg-purple-700/30 blur-[160px] rounded-full" />
-        
-        {/* Red/Orange Crimson Glow on Right */}
-        <div className="absolute right-0 bottom-1/4 w-[45vw] max-w-[550px] h-[45vw] max-h-[550px] bg-red-600/30 blur-[170px] rounded-full" />
-
-        {/* Soft Vignette Overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#070709_90%)]" />
       </div>
 
       {/* 2. MAIN HERO CONTENT GRID */}
