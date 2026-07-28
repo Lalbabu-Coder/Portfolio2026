@@ -4,115 +4,167 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import DecryptedText from "@/components/DecryptedText";
 import AITerminal from "@/components/AITerminal";
+import { ArrowRight, Terminal as TerminalIcon, Sparkles } from "lucide-react";
 
 const roles = [
-  "GenAI & MERN Stack Developer",
-  "Autonomous AI Systems Engineer",
-  "Full Stack Software Developer"
+  { main: "GenAI & MERN", sub: "Developer" },
+  { main: "Autonomous AI", sub: "Engineer" },
+  { main: "Full Stack", sub: "Developer" }
+];
+
+const bottomSkills = [
+  { num: "#01", title: "Autonomous AI Agents" },
+  { num: "#02", title: "MERN Stack Architecture" },
+  { num: "#03", title: "Docker & Microservices" },
+  { num: "#04", title: "RESTful APIs & Cloud" }
 ];
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
+  const [showTerminalModal, setShowTerminalModal] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 1800);
+    }, 2800);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center px-4 sm:px-6 md:px-20 overflow-hidden bg-transparent w-full max-w-full">
-      {/* Background soft glowing blur spheres */}
-      <div className="absolute left-[-5%] top-[15%] w-[35vw] max-w-[300px] h-[35vw] max-h-[300px] bg-indigo-600/10 blur-[130px] rounded-full pointer-events-none z-0"></div>
-      <div className="absolute right-[-5%] bottom-[-5%] w-[30vw] max-w-[280px] h-[30vw] max-h-[280px] bg-cyan-600/10 blur-[130px] rounded-full pointer-events-none z-0"></div>
-
-      <div className="grid lg:grid-cols-12 w-full max-w-7xl mx-auto items-center gap-10 md:gap-12 relative z-20 pt-28 sm:pt-32 pb-16">
+    <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#070709] text-white w-full max-w-full pt-28 pb-10">
+      
+      {/* 1. CINEMATIC HERO BACKGROUND WITH PORTRAIT & DUAL NEON LIGHTING (EXACT MATCH TO SCREENSHOT) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         
-        {/* LEFT COLUMN: INTRO TEXT */}
-        <div className="lg:col-span-6 relative text-center lg:text-left flex flex-col justify-center max-w-full">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="self-center lg:self-start inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 backdrop-blur-md shadow-[0_0_20px_rgba(59,130,246,0.15)]"
-          >
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span className="text-[11px] sm:text-xs md:text-sm font-semibold text-cyan-300 tracking-wider font-mono">
-              SYSTEMS ACTIVE: GEN+AI & CLI CORE
-            </span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <span className="text-lg sm:text-xl md:text-2xl font-medium text-slate-400 block mb-2 font-display">
-              Hey! I’m
-            </span>
-
-            {/* Hacker Decrypted Text name header */}
-            <span className="text-3xl sm:text-5xl md:text-[4.2rem] lg:text-[4.8rem] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 block mb-3 leading-tight font-display tracking-tight break-words">
-              <DecryptedText text="Lalbabu Singh" speed={40} />
-            </span>
-
-            <span className="text-lg sm:text-2xl md:text-3xl font-bold text-slate-300 block mt-2">
-              A{" "}
-              <span className="inline-flex text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-extrabold">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={roleIndex}
-                    initial={{ y: 12, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -12, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {roles[roleIndex]}.
-                  </motion.span>
-                </AnimatePresence>
-              </span>
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-slate-400 mt-6 max-w-xl text-sm sm:text-base md:text-lg leading-relaxed mx-auto lg:mx-0 font-sans"
-          >
-            Specialized Software Engineer Intern focused on GenAI architectures, autonomous AI agent orchestration,
-            full-stack MERN engineering, Docker deployments, and microservices scaling.
-          </motion.p>
-
-          <div className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mt-8">
-            <a
-              href="#projects"
-              className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 sm:px-8 py-3 font-semibold text-white text-sm sm:text-base hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition duration-300 cursor-pointer border border-blue-400/20"
-            >
-              View Projects
-            </a>
-
-            <a
-              href="#contact"
-              className="rounded-xl bg-white/5 border border-white/10 px-6 sm:px-8 py-3 font-semibold text-gray-300 text-sm sm:text-base hover:bg-white/10 hover:text-white transition-all duration-300 cursor-pointer"
-            >
-              Contact Me
-            </a>
-          </div>
+        {/* Background Image of User Portrait */}
+        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[65%] h-full opacity-60 lg:opacity-90">
+          <img
+            src="/hero-bg.png"
+            alt="Lalbabu Singh"
+            className="w-full h-full object-cover object-center lg:object-top filter contrast-110 brightness-95"
+          />
+          {/* Gradient Masks for Seamless Blending */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070709] via-[#070709]/80 to-transparent lg:via-[#070709]/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#070709] via-transparent to-[#070709]/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#070709]/50 via-transparent to-[#070709]" />
         </div>
 
-        {/* RIGHT COLUMN: INTERACTIVE CYBERNETIC AI TERMINAL */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="lg:col-span-6 w-full flex justify-center items-center max-w-full overflow-hidden"
-        >
-          <AITerminal />
-        </motion.div>
+        {/* Purple/Magenta Glow on Left */}
+        <div className="absolute -left-20 top-1/4 w-[40vw] max-w-[500px] h-[40vw] max-h-[500px] bg-purple-700/30 blur-[160px] rounded-full" />
+        
+        {/* Red/Orange Crimson Glow on Right */}
+        <div className="absolute right-0 bottom-1/4 w-[45vw] max-w-[550px] h-[45vw] max-h-[550px] bg-red-600/30 blur-[170px] rounded-full" />
+
+        {/* Soft Vignette Overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#070709_90%)]" />
+      </div>
+
+      {/* 2. MAIN HERO CONTENT GRID */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 my-auto grid lg:grid-cols-12 gap-8 items-center pt-8">
+        
+        {/* LEFT COLUMN: MAIN HEADLINE */}
+        <div className="lg:col-span-6 flex flex-col justify-center">
+          
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-orange-500 font-bold text-base sm:text-lg md:text-xl tracking-tight mb-2 block font-display"
+          >
+            Hey, I'm a
+          </motion.span>
+
+          <AnimatePresence mode="wait">
+            <motion.h1
+              key={roleIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black text-white leading-[1.02] tracking-tight font-display"
+            >
+              <span className="block text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
+                {roles[roleIndex].main}
+              </span>
+              <span className="block text-white/95">
+                {roles[roleIndex].sub}
+              </span>
+            </motion.h1>
+          </AnimatePresence>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-6 flex flex-wrap items-center gap-3"
+          >
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm transition-all duration-300 shadow-[0_0_25px_rgba(249,115,22,0.4)] hover:shadow-[0_0_35px_rgba(249,115,22,0.6)] cursor-pointer"
+            >
+              <span>Let's Build Together</span>
+              <div className="w-7 h-7 rounded-full bg-white text-orange-600 flex items-center justify-center font-bold">
+                <ArrowRight size={14} />
+              </div>
+            </a>
+
+            <button
+              onClick={() => setShowTerminalModal(true)}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-gray-200 text-sm font-semibold transition duration-300 backdrop-blur-md cursor-pointer"
+            >
+              <TerminalIcon size={16} className="text-cyan-400" />
+              <span>Launch AI Terminal</span>
+            </button>
+          </motion.div>
+
+        </div>
 
       </div>
+
+      {/* 3. BOTTOM ROW: NUMBERED SKILL PILLS (EXACT MATCH TO SCREENSHOT #01 #02 #03 #04 ROW) */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-12 pt-6 border-t border-white/10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          {bottomSkills.map((skill, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold tracking-wide font-sans group cursor-default"
+            >
+              <span className="text-orange-500 font-extrabold font-mono text-sm sm:text-base group-hover:scale-110 transition-transform">
+                {skill.num}
+              </span>
+              <span className="text-slate-200 group-hover:text-white transition-colors">
+                {skill.title}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* CLI TERMINAL MODAL */}
+      <AnimatePresence>
+        {showTerminalModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-black/80 backdrop-blur-xl flex items-center justify-center p-4"
+          >
+            <div className="w-full max-w-3xl relative">
+              <button
+                onClick={() => setShowTerminalModal(false)}
+                className="absolute -top-10 right-0 text-white hover:text-orange-400 text-sm font-mono cursor-pointer"
+              >
+                [ CLOSE TERMINAL ✕ ]
+              </button>
+              <AITerminal />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }

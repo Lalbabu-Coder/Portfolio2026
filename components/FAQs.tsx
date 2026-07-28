@@ -30,29 +30,27 @@ export default function FAQs() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section id="faqs" className="py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden w-full max-w-full">
+    <section id="faqs" className="py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#070709] text-white w-full max-w-full border-t border-white/10 relative">
+      {/* Front-page matching purple/cyan ambient neon glows */}
+      <div className="absolute left-[-10%] top-[20%] w-[40vw] max-w-[450px] h-[40vw] max-h-[450px] bg-purple-700/20 blur-[160px] rounded-full pointer-events-none z-0" />
+      <div className="absolute right-[-10%] bottom-[20%] w-[40vw] max-w-[450px] h-[40vw] max-h-[450px] bg-cyan-600/20 blur-[160px] rounded-full pointer-events-none z-0" />
 
       {/* HEADING */}
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="
-          text-center text-3xl sm:text-4xl md:text-5xl font-extrabold
-          bg-gradient-to-r from-blue-500 to-cyan-400
-          bg-clip-text text-transparent
-          drop-shadow-[0_0_30px_rgba(59,130,246,0.3)]
-          dark:drop-shadow-[0_0_30px_rgba(59,130,246,0.6)]
-          font-display
-        "
-      >
-        Technical Insights
-      </motion.h2>
+      <div className="relative z-10 text-center max-w-3xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight font-display tracking-tight"
+        >
+          Technical <span className="text-orange-500">Insights</span>
+        </motion.h2>
 
-      <p className="text-center mt-3 sm:mt-4 text-slate-400 text-sm sm:text-base max-w-2xl mx-auto font-sans">
-        Explore my technical skills, development mindset, and how I build
-        scalable, clean, and performance-driven applications.
-      </p>
+        <p className="mt-3 sm:mt-4 text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-sans">
+          Explore my technical skills, development mindset, and how I build
+          scalable, clean, and performance-driven applications.
+        </p>
+      </div>
 
       {/* FAQ LIST */}
       <div className="mt-12 sm:mt-16 max-w-4xl mx-auto space-y-4 sm:space-y-5">

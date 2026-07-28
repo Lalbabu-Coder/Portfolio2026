@@ -8,7 +8,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative mt-24 sm:mt-32 border-t border-white/10 bg-slate-950/80 backdrop-blur-xl transition-colors duration-300 overflow-hidden w-full max-w-full">
+    <footer className="relative mt-24 sm:mt-32 border-t border-white/10 bg-[#070709] text-white backdrop-blur-xl transition-colors duration-300 overflow-hidden w-full max-w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-20 py-12 sm:py-16 grid md:grid-cols-3 gap-8 md:gap-12 items-center">
 
         {/* LEFT */}

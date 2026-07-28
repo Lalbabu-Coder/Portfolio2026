@@ -76,9 +76,10 @@ const honors = [
 
 export default function About() {
   return (
-    <section id="about" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden w-full max-w-full">
-      {/* Background radial highlight */}
-      <div className="absolute left-[10%] top-[10%] w-[35vw] max-w-[300px] h-[35vw] max-h-[300px] bg-indigo-600/5 dark:bg-indigo-600/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+    <section id="about" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#070709] text-white w-full max-w-full border-t border-white/10">
+      {/* Front-page matching purple/cyan ambient neon glows */}
+      <div className="absolute left-[-10%] top-[20%] w-[40vw] max-w-[450px] h-[40vw] max-h-[450px] bg-purple-700/20 blur-[160px] rounded-full pointer-events-none z-0" />
+      <div className="absolute right-[-10%] bottom-[20%] w-[40vw] max-w-[450px] h-[40vw] max-h-[450px] bg-cyan-600/20 blur-[160px] rounded-full pointer-events-none z-0" />
 
       {/* HEADING */}
       <div className="text-center max-w-3xl mx-auto z-10 relative">
@@ -87,19 +88,12 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="
-            text-3xl sm:text-4xl md:text-5xl font-extrabold
-            bg-gradient-to-r from-blue-500 via-cyan-500 to-indigo-500
-            bg-clip-text text-transparent
-            drop-shadow-[0_0_40px_rgba(59,130,246,0.35)]
-            dark:drop-shadow-[0_0_40px_rgba(59,130,246,0.7)]
-            font-display
-          "
+          className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight font-display tracking-tight"
         >
-          My Journey & Experience
+          My Journey & <span className="text-orange-500">Experience</span>
         </motion.h2>
 
-        <p className="mt-3 sm:mt-4 text-slate-500 dark:text-gray-400 text-sm sm:text-base md:text-lg font-sans">
+        <p className="mt-3 sm:mt-4 text-slate-300 text-sm sm:text-base md:text-lg font-sans">
           A narrative of my academic foundations, engineering internships, and developer milestones.
         </p>
       </div>

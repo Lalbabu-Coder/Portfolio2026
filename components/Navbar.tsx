@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 
 const navItems = [
+  { name: "Home", href: "#" },
   { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
-  { name: "FAQs", href: "#faqs" },
+  { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -37,47 +37,47 @@ export default function Navbar() {
         initial="visible"
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed top-4 sm:top-6 left-0 right-0 w-full max-w-full flex justify-center z-[100] px-3 sm:px-6 md:px-8"
+        className="fixed top-4 sm:top-6 left-0 right-0 w-full max-w-full flex justify-center z-[100] px-4 sm:px-8 md:px-12"
       >
-        <nav className="flex items-center justify-between w-full max-w-6xl px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-slate-950/80 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] text-sm font-medium transition-all duration-300">
+        <nav className="flex items-center justify-between w-full max-w-7xl px-6 py-3 rounded-full bg-slate-950/70 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] text-sm font-medium transition-all duration-300">
           
           {/* Left: Logo */}
           <Link
             href="/"
-            className="font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 text-lg sm:text-xl drop-shadow-[0_0_15px_rgba(59,130,246,0.5)] tracking-wide"
+            className="font-display font-black text-white text-xl sm:text-2xl tracking-tight hover:opacity-90 transition-opacity"
           >
-            {"{ L.S }"}
+            Lalbabu<span className="text-orange-500">.</span>
           </Link>
 
           {/* Center: Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8 text-sm font-semibold">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-300 hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[2px] after:-bottom-1 after:left-0 after:bg-cyan-400 after:shadow-[0_0_8px_rgba(6,182,212,0.8)] after:origin-bottom-right hover:after:scale-x-100 hover:after:origin-bottom-left after:transition-transform after:duration-300"
+                className="text-gray-300 hover:text-white transition-colors duration-200"
               >
                 {item.name}
               </a>
             ))}
           </div>
 
-          {/* Right: Resume Button & Mobile Toggle */}
-          <div className="flex items-center gap-2 sm:gap-4">
+          {/* Right: Get in Touch Button (White Pill with Orange Arrow Icon) */}
+          <div className="flex items-center gap-3">
             <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-white bg-blue-600/90 hover:bg-blue-500 transition-all duration-300 shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] border border-blue-400/30 hover:-translate-y-0.5 flex items-center gap-1"
+              href="#contact"
+              className="px-5 py-2 rounded-full text-xs sm:text-sm font-bold text-slate-950 bg-white hover:bg-slate-100 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center gap-2 cursor-pointer group"
             >
-              <span>Resume</span>
-              <ArrowUpRight size={14} />
+              <span>Get in touch</span>
+              <div className="w-5 h-5 rounded-full bg-orange-500 text-white flex items-center justify-center font-extrabold group-hover:translate-x-0.5 transition-transform">
+                <ArrowRight size={12} />
+              </div>
             </a>
 
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-white transition-all cursor-pointer"
+              className="md:hidden p-2 rounded-full bg-white/10 border border-white/10 text-gray-200 hover:text-white transition-all cursor-pointer"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -102,10 +102,10 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-base font-semibold text-gray-200 hover:text-cyan-400 py-2 px-3 rounded-lg hover:bg-white/5 transition-all flex items-center justify-between"
+                  className="text-base font-semibold text-gray-200 hover:text-orange-400 py-2 px-3 rounded-lg hover:bg-white/5 transition-all flex items-center justify-between"
                 >
                   <span>{item.name}</span>
-                  <span className="text-xs text-cyan-400/60 font-mono">→</span>
+                  <span className="text-xs text-orange-400 font-mono">→</span>
                 </a>
               ))}
             </div>
@@ -114,4 +114,5 @@ export default function Navbar() {
       </AnimatePresence>
     </>
   );
-}
+}
+

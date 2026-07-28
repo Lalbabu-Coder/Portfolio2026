@@ -2,290 +2,301 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Card3D from "@/components/Card3D";
-import Skills3DSphere from "@/components/Skills3DSphere";
+import { Sparkles, Cpu, Code2, Database, Terminal, ShieldCheck, Layers, Server } from "lucide-react";
 
-interface SkillItem {
+interface SkillCard {
   name: string;
-  level: number; // percentage (e.g., 90)
-  rating: string; // e.g., "Expert", "Advanced"
-  detail: string; // Brief description/note
+  category: "genai" | "frontend" | "backend" | "devops";
+  badge: string;
+  level: number;
+  description: string;
+  iconPath?: string;
 }
 
-interface SkillCategory {
-  title: string;
-  skills: SkillItem[];
-  themeColor: string; // tailwind color class
-  accentGradient: string; // gradient classes
-}
+const allSkills: SkillCard[] = [
+  // GenAI & LLMs
+  {
+    name: "OpenAI API & GPT-4o",
+    category: "genai",
+    badge: "Expert",
+    level: 95,
+    description: "Structured JSON outputs, function calling & assistant API orchestration.",
+    iconPath: "/next.svg"
+  },
+  {
+    name: "LangChain & LlamaIndex",
+    category: "genai",
+    badge: "Expert",
+    level: 92,
+    description: "Agentic workflows, document retrieval chains & contextual memory.",
+  },
+  {
+    name: "Autonomous AI Agents",
+    category: "genai",
+    badge: "Specialized",
+    level: 90,
+    description: "Multi-agent coordination, service isolation & autonomous task delegation.",
+  },
+  {
+    name: "RAG & Vector Embeddings",
+    category: "genai",
+    badge: "Advanced",
+    level: 88,
+    description: "Semantic search, vector store integration & knowledge base querying.",
+  },
+  {
+    name: "Prompt Engineering",
+    category: "genai",
+    badge: "Mastery",
+    level: 96,
+    description: "Chain-of-thought, zero/few-shot prompting & system instructions.",
+  },
 
-const skillCategories: Record<string, SkillCategory> = {
-  genai: {
-    title: "GenAI & AI Engineering",
-    themeColor: "text-purple-400 border-purple-500/20 bg-purple-500/10",
-    accentGradient: "from-cyan-400 via-blue-500 to-purple-600",
-    skills: [
-      { name: "OpenAI API & Models", level: 92, rating: "Expert", detail: "GPT-4o, Function calling, Structured JSON outputs, Fine-tuning" },
-      { name: "LangChain & LlamaIndex", level: 90, rating: "Expert", detail: "Chains, Agentic workflows, Context memory, Tools integration" },
-      { name: "Autonomous AI Agents", level: 88, rating: "Advanced", detail: "Multi-agent coordination, Task delegation, Service isolation" },
-      { name: "RAG & Vector Storage", level: 85, rating: "Advanced", detail: "Embeddings generation, Similarity search, Pinecone/ChromaDB" },
-      { name: "Prompt Engineering", level: 95, rating: "Expert", detail: "Chain-of-Thought, System instructions, Zero/Few-shot prompts" },
-      { name: "AI Microservices & APIs", level: 86, rating: "Advanced", detail: "Async queuing, FastAPI/Node.js bridges, Docker scaling" },
-    ],
+  // Frontend & MERN
+  {
+    name: "React.js",
+    category: "frontend",
+    badge: "Expert",
+    level: 95,
+    description: "Component lifecycle, custom hooks & high-performance state management.",
+    iconPath: "/react.svg"
   },
-  frontend: {
-    title: "Frontend Development",
-    themeColor: "text-cyan-600 dark:text-cyan-400 border-cyan-500/20 bg-cyan-500/5",
-    accentGradient: "from-cyan-500 via-blue-500 to-indigo-500",
-    skills: [
-      { name: "React.js", level: 92, rating: "Expert", detail: "Component architecture, hooks, state management" },
-      { name: "Next.js", level: 88, rating: "Expert", detail: "App router, SSR, SSG, server actions, api routes" },
-      { name: "Redux Toolkit", level: 85, rating: "Advanced", detail: "Global slice state, RTK Query, middleware" },
-      { name: "Context API", level: 90, rating: "Expert", detail: "Lightweight state sharing, provider patterns" },
-      { name: "TanStack Query", level: 82, rating: "Advanced", detail: "Server state caching, prefetching, mutations" },
-      { name: "Framer Motion", level: 80, rating: "Advanced", detail: "Production micro-interactions, 3D/page transitions" },
-      { name: "Material UI (MUI)", level: 85, rating: "Advanced", detail: "Theme customizations, responsive layouts" },
-      { name: "Tailwind CSS", level: 95, rating: "Expert", detail: "Utility first, layouts, custom responsive systems" },
-      { name: "HTML5 & CSS3", level: 95, rating: "Expert", detail: "Semantic markup, flexbox, grid, keyframe anims" },
-      { name: "Responsive Web Design", level: 95, rating: "Expert", detail: "Mobile-first layouts, breakpoints optimization" },
-    ],
+  {
+    name: "Next.js 15 / App Router",
+    category: "frontend",
+    badge: "Expert",
+    level: 92,
+    description: "SSR, SSG, Server Actions, Turbopack & SEO optimizations.",
+    iconPath: "/nextjs.svg"
   },
-  backend: {
-    title: "Backend Engineering",
-    themeColor: "text-green-600 dark:text-green-400 border-green-500/20 bg-green-500/5",
-    accentGradient: "from-green-500 via-teal-500 to-blue-500",
-    skills: [
-      { name: "Node.js", level: 90, rating: "Expert", detail: "Event-driven architecture, asynchronous processing" },
-      { name: "Express.js", level: 90, rating: "Expert", detail: "Custom middlewares, router structures, robust controllers" },
-      { name: "RESTful APIs", level: 92, rating: "Expert", detail: "Secure endpoint design, optimized payload, response codes" },
-      { name: "JWT Authentication", level: 88, rating: "Advanced", detail: "Stateless security, token signing & refresh mechanisms" },
-      { name: "Role-Based Access Control (RBAC)", level: 85, rating: "Advanced", detail: "Multi-role dashboards, resource locks" },
-      { name: "MVC Architecture", level: 90, rating: "Expert", detail: "Clean separation of model, view, controller logs" },
-      { name: "Microservices", level: 78, rating: "Proficient", detail: "Service isolation, REST coordination, scalability" },
-    ],
+  {
+    name: "Tailwind CSS",
+    category: "frontend",
+    badge: "Mastery",
+    level: 96,
+    description: "Custom design tokens, dark mode systems & glassmorphism UI.",
+    iconPath: "/tailwind.svg"
   },
-  databases: {
-    title: "Databases & Storage",
-    themeColor: "text-emerald-600 dark:text-emerald-400 border-emerald-500/20 bg-emerald-500/5",
-    accentGradient: "from-emerald-500 via-teal-500 to-cyan-500",
-    skills: [
-      { name: "MongoDB", level: 88, rating: "Advanced", detail: "NoSQL architecture, schema design, collections" },
-      { name: "MongoDB Atlas", level: 85, rating: "Advanced", detail: "Cloud hosting, clusters maintenance, security rules" },
-      { name: "Mongoose", level: 88, rating: "Advanced", detail: "ODM modeling, subdocuments, hooks & validations" },
-      { name: "MySQL", level: 80, rating: "Proficient", detail: "Relational tables, complex joins, indexing" },
-      { name: "Database Design", level: 85, rating: "Advanced", detail: "Normalization, indexing strategies for performance" },
-    ],
+  {
+    name: "JavaScript (ES6+)",
+    category: "frontend",
+    badge: "Mastery",
+    level: 95,
+    description: "Async/Await, Promises, Closures, DOM manipulation & ES Next syntax.",
+    iconPath: "/js.svg"
   },
-  languages: {
-    title: "Programming Languages",
-    themeColor: "text-yellow-600 dark:text-yellow-400 border-yellow-500/20 bg-yellow-500/5",
-    accentGradient: "from-yellow-500 via-orange-500 to-amber-500",
-    skills: [
-      { name: "JavaScript (ES6+)", level: 92, rating: "Expert", detail: "OOP, event loop, closures, functional coding" },
-      { name: "Python", level: 78, rating: "Proficient", detail: "Data structures, scripting, algorithm building" },
-    ],
+  {
+    name: "Redux Toolkit / Context",
+    category: "frontend",
+    badge: "Advanced",
+    level: 88,
+    description: "Global state slices, RTK query caching & provider architecture.",
+    iconPath: "/redux.svg"
   },
-  devops: {
-    title: "DevOps & Tooling",
-    themeColor: "text-indigo-600 dark:text-indigo-400 border-indigo-500/20 bg-indigo-500/5",
-    accentGradient: "from-indigo-500 via-purple-500 to-blue-500",
-    skills: [
-      { name: "Docker", level: 82, rating: "Advanced", detail: "Containerizing microservices, dockerfiles, compose" },
-      { name: "Git", level: 90, rating: "Expert", detail: "Branching workflows, merge conflict resolutions, rebase" },
-      { name: "GitHub", level: 90, rating: "Expert", detail: "Repository hosting, actions, pull request management" },
-      { name: "VS Code", level: 95, rating: "Expert", detail: "Optimized environment, workspace configurations" },
-      { name: "Cloudinary", level: 85, rating: "Advanced", detail: "Media assets storage, optimization, upload API" },
-      { name: "Vercel", level: 88, rating: "Advanced", detail: "Serverless web deployment, environment variables" },
-      { name: "AWS Basics", level: 70, rating: "Proficient", detail: "S3 hosting, EC2 instances, basic configuration" },
-      { name: "CI/CD", level: 75, rating: "Proficient", detail: "Automated pipelines, build & test scripts integration" },
-    ],
+
+  // Backend & APIs
+  {
+    name: "Node.js & Express.js",
+    category: "backend",
+    badge: "Expert",
+    level: 92,
+    description: "Event-driven asynchronous architecture & custom middleware pipelines.",
+    iconPath: "/node.js.svg"
   },
-  testing: {
-    title: "Testing & QA Methodologies",
-    themeColor: "text-rose-600 dark:text-rose-400 border-rose-500/20 bg-rose-500/5",
-    accentGradient: "from-rose-500 via-pink-500 to-orange-500",
-    skills: [
-      { name: "API Testing", level: 88, rating: "Advanced", detail: "Postman test scripts, payload validation, status codes" },
-      { name: "Manual Testing", level: 85, rating: "Advanced", detail: "Use-case validations, edge scenarios discovery" },
-      { name: "Postman", level: 90, rating: "Expert", detail: "Collections, environments, requests chaining" },
-      { name: "Selenium (Basic)", level: 65, rating: "Proficient", detail: "Web automation scripts, element selectors" },
-      { name: "SDLC & STLC", level: 88, rating: "Advanced", detail: "Agile sprints, bug lifecycle, software methodologies" },
-    ],
+  {
+    name: "RESTful API Engineering",
+    category: "backend",
+    badge: "Mastery",
+    level: 95,
+    description: "Secure API endpoints, payload optimization & HTTP status handling.",
   },
-};
+  {
+    name: "JWT Auth & RBAC Security",
+    category: "backend",
+    badge: "Expert",
+    level: 90,
+    description: "Stateless security tokens, refresh tokens & role-based access locks.",
+  },
+
+  // Database & DevOps
+  {
+    name: "MongoDB & Mongoose",
+    category: "devops",
+    badge: "Advanced",
+    level: 90,
+    description: "NoSQL schema design, aggregation pipelines & document modeling.",
+    iconPath: "/mongo.svg"
+  },
+  {
+    name: "Docker Containerization",
+    category: "devops",
+    badge: "Advanced",
+    level: 85,
+    description: "Multi-stage Dockerfiles, compose environments & microservice isolation.",
+  },
+  {
+    name: "Git & CI/CD Pipelines",
+    category: "devops",
+    badge: "Expert",
+    level: 92,
+    description: "Version control branching, PR workflows & automated Vercel deployments.",
+  },
+];
+
+const categories = [
+  { id: "all", label: "All Arsenal" },
+  { id: "genai", label: "GenAI & Agents" },
+  { id: "frontend", label: "Frontend / MERN" },
+  { id: "backend", label: "Backend & APIs" },
+  { id: "devops", label: "Databases & DevOps" },
+];
 
 export default function Skills() {
-  const [activeTab, setActiveTab] = useState<string>("genai");
+  const [activeCategory, setActiveCategory] = useState<string>("all");
 
-  const currentCategory = skillCategories[activeTab];
+  const filteredSkills = activeCategory === "all" 
+    ? allSkills 
+    : allSkills.filter((s) => s.category === activeCategory);
 
   return (
-    <section id="skills" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden w-full max-w-full">
-      {/* Background radial effects */}
-      <div className="absolute right-[5%] top-[15%] w-[35vw] max-w-[300px] h-[35vw] max-h-[300px] bg-blue-600/5 dark:bg-blue-600/10 blur-[130px] rounded-full pointer-events-none z-0" />
-      <div className="absolute left-[5%] bottom-[15%] w-[30vw] max-w-[280px] h-[30vw] max-h-[280px] bg-cyan-600/5 dark:bg-cyan-600/10 blur-[130px] rounded-full pointer-events-none z-0" />
+    <section id="skills" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#070709] text-white w-full max-w-full border-t border-white/10">
+      
+      {/* Front-page matching Purple & Cyan Ambient Neon Glows */}
+      <div className="absolute right-[-10%] top-[15%] w-[40vw] max-w-[450px] h-[40vw] max-h-[450px] bg-purple-700/20 blur-[160px] rounded-full pointer-events-none z-0" />
+      <div className="absolute left-[-10%] bottom-[15%] w-[40vw] max-w-[450px] h-[40vw] max-h-[450px] bg-cyan-600/20 blur-[160px] rounded-full pointer-events-none z-0" />
 
       {/* SECTION HEADING */}
       <div className="relative z-10 text-center max-w-3xl mx-auto">
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="
-            text-3xl sm:text-4xl md:text-5xl font-extrabold
-            bg-gradient-to-r from-blue-500 via-cyan-400 to-indigo-500
-            bg-clip-text text-transparent
-            drop-shadow-[0_0_35px_rgba(59,130,246,0.35)]
-            dark:drop-shadow-[0_0_35px_rgba(59,130,246,0.65)]
-            font-display
-          "
+          className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight font-display tracking-tight"
         >
-          My Technical Arsenal
+          My Technical <span className="text-orange-500">Arsenal</span>
         </motion.h2>
 
-        <p className="mt-3 sm:mt-4 text-slate-500 dark:text-gray-400 text-sm sm:text-base md:text-lg font-sans">
-          A fully verified engineering toolkit structured for robustness, clean code, and performance optimization.
+        <p className="mt-3 sm:mt-4 text-slate-300 text-sm sm:text-base md:text-lg font-sans">
+          A verified engineering toolkit structured for autonomous AI orchestration, clean code, and microservice performance.
         </p>
       </div>
 
-      {/* MAIN CONTAINER */}
-      <div className="relative z-10 mt-12 sm:mt-20 grid lg:grid-cols-12 gap-8 lg:gap-10 max-w-7xl mx-auto items-start">
+      {/* CATEGORY FILTER TABS */}
+      <div className="relative z-10 mt-10 sm:mt-12 flex flex-wrap justify-center gap-2 sm:gap-3 max-w-4xl mx-auto">
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            onClick={() => setActiveCategory(cat.id)}
+            className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer border ${
+              activeCategory === cat.id
+                ? "bg-orange-500 text-white border-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.4)]"
+                : "bg-slate-900/80 border-white/10 text-slate-300 hover:text-white hover:border-white/20"
+            }`}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+
+      {/* SKILLS CARDS GRID */}
+      <div className="relative z-10 mt-12 sm:mt-16 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <AnimatePresence mode="popLayout">
+          {filteredSkills.map((skill, index) => (
+            <motion.div
+              layout
+              key={skill.name}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.35, delay: index * 0.03 }}
+              className="p-5 sm:p-6 rounded-3xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)] hover:border-orange-500/40 hover:shadow-[0_0_35px_rgba(249,115,22,0.2)] transition-all duration-300 group flex flex-col justify-between"
+            >
+              <div>
+                {/* Top Badge & Rating */}
+                <div className="flex items-center justify-between mb-4">
+                  {skill.iconPath ? (
+                    <img src={skill.iconPath} alt={skill.name} className="w-8 h-8 object-contain filter group-hover:scale-110 transition-transform duration-300" />
+                  ) : (
+                    <div className="w-8 h-8 rounded-xl bg-orange-500/10 text-orange-400 border border-orange-500/20 flex items-center justify-center font-bold text-xs">
+                      <Cpu size={18} />
+                    </div>
+                  )}
+
+                  <span className="text-[11px] font-mono font-bold px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-orange-400">
+                    {skill.badge}
+                  </span>
+                </div>
+
+                {/* Skill Title */}
+                <h3 className="text-base font-extrabold text-white font-display group-hover:text-orange-400 transition-colors">
+                  {skill.name}
+                </h3>
+
+                {/* Skill Description */}
+                <p className="mt-2 text-xs text-slate-300 font-sans leading-relaxed">
+                  {skill.description}
+                </p>
+              </div>
+
+              {/* Progress Bar & Level */}
+              <div className="mt-5 pt-3 border-t border-white/10">
+                <div className="flex justify-between items-center text-[11px] font-mono mb-1.5">
+                  <span className="text-slate-400">Proficiency</span>
+                  <span className="text-orange-400 font-bold">{skill.level}%</span>
+                </div>
+                <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.1 }}
+                    className="h-full bg-gradient-to-r from-purple-500 via-orange-500 to-amber-400 rounded-full"
+                  />
+                </div>
+              </div>
+
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* CORE ARCHITECTURE PANELS (BOTTOM HIGHLIGHT) */}
+      <div className="relative z-10 mt-16 max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
         
-        {/* LEFT COLUMN: 3D SPHERE */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="lg:col-span-5 flex flex-col items-center justify-center w-full overflow-hidden"
-        >
-          <Card3D className="
-            w-full rounded-3xl p-5 sm:p-8
-            bg-white/60 dark:bg-white/[0.03] backdrop-blur-xl
-            border border-slate-200/80 dark:border-white/10
-            shadow-[0_0_50px_rgba(59,130,246,0.05)] dark:shadow-[0_0_50px_rgba(59,130,246,0.1)]
-            transition-all duration-500 hover:border-blue-500/30
-            hover:shadow-[0_0_80px_rgba(59,130,246,0.2)] dark:hover:shadow-[0_0_80px_rgba(59,130,246,0.35)]
-          ">
-            <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2 text-blue-600 dark:text-blue-400 tracking-wide font-display text-center">
-              Interactive 3D Tech Cloud
-            </h3>
-            <p className="text-[11px] sm:text-xs text-slate-500 dark:text-gray-400 text-center mb-4">
-              Touch/drag inside the sphere to spin & explore tags.
-            </p>
-            
-            <Skills3DSphere />
-            
-            <div className="mt-4 sm:mt-6 pt-4 sm:pt-5 border-t border-slate-200/60 dark:border-white/10 text-center">
-              <span className="inline-block text-[11px] sm:text-xs font-semibold px-3 py-1 sm:py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
-                ⚡ Interactive Hologram
-              </span>
-            </div>
-          </Card3D>
-        </motion.div>
-
-        {/* RIGHT COLUMN: CATEGORIZED DETAILED DASHBOARD */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="lg:col-span-7 w-full overflow-hidden"
-        >
-          <div className="w-full rounded-3xl p-5 sm:p-6 md:p-8 bg-white/60 dark:bg-white/[0.03] backdrop-blur-xl border border-slate-200/80 dark:border-white/10 shadow-[0_0_50px_rgba(59,130,246,0.05)] dark:shadow-[0_0_50px_rgba(59,130,246,0.1)]">
-            
-            {/* TABS SELECTOR */}
-            <div className="flex overflow-x-auto no-scrollbar gap-2 pb-4 border-b border-slate-200/60 dark:border-white/10">
-              {Object.entries(skillCategories).map(([key, category]) => {
-                const isActive = activeTab === key;
-                return (
-                  <button
-                    key={key}
-                    onClick={() => setActiveTab(key)}
-                    className={`
-                      px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer border shrink-0 whitespace-nowrap
-                      ${
-                        isActive
-                          ? "bg-blue-600 border-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.4)]"
-                          : "bg-slate-100 hover:bg-slate-200 dark:bg-white/5 border-slate-200/50 dark:border-white/5 text-slate-600 dark:text-gray-400 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white"
-                      }
-                    `}
-                  >
-                    {category.title.split(" ")[0]}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* TAB CONTENT PANEL */}
-            <div className="mt-8 min-h-[360px]">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="flex items-center gap-3 mb-6">
-                    <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white font-display">
-                      {currentCategory.title}
-                    </h3>
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${currentCategory.themeColor}`}>
-                      {currentCategory.skills.length} Skills
-                    </span>
-                  </div>
-
-                  {/* SKILLS DETAILED PROGRESS BARS */}
-                  <div className="space-y-6">
-                    {currentCategory.skills.map((skill, index) => (
-                      <div key={index} className="group/bar">
-                        {/* Label & Rating */}
-                        <div className="flex justify-between items-end mb-2">
-                          <div>
-                            <span className="text-sm font-bold text-slate-800 dark:text-white group-hover/bar:text-blue-500 dark:group-hover/bar:text-cyan-400 transition-colors duration-200">
-                              {skill.name}
-                            </span>
-                            <span className="text-xs text-slate-500 dark:text-gray-400 ml-2 hidden sm:inline font-sans">
-                              — {skill.detail}
-                            </span>
-                          </div>
-                          <div className="flex items-baseline gap-1">
-                            <span className="text-xs font-bold text-slate-500 dark:text-gray-400 font-sans">
-                              {skill.rating}
-                            </span>
-                            <span className="text-sm font-extrabold text-blue-600 dark:text-cyan-400">
-                              {skill.level}%
-                            </span>
-                          </div>
-                        </div>
-
-                        {/* Visual bar tracker */}
-                        <div className="h-2 w-full bg-slate-200 dark:bg-slate-800/80 rounded-full overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: `${skill.level}%` }}
-                            transition={{ duration: 0.8, delay: index * 0.05 }}
-                            className={`h-full bg-gradient-to-r ${currentCategory.accentGradient} rounded-full`}
-                          />
-                        </div>
-                        
-                        {/* Mobile description only */}
-                        <div className="sm:hidden mt-1 text-[11px] text-slate-500 dark:text-gray-400 leading-normal font-sans">
-                          {skill.detail}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-            
+        <div className="p-6 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 text-left">
+          <div className="flex items-center gap-3 mb-3 text-orange-400 font-display font-extrabold text-lg">
+            <Sparkles size={20} />
+            <span>Autonomous AI Workflows</span>
           </div>
-        </motion.div>
+          <p className="text-xs text-slate-300 leading-relaxed font-sans">
+            Specialized in orchestrating LangChain & OpenAI agent pipelines with custom tools, multi-agent delegation, and RAG vector store queries.
+          </p>
+        </div>
+
+        <div className="p-6 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 text-left">
+          <div className="flex items-center gap-3 mb-3 text-cyan-400 font-display font-extrabold text-lg">
+            <Code2 size={20} />
+            <span>MERN Stack Architecture</span>
+          </div>
+          <p className="text-xs text-slate-300 leading-relaxed font-sans">
+            End-to-end full-stack web applications using React.js, Next.js 15, Node.js, Express.js controllers, and optimized MongoDB databases.
+          </p>
+        </div>
+
+        <div className="p-6 rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 text-left">
+          <div className="flex items-center gap-3 mb-3 text-purple-400 font-display font-extrabold text-lg">
+            <Server size={20} />
+            <span>Docker & Microservices</span>
+          </div>
+          <p className="text-xs text-slate-300 leading-relaxed font-sans">
+            Containerizing backend microservices with Docker, building secure RESTful APIs with JWT RBAC locks, and automated Vercel deployments.
+          </p>
+        </div>
 
       </div>
+
     </section>
   );
 }
+

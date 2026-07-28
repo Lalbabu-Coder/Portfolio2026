@@ -35,29 +35,27 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden w-full max-w-full">
+    <section id="contact" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-20 overflow-hidden bg-[#070709] text-white w-full max-w-full border-t border-white/10">
+      {/* Front-page matching purple/red ambient neon glows */}
+      <div className="absolute left-[-10%] top-[20%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-purple-700/20 blur-[170px] rounded-full pointer-events-none z-0" />
+      <div className="absolute right-[-10%] bottom-[20%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-red-600/20 blur-[170px] rounded-full pointer-events-none z-0" />
 
       {/* HEADING */}
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="
-          text-center text-3xl sm:text-4xl md:text-5xl font-extrabold
-          bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600
-          bg-clip-text text-transparent
-          drop-shadow-[0_0_40px_rgba(59,130,246,0.3)]
-          dark:drop-shadow-[0_0_40px_rgba(59,130,246,0.8)]
-          font-display
-        "
-      >
-        Get In Touch
-      </motion.h2>
+      <div className="relative z-10 text-center max-w-3xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight font-display tracking-tight"
+        >
+          Get In <span className="text-orange-500">Touch</span>
+        </motion.h2>
 
-      <p className="mt-4 sm:mt-6 max-w-3xl mx-auto text-center text-slate-400 text-sm sm:text-base font-sans">
-        Have a project in mind or want to discuss opportunities?
-        I’d love to hear from you.
-      </p>
+        <p className="mt-4 sm:mt-6 max-w-3xl mx-auto text-center text-slate-300 text-sm sm:text-base font-sans">
+          Have a project in mind or want to discuss opportunities?
+          I’d love to hear from you.
+        </p>
+      </div>
 
       {/* TWO CARDS */}
       <div className="mt-12 sm:mt-20 grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
