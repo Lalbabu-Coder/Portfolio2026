@@ -67,17 +67,17 @@ export default function Hero() {
         <div className="absolute -left-20 top-1/3 w-[50vw] sm:w-[35vw] max-w-[450px] h-[50vw] sm:h-[35vw] max-h-[450px] bg-purple-600/20 blur-[120px] sm:blur-[140px] rounded-full" />
         <div className="absolute right-0 top-1/4 w-[50vw] sm:w-[40vw] max-w-[500px] h-[50vw] sm:h-[40vw] max-h-[500px] bg-orange-600/20 blur-[130px] sm:blur-[150px] rounded-full" />
 
-        {/* Mobile & Desktop Optimized Portrait Container */}
-        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[52%] h-full opacity-35 sm:opacity-75 lg:opacity-100">
+        {/* Mobile & Desktop High-Visibility Portrait Container */}
+        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[54%] h-full opacity-80 sm:opacity-90 lg:opacity-100">
           <img
             src="/hero-bg.png"
             alt="Lalbabu Singh"
             className="w-full h-full object-cover object-top filter contrast-105 brightness-110 saturate-105"
           />
-          {/* Smooth Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#070709] via-[#070709]/85 sm:via-[#070709]/70 to-transparent lg:via-[#070709]/30" />
+          {/* Smooth Left Side Blend */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070709] via-[#070709]/75 sm:via-[#070709]/60 to-transparent lg:via-[#070709]/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#070709] via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#070709]/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#070709]/60 via-transparent to-transparent" />
         </div>
 
       </div>
@@ -93,7 +93,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-slate-900/90 border border-white/10 backdrop-blur-md w-fit mb-3 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-white/10 backdrop-blur-md w-fit mb-3 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
           >
             <Sparkles size={14} className="text-orange-400 animate-pulse shrink-0" />
             <span className="text-orange-400 font-bold text-xs sm:text-sm tracking-wide font-mono">
@@ -152,7 +152,7 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* MOBILE OPTIMIZED BUTTONS */}
+          {/* CLEAN HIGH-IMPACT PRIMARY CTA BUTTON */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -161,21 +161,13 @@ export default function Hero() {
           >
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-3 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm transition-all duration-300 shadow-[0_0_25px_rgba(249,115,22,0.4)] hover:shadow-[0_0_35px_rgba(249,115,22,0.6)] cursor-pointer text-center"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:py-4 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm sm:text-base transition-all duration-300 shadow-[0_0_30px_rgba(249,115,22,0.45)] hover:shadow-[0_0_45px_rgba(249,115,22,0.65)] cursor-pointer text-center"
             >
               <span>Let's Build Together</span>
               <div className="w-6 h-6 rounded-full bg-white text-orange-600 flex items-center justify-center font-bold">
                 <ArrowRight size={13} />
               </div>
             </a>
-
-            <button
-              onClick={() => setShowTerminalModal(true)}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-gray-200 text-sm font-semibold transition duration-300 backdrop-blur-md cursor-pointer text-center"
-            >
-              <TerminalIcon size={16} className="text-cyan-400" />
-              <span>Launch AI Terminal</span>
-            </button>
           </motion.div>
 
         </div>
