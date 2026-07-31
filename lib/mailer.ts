@@ -11,17 +11,30 @@ export const sendMail = async ({
   subject: string;
   message: string;
 }) => {
+  const emailUser = process.env.EMAIL_USER?.trim();
+  const emailPass = process.env.EMAIL_PASS?.replace(/\s+/g, "");
+
+  if (!emailUser || !emailPass) {
+    throw new Error("EMAIL_USER or EMAIL_PASS environment variable is missing.");
+  }
+
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: emailUser,
+      pass: emailPass,
     },
+    tls: {
+      rejectUnauthorized: false
+    }
   });
 
   await transporter.sendMail({
-    from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-    to: process.env.EMAIL_USER, // tumhara Gmail
+    from: `"Portfolio Contact" <${emailUser}>`,
+    to: emailUser,
+    replyTo: email,
     subject: `📩 New Contact: ${subject}`,
     html: `
       <h2>New Contact Message</h2>

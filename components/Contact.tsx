@@ -27,12 +27,14 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (errorMessage) setErrorMessage(null);
   };
 
   const handleCopyEmail = () => {
@@ -44,6 +46,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
     try {
       const res = await fetch("/api/contact", {
@@ -52,15 +55,17 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) {
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.success) {
         setSubmitted(true);
         setFormData({ name: "", email: "", subject: "", message: "" });
-        setTimeout(() => setSubmitted(false), 5000);
+        setTimeout(() => setSubmitted(false), 7000);
       } else {
-        alert("Something went wrong ❌ Please try emailing directly.");
+        setErrorMessage(data.error || "Unable to send message. Please email directly to lalbabusingh.dev@gmail.com");
       }
     } catch {
-      alert("Error sending message. Please try again.");
+      setErrorMessage("Network error sending message. Please try emailing directly.");
     } finally {
       setIsSubmitting(false);
     }
@@ -244,6 +249,20 @@ export default function Contact() {
             <p className="text-xs sm:text-sm text-slate-400 font-sans mb-8">
               Fill out the form below and I will get back to you promptly.
             </p>
+
+            {errorMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-xs sm:text-sm flex items-start gap-3"
+              >
+                <div className="p-1 rounded bg-red-500/20 text-red-400 shrink-0 mt-0.5">⚠️</div>
+                <div className="flex-1">
+                  <p className="font-semibold text-white">Transmission Warning</p>
+                  <p className="mt-0.5 text-red-300/90 leading-relaxed">{errorMessage}</p>
+                </div>
+              </motion.div>
+            )}
 
             {submitted ? (
               <motion.div 
