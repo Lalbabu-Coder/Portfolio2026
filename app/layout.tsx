@@ -5,8 +5,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
 
 export const metadata = {
-  title: "Lalbabu Singh | Software Developer & GenAI Engineer",
-  description: "Portfolio website of Lalbabu Singh featuring GenAI agents, MERN stack, and high-performance software engineering.",
+  title: "Lalbabu Singh | Software Engineer – Full Stack Developer (MERN Stack)",
+  description: "Software Engineer and Full Stack Developer specializing in MERN stack (MongoDB, Express.js, React.js, Node.js), scalable REST APIs, RBAC, microservices, AWS/Azure, and multi-agent AI systems.",
 };
 
 export default function RootLayout({

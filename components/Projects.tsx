@@ -16,27 +16,52 @@ interface ProjectItem {
 
 const projects: ProjectItem[] = [
   {
-    title: "Multi-AI Agent Platform",
+    title: "NexusAI – Multi-Agent AI Platform",
     image: "/Projects/multi_ai_agent_platform.png",
-    description: "An autonomous multi-agent AI system orchestrating multiple specialized agents to complete workflows without manual intervention.",
+    description: "A microservices-based AI platform orchestrating autonomous multi-agent systems and real-time RAG pipelines.",
     bullets: [
-      "Orchestrated autonomous agents using OpenAI API and LangChain for conversation, content, and automation.",
-      "Engineered communication and delegation logic to ensure coordination between agents.",
-      "Adopted Microservices Architecture to decouple agents and improve service isolation.",
-      "Containerized service modules using Docker for consistent cross-environment development."
+      "Built a microservices-based AI platform with services for API Gateway, Authentication, Chat, Agent Orchestration, and Billing.",
+      "Orchestrated multiple AI agents via LangGraph across Groq Llama 3.3 70B, DeepSeek, and Gemini 2.5 Flash models.",
+      "Implemented an ultra-fast semantic RAG pipeline using Qdrant Vector DB with Dockerized deployments."
     ],
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "OpenAI API", "LangChain", "Docker"],
+    tech: ["LangGraph", "Groq", "Gemini", "Qdrant", "MongoDB", "Docker", "Node.js"],
     link: "https://nexus-ai-tau-black.vercel.app/",
     github: "https://github.com/Lalbabu-Coder/Nexus-AI",
   },
   {
-    title: "Task Management System",
+    title: "Hackathon Management Platform",
     image: "/Projects/Task management interface overview.png",
-    description: "A secure role-based workflow manager with distinct permission levels and progress tracking panels.",
+    description: "An end-to-end hackathon ecosystem developed at Athenura handling registration, evaluations, and certifications.",
+    bullets: [
+      "Built an end-to-end hackathon management platform covering candidate registration, submission tracking, evaluation, and certificate generation.",
+      "Implemented Role-Based Access Control (RBAC) for organizers, judges, and participants with a robust MERN backend.",
+      "Engineered responsive UI dashboards in React.js connected to scalable Express.js REST APIs."
+    ],
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "RBAC", "REST APIs"],
+    link: "https://task-management-liart-nu.vercel.app",
+    github: "https://github.com/Lalbabu-Coder",
+  },
+  {
+    title: "Billing & CRM SaaS Platform",
+    image: "/Projects/crm.png",
+    description: "A multi-tenant SaaS billing and customer relationship management platform engineered at Athenura.",
+    bullets: [
+      "Developed a SaaS-based billing and CRM platform enabling client management, invoicing, and case tracking workflows.",
+      "Built REST APIs and designed MongoDB schemas to support multi-client data handling and analytics.",
+      "Streamlined client onboarding with automated invoice generation and secure JWT authorization."
+    ],
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT Auth", "REST APIs"],
+    link: "https://your-crm-link.vercel.app",
+    github: "https://github.com/Lalbabu-Coder",
+  },
+  {
+    title: "Task Management & RBAC System",
+    image: "/Projects/Task management interface overview.png",
+    description: "A secure role-based workflow manager with granular permission levels and live progress monitoring.",
     bullets: [
       "Built a role-based authorization hierarchy featuring Admin, Team Leader, and Employee dashboards.",
-      "Designed and integrated 10+ RESTful APIs for performance monitoring and secure logins.",
-      "Created fully responsive interfaces using Tailwind CSS to maintain consistent cross-device UX."
+      "Designed and integrated 10+ RESTful APIs for performance monitoring, task assignments, and secure logins.",
+      "Created fully responsive interfaces using Tailwind CSS with persistent state management."
     ],
     tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "REST APIs", "Context API"],
     link: "https://task-management-liart-nu.vercel.app",
@@ -50,68 +75,20 @@ const projects: ProjectItem[] = [
       "Designed an elegant custom gallery grid showing luxury crafts and export items.",
       "Optimized assets and responsive viewport breakpoints for global buyers."
     ],
-    tech: ["React", "Next.js", "Tailwind CSS"],
+    tech: ["React", "Next.js", "Tailwind CSS", "REST APIs"],
     link: "https://vrandsons.com",
     github: "https://github.com/Lalbabu-Coder",
   },
   {
-    title: "Luxury Furniture Website",
-    image: "/Projects/Design your perfect sanctuary online.png",
-    description: "An immersive e-commerce catalog featuring aesthetic design, product sliders, and rich interactive layouts.",
-    bullets: [
-      "Crafted custom parallax layers and smooth scroll effects for premium furniture showcases.",
-      "Designed responsive grids with dynamic hover highlights and product cards."
-    ],
-    tech: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
-    link: "https://furniture-website-8sts.vercel.app",
-    github: "https://github.com/Lalbabu-Coder",
-  },
-  {
-    title: "School Management Website",
-    image: "/Projects/Grapura School homepage - inspiring education.png",
-    description: "A contemporary institutional portal facilitating admission details, departments showcase, and student guidelines.",
-    bullets: [
-      "Implemented a structured admissions workflow and dynamic academy landing pages.",
-      "Enhanced browser loading speed by caching fonts and SVGs."
-    ],
-    tech: ["React", "Next.js", "Tailwind CSS"],
-    link: "https://school-management-phi-sandy.vercel.app",
-    github: "https://github.com/Lalbabu-Coder",
-  },
-  {
-    title: "Food Delivery Website",
+    title: "Food Delivery Platform",
     image: "/Projects/food.png",
-    description: "Full-stack food ordering platform with an active checkout cart system and user authentication.",
+    description: "Full-stack food ordering platform with active checkout cart system and user authentication.",
     bullets: [
-      "Created interactive menu selections, persistent cart stores, and login checks.",
-      "Integrated express order routing and mock transaction flows."
+      "Created interactive menu selections, persistent cart stores, and authenticated checkout flows.",
+      "Integrated Express order routing and MongoDB collections for restaurant menu management."
     ],
-    tech: ["React", "Next.js", "Tailwind", "MongoDB", "Node.js"],
+    tech: ["React.js", "Next.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
     link: "https://your-food-link.vercel.app",
-    github: "https://github.com/Lalbabu-Coder",
-  },
-  {
-    title: "CRM Management System",
-    image: "/Projects/crm.png",
-    description: "Business dashboard for monitoring leads, sales logs, client feedback, and team schedules.",
-    bullets: [
-      "Developed a centralized administration control panel with database aggregation metrics.",
-      "Linked chart elements to reflect direct real-time server changes."
-    ],
-    tech: ["React", "Node.js", "Express", "MongoDB"],
-    link: "https://your-crm-link.vercel.app",
-    github: "https://github.com/Lalbabu-Coder",
-  },
-  {
-    title: "MultiCard E-Commerce Website",
-    image: "/Projects/multicard.png",
-    description: "Responsive shopping center showing customizable cards, cart updates, and item search filters.",
-    bullets: [
-      "Crafted flexible grid filters allowing searches by category, price, and ratings.",
-      "Set state-based cart counters and animated checkouts."
-    ],
-    tech: ["React", "Next.js", "Tailwind CSS", "JavaScript"],
-    link: "https://multicart-sigma.vercel.app",
     github: "https://github.com/Lalbabu-Coder",
   },
 ];

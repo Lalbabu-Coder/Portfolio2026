@@ -16,26 +16,35 @@ import {
 } from "lucide-react";
 
 const stats = [
-  { label: "Full-Stack Projects", value: "7+" },
-  { label: "APIs Integrated", value: "15+" },
-  { label: "API Speed Boost", value: "30%" },
-  { label: "Bug Resolution", value: "40+" },
+  { label: "Production Platforms", value: "8+" },
+  { label: "REST APIs Engineered", value: "25+" },
+  { label: "MERN Stack Mastery", value: "100%" },
+  { label: "Competitions Won", value: "2x 🥇" },
 ];
 
 const experiences = [
   {
-    role: "Software Engineer Intern (MERN Stack)",
-    company: "Graphura India Private Limited",
-    location: "Delhi, India",
-    time: "Dec 2025 – Present",
+    role: "Full Stack Developer",
+    company: "Athenura",
+    location: "Bengaluru, India",
+    time: "Feb 2026 – Sep 2026",
     current: true,
     points: [
-      "Developed and maintained scalable MERN stack CRM and business solutions, delivering production-ready modules.",
-      "Containerized backend services with Docker, facilitating seamless, uniform deployments across development & production.",
-      "Designed and integrated 15+ secure RESTful APIs, boosting backend communication efficiency by 25%.",
-      "Implemented JWT Authentication, Authorization, and Role-Based Access Control (RBAC) to secure application boundaries.",
-      "Optimized MongoDB schema and indexing strategies, successfully reducing average API response times by ~30%.",
-      "Collaborated in Agile sprints to troubleshoot and resolve 40+ high-priority issues across the stack."
+      "Developed and maintained full-stack modules for internal hackathon management and billing/CRM SaaS platforms using React.js, Node.js, Express.js, and MongoDB.",
+      "Built and integrated REST APIs to support core application features and improve backend functionality.",
+      "Collaborated with the team to debug issues, review code, and deliver features in an agile development environment."
+    ]
+  },
+  {
+    role: "MERN Stack Developer Intern",
+    company: "Graphura India Private Limited",
+    location: "Delhi, India",
+    time: "Dec 2025 – Feb 2026",
+    current: false,
+    points: [
+      "Engineered and maintained full-stack modules using React.js, Node.js, Express.js, and MongoDB for internal business applications.",
+      "Designed and integrated REST APIs, streamlining backend workflows and improving operational efficiency.",
+      "Implemented Authentication and Role-Based Access Control (RBAC) systems supporting multiple user roles."
     ]
   },
   {
@@ -45,30 +54,30 @@ const experiences = [
     time: "Aug 2022 – Sep 2022",
     current: false,
     points: [
-      "Developed interactive and responsive user interfaces using Python, HTML5, CSS3, and JavaScript.",
-      "Followed clean coding patterns during debugging, compatibility testing, and SDLC alignments."
+      "Developed responsive user interfaces using Python, HTML5, CSS3, and JavaScript.",
+      "Assisted in debugging application issues and performed cross-browser compatibility testing."
     ]
   }
 ];
 
 const education = [
   {
-    degree: "B.Tech in Computer Science Engineering",
+    degree: "Bachelor of Technology in Computer Science Engineering",
     institution: "Gurugram University",
     location: "Gurugram, Haryana",
     time: "2023 – 2026",
     points: [
-      "Core focus on Algorithms, Database Systems, Web Architectures, and Operating Systems.",
-      "Built multiple web systems, focusing on modern React, Next.js, and backend servers."
+      "Core focus on Data Structures & Algorithms, Object-Oriented Programming, Database Management Systems, Web Architectures, and SDLC.",
+      "Developed full-stack web applications, microservices, and AI-integrated systems."
     ]
   },
   {
     degree: "Diploma in Computer Science Engineering",
-    institution: "Government Polytechnic Hisar",
+    institution: "Government Polytechnic, Adampur Mandi",
     location: "Hisar, Haryana",
     time: "2020 – 2023",
     points: [
-      "Acquired fundamental computing skills including OOPs in C++, basic database designs, HTML5/CSS3, and JS script logic."
+      "Built a strong foundation in core computer science fundamentals, OOP concepts, DBMS, and responsive front-end engineering."
     ]
   }
 ];
@@ -76,20 +85,20 @@ const education = [
 const honors = [
   {
     title: "Achievements & Competitions",
-    time: "Recognitions",
+    time: "Honors",
     points: [
-      "🥇 First Prize in Pitch Tech Competition - Awarded for innovative business pitching and tech model.",
-      "🥇 First Prize in Project Showcase Competition - Awarded for architectural execution and demo performance.",
-      "Built and deployed over 7+ full-stack and frontend projects, focusing on database optimizations and responsive designs."
+      "🥇 First Prize in the Pitch Tech Competition - Recognized for technical innovation and system architecture.",
+      "🥇 First Prize in the Project Showcase Competition - Awarded for product execution and live engineering demo.",
+      "Built and deployed full-stack SaaS and microservices platforms with modern MERN and AI workflows."
     ]
   },
   {
     title: "Certifications",
     time: "Credentials",
     points: [
-      "📜 MERN Stack Development Certification",
-      "📜 JavaScript Programming Certification",
-      "📜 Web Development Professional Certification"
+      "📜 Certified in MERN Stack Development",
+      "📜 Certified in JavaScript Programming",
+      "📜 Certified in Web Development"
     ]
   }
 ];
@@ -169,12 +178,12 @@ export default function About() {
             </h3>
             
             <p className="text-sm text-orange-400 font-semibold mt-1 mb-4 font-mono">
-              GenAI & MERN Stack Developer
+              Software Engineer &middot; Full Stack Developer (MERN)
             </p>
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 font-sans">
-              I am a software engineer specializing in building autonomous AI agent systems (LangChain, OpenAI API), 
-              scalable MERN stack platforms, containerized microservices (Docker), and optimized database pipelines.
+              Software Engineer with hands-on experience in the MERN stack (MongoDB, Express.js, React.js, Node.js),
+              building and deploying scalable, production-ready web applications, microservices, RESTful APIs, and autonomous AI systems.
             </p>
 
             {/* Quick Location & Work Specs */}
@@ -183,19 +192,19 @@ export default function About() {
                 <div className="p-2 rounded-lg bg-orange-500/10 text-orange-400">
                   <MapPin size={16} />
                 </div>
-                <span>Delhi, India &middot; Open to Relocation / Remote</span>
+                <span>Bengaluru, India &middot; Open to Relocation / Remote</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400">
                   <Briefcase size={16} />
                 </div>
-                <span>Software Intern @ Graphura India</span>
+                <span>Full Stack Developer @ Athenura</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400">
                   <GraduationCap size={16} />
                 </div>
-                <span>Gurugram University CSE Student</span>
+                <span>B.Tech CSE &middot; Gurugram University</span>
               </div>
             </div>
           </Card3D>

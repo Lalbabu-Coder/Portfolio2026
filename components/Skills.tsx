@@ -39,172 +39,145 @@ interface SkillCard {
 const allSkills: SkillCard[] = [
   // AI & Autonomous Agents
   {
-    name: "OpenAI API & GPT-4o",
-    category: "ai",
-    badge: "Specialized",
-    level: 95,
-    description: "Structured JSON outputs, tool/function calling & Assistant API orchestration.",
-    lucideIcon: Bot,
-    tags: ["GPT-4o", "Tool Calling", "JSON Schema"]
-  },
-  {
-    name: "Autonomous AI Agents",
-    category: "ai",
-    badge: "Expert",
-    level: 92,
-    description: "Multi-agent coordination, sub-agent delegation, state persistence & execution loops.",
-    lucideIcon: Cpu,
-    tags: ["Subagents", "Task Delegation", "State Loops"]
-  },
-  {
-    name: "LangChain & LlamaIndex",
-    category: "ai",
-    badge: "Advanced",
-    level: 88,
-    description: "Agentic workflows, context retrieval chains & long-term conversational memory.",
-    lucideIcon: Workflow,
-    tags: ["Chains", "Memory", "RAG Pipelines"]
-  },
-  {
-    name: "RAG & Vector Embeddings",
-    category: "ai",
-    badge: "Advanced",
-    level: 90,
-    description: "Semantic search vector indexing, document chunking & knowledge base querying.",
-    lucideIcon: Database,
-    tags: ["Embeddings", "Vector Search", "Knowledge Base"]
-  },
-  {
-    name: "Python for AI",
-    category: "ai",
-    badge: "Expert",
-    level: 90,
-    description: "Scripting, AI wrapper building, data parsing & backend API integrations.",
-    iconPath: "/python.svg",
-    tags: ["Python 3", "FastAPI Wrappers", "Asyncio"]
-  },
-  {
-    name: "Prompt Engineering",
+    name: "LangGraph & AI Agents",
     category: "ai",
     badge: "Mastery",
-    level: 96,
-    description: "Chain-of-thought, zero/few-shot prompts, guardrails & system context design.",
-    lucideIcon: Sparkles,
-    tags: ["System Context", "Chain-of-Thought", "Guardrails"]
+    level: 95,
+    description: "Multi-agent coordination, LangGraph state graphs, sub-agent delegation & execution loops.",
+    lucideIcon: Cpu,
+    tags: ["LangGraph", "Multi-Agent", "State Graphs"]
+  },
+  {
+    name: "Groq & Gemini & OpenAI",
+    category: "ai",
+    badge: "Expert",
+    level: 94,
+    description: "LLM integration with Groq Llama 3.3 70B, Gemini 2.5 Flash, DeepSeek & OpenAI API.",
+    lucideIcon: Bot,
+    tags: ["Groq", "Gemini 2.5", "OpenAI", "DeepSeek"]
+  },
+  {
+    name: "RAG & Qdrant Vector DB",
+    category: "ai",
+    badge: "Advanced",
+    level: 92,
+    description: "Semantic search pipelines, vector embeddings, chunking strategies & Qdrant vector database.",
+    lucideIcon: Database,
+    tags: ["Qdrant", "RAG Pipeline", "Vector DB"]
+  },
+  {
+    name: "LangChain & Python",
+    category: "ai",
+    badge: "Advanced",
+    level: 90,
+    description: "Agentic workflows, context retrieval chains, Python scripting & async integrations.",
+    iconPath: "/python.svg",
+    tags: ["LangChain", "Python", "Tool Calling"]
   },
 
   // Frontend & UI Engineering
   {
-    name: "Next.js 15 / App Router",
+    name: "React.js & Next.js",
     category: "frontend",
     badge: "Mastery",
-    level: 95,
-    description: "SSR, SSG, Server Actions, Server Components & SEO performance optimization.",
-    iconPath: "/nextjs.svg",
-    tags: ["App Router", "Server Actions", "Turbopack"]
-  },
-  {
-    name: "React 19",
-    category: "frontend",
-    badge: "Expert",
     level: 96,
-    description: "Component lifecycle, custom hooks, virtual DOM & high-performance state management.",
+    description: "Component architecture, Next.js SSR/SSG, Server Actions, custom hooks & virtual DOM optimization.",
     iconPath: "/react.svg",
-    tags: ["Custom Hooks", "Context", "Concurrent UI"]
+    tags: ["React.js", "Next.js", "Custom Hooks"]
   },
   {
-    name: "JavaScript (ES6+)",
+    name: "JavaScript (ES6+) & TypeScript",
     category: "frontend",
     badge: "Mastery",
     level: 98,
-    description: "Async/Await, Promises, Closures, DOM manipulation & modern ES Next features.",
+    description: "Async/Await, Promises, Closures, DOM manipulation, TypeScript interfaces & type safety.",
     iconPath: "/js.svg",
-    tags: ["Async/Await", "Closures", "ES Modules"]
-  },
-  {
-    name: "Tailwind CSS v4",
-    category: "frontend",
-    badge: "Mastery",
-    level: 96,
-    description: "Custom design systems, dark modes, glassmorphism UI & responsive web layouts.",
-    iconPath: "/tailwind.svg",
-    tags: ["Dark Mode", "Glassmorphism", "Responsive"]
+    tags: ["JavaScript (ES6+)", "TypeScript", "Async"]
   },
   {
     name: "Redux Toolkit",
     category: "frontend",
     badge: "Advanced",
-    level: 88,
-    description: "Global application state slices, RTK Query caching & centralized store architecture.",
+    level: 90,
+    description: "Global state management, RTK Query caching & centralized store architecture.",
     iconPath: "/redux.svg",
     tags: ["RTK Query", "Global Store", "State Slices"]
+  },
+  {
+    name: "Tailwind CSS & Responsive UI",
+    category: "frontend",
+    badge: "Mastery",
+    level: 96,
+    description: "Responsive layouts, HTML5/CSS3 semantic designs, dark mode themes & animations.",
+    iconPath: "/tailwind.svg",
+    tags: ["Tailwind CSS", "HTML5/CSS3", "Responsive"]
   },
 
   // Backend & APIs
   {
-    name: "Node.js",
+    name: "Node.js & Express.js",
     category: "backend",
-    badge: "Expert",
-    level: 92,
-    description: "Event-driven asynchronous architecture, file system ops & high-throughput servers.",
+    badge: "Mastery",
+    level: 95,
+    description: "High-throughput asynchronous servers, modular MVC controllers & RESTful API architecture.",
     iconPath: "/node.js.svg",
-    tags: ["Event Loop", "Streams", "NPM Modules"]
+    tags: ["Node.js", "Express.js", "MVC Pattern"]
   },
   {
-    name: "Express.js Architecture",
+    name: "JWT Auth & RBAC Permissions",
     category: "backend",
     badge: "Expert",
     level: 94,
-    description: "RESTful endpoints, custom middleware pipelines & modular MVC controller pattern.",
-    iconPath: "/express.svg",
-    tags: ["RESTful APIs", "Middleware", "MVC Pattern"]
+    description: "Stateless JWT authentication, bcrypt password hashing, and granular Role-Based Access Control.",
+    lucideIcon: ShieldCheck,
+    tags: ["JWT Auth", "RBAC", "Authorization"]
   },
   {
-    name: "JWT Auth & Security",
+    name: "REST API & Microservices",
     category: "backend",
-    badge: "Advanced",
-    level: 90,
-    description: "Stateless security tokens, refresh tokens, passkeys & Role-Based Access Control (RBAC).",
-    lucideIcon: ShieldCheck,
-    tags: ["JWT Tokens", "RBAC", "Bcrypt Hashing"]
+    badge: "Expert",
+    level: 92,
+    description: "Microservices architecture, API gateways, WebSockets, rate limiting, and Postman API testing.",
+    lucideIcon: Server,
+    tags: ["REST APIs", "Microservices", "WebSockets"]
   },
 
-  // Databases & DevOps
+  // Databases & Cloud / DevOps
   {
-    name: "MongoDB & Mongoose",
+    name: "MongoDB & Mongoose & Redis",
+    category: "devops",
+    badge: "Expert",
+    level: 92,
+    description: "MongoDB Atlas, Mongoose schemas, indexing strategies, aggregation pipelines, MySQL & Redis caching.",
+    iconPath: "/mongo.svg",
+    tags: ["MongoDB Atlas", "Mongoose", "MySQL", "Redis"]
+  },
+  {
+    name: "AWS & Microsoft Azure Cloud",
+    category: "devops",
+    badge: "Advanced",
+    level: 88,
+    description: "Cloud infrastructure deployment using AWS (EC2, S3), Microsoft Azure, Vercel & Render.",
+    lucideIcon: Globe,
+    tags: ["AWS EC2/S3", "Azure", "Cloud"]
+  },
+  {
+    name: "Docker & CI/CD Pipelines",
     category: "devops",
     badge: "Advanced",
     level: 90,
-    description: "NoSQL document modeling, schema validation & complex aggregation pipelines.",
-    iconPath: "/mongo.svg",
-    tags: ["NoSQL", "Mongoose ORM", "Aggregations"]
-  },
-  {
-    name: "Docker Containerization",
-    category: "devops",
-    badge: "Advanced",
-    level: 86,
-    description: "Multi-stage Dockerfiles, compose production environments & service isolation.",
+    description: "Docker containerization, multi-stage images, Git branching, GitHub Actions & CI/CD workflows.",
     lucideIcon: Boxes,
-    tags: ["Docker Compose", "Multi-Stage", "Containers"]
+    tags: ["Docker", "CI/CD", "Git/GitHub"]
   },
   {
-    name: "Vercel & CI/CD",
+    name: "Data Structures & System Design",
     category: "devops",
-    badge: "Mastery",
-    level: 95,
-    description: "Version control branching, automated deployments, serverless functions & monitoring.",
-    iconPath: "/vercel.svg",
-    tags: ["Serverless", "Automated Builds", "Environments"]
-  },
-  {
-    name: "Git & Version Control",
-    category: "devops",
-    badge: "Mastery",
-    level: 96,
-    description: "Branching strategies, pull request code reviews, rebase workflows & GitHub actions.",
+    badge: "Expert",
+    level: 92,
+    description: "DSA problem solving, OOPs principles, SDLC lifecycle, Agile/Scrum & scalable system design.",
     lucideIcon: Code2,
-    tags: ["Git Flow", "PR Auditing", "CI Automation"]
+    tags: ["DSA", "OOP", "SDLC", "System Design"]
   }
 ];
 

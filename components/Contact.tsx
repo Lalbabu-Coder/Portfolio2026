@@ -6,6 +6,7 @@ import Card3D from "@/components/Card3D";
 import { 
   Mail, 
   MapPin, 
+  Phone,
   Send, 
   Sparkles, 
   Clock, 
@@ -14,7 +15,8 @@ import {
   Linkedin, 
   MessageSquare, 
   User,
-  ArrowRight
+  ArrowRight,
+  Code2
 } from "lucide-react";
 
 export default function Contact() {
@@ -142,7 +144,7 @@ export default function Contact() {
               Let's build something exceptional together.
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
-              Open to full-time Software Developer roles, GenAI agent contracts, and MERN stack engineering opportunities.
+              Open to full-time Software Engineer & MERN Stack Developer roles, microservices architecture, and autonomous AI system projects.
             </p>
           </Card3D>
 
@@ -174,6 +176,22 @@ export default function Contact() {
               </button>
             </div>
 
+            {/* Phone Card */}
+            <div className="p-5 rounded-2xl bg-slate-950/60 border border-white/10 backdrop-blur-xl flex items-center gap-3.5 group hover:border-emerald-500/40 transition-all">
+              <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 shrink-0">
+                <Phone size={20} />
+              </div>
+              <div>
+                <div className="text-[11px] font-mono text-slate-400 uppercase">Phone & WhatsApp</div>
+                <a 
+                  href="tel:+919113382362"
+                  className="text-xs sm:text-sm font-bold text-white hover:text-emerald-400 transition-colors font-sans"
+                >
+                  +91-9113382362
+                </a>
+              </div>
+            </div>
+
             {/* Location Card */}
             <div className="p-5 rounded-2xl bg-slate-950/60 border border-white/10 backdrop-blur-xl flex items-center gap-3.5 group hover:border-cyan-500/40 transition-all">
               <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 shrink-0">
@@ -182,7 +200,7 @@ export default function Contact() {
               <div>
                 <div className="text-[11px] font-mono text-slate-400 uppercase">Primary Location</div>
                 <div className="text-xs sm:text-sm font-bold text-white font-sans">
-                  Delhi, India &middot; Open to Relocation / Remote
+                  Bengaluru, India &middot; Open to Relocation / Remote
                 </div>
               </div>
             </div>
@@ -204,25 +222,37 @@ export default function Contact() {
 
           {/* Social Profiles */}
           <div className="p-5 rounded-2xl bg-slate-950/60 border border-white/10 backdrop-blur-xl flex items-center justify-between">
-            <span className="text-xs font-mono text-slate-400 uppercase">Social Channels</span>
-            <div className="flex items-center gap-3">
+            <span className="text-xs font-mono text-slate-400 uppercase">Profiles & Portals</span>
+            <div className="flex items-center gap-2.5">
               <a 
                 href="https://github.com/Lalbabu-Coder" 
                 target="_blank" 
                 rel="noreferrer"
                 className="p-2.5 rounded-xl bg-white/5 hover:bg-orange-500/20 text-slate-300 hover:text-orange-400 border border-white/10 hover:border-orange-500/30 transition-all"
+                title="GitHub"
                 aria-label="GitHub Profile"
               >
                 <Github size={18} />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/lalbabu-singh-b39308277/" 
                 target="_blank" 
                 rel="noreferrer"
                 className="p-2.5 rounded-xl bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-400 border border-white/10 hover:border-cyan-500/30 transition-all"
+                title="LinkedIn"
                 aria-label="LinkedIn Profile"
               >
                 <Linkedin size={18} />
+              </a>
+              <a 
+                href="https://leetcode.com/u/lalbabu/" 
+                target="_blank" 
+                rel="noreferrer"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-amber-500/20 text-slate-300 hover:text-amber-400 border border-white/10 hover:border-amber-500/30 transition-all font-mono text-xs font-bold"
+                title="LeetCode"
+                aria-label="LeetCode Profile"
+              >
+                <Code2 size={18} />
               </a>
             </div>
           </div>

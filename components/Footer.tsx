@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, MessageCircle, ArrowUp } from "lucide-react";
+import { Github, Linkedin, MessageCircle, ArrowUp, Code2 } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -18,11 +18,11 @@ export default function Footer() {
             Lalbabu<span className="text-orange-500">.</span>
           </h3>
           <p className="mt-1 text-xs sm:text-sm text-orange-400 font-semibold font-mono">
-            GenAI & MERN Stack Developer &middot; Software Engineer
+            Software Engineer &middot; Full Stack Developer (MERN)
           </p>
           <p className="mt-3 text-slate-400 text-xs sm:text-sm max-w-sm mx-auto md:mx-0 font-sans leading-relaxed">
-            Building fast, scalable, and visually compelling web architectures
-            with clean UI, robust APIs, and real-world microservices.
+            Building scalable, production-ready web platforms, microservices, 
+            robust REST APIs, and multi-agent AI workflows.
           </p>
         </div>
 
@@ -32,7 +32,7 @@ export default function Footer() {
             Let’s stay connected
           </p>
 
-          <div className="flex justify-center gap-4 sm:gap-6">
+          <div className="flex justify-center gap-3 sm:gap-4">
             {/* WhatsApp */}
             <motion.a
               whileHover={{ y: -4, scale: 1.08 }}
@@ -73,6 +73,20 @@ export default function Footer() {
               shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:bg-white/10 hover:border-orange-500/40 cursor-pointer"
             >
               <Github size={18} />
+            </motion.a>
+
+            {/* LeetCode */}
+            <motion.a
+              whileHover={{ y: -4, scale: 1.08 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              href="https://leetcode.com/u/lalbabu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LeetCode"
+              className="p-3 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20
+              shadow-[0_0_20px_rgba(245,158,11,0.25)] hover:border-amber-400/50 cursor-pointer"
+            >
+              <Code2 size={18} />
             </motion.a>
           </div>
         </div>

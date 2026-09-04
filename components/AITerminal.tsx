@@ -66,43 +66,53 @@ export default function AITerminal() {
       case "/about":
         replyLogs = [
           { text: "Retrieving 'Lalbabu Singh' profile...", type: "system", timestamp: getTimestamp() },
-          { text: "Role: Software Engineer Intern (GenAI & MERN Stack) @ Graphura India Pvt Ltd.", type: "output", timestamp: getTimestamp() },
-          { text: "Education: B.Tech CSE Student (Gurugram University, 2023-2026).", type: "output", timestamp: getTimestamp() },
-          { text: "Diploma: Computer Science Engineering (GP Hisar, 2020-2023).", type: "output", timestamp: getTimestamp() },
-          { text: "Status: Specialized in GenAI agents, LangChain, API design, Docker, & MongoDB.", type: "output", timestamp: getTimestamp() },
+          { text: "Role: Software Engineer – Full Stack Developer (MERN Stack)", type: "output", timestamp: getTimestamp() },
+          { text: "Experience:", type: "system", timestamp: getTimestamp() },
+          { text: "  [1] Full Stack Developer @ Athenura (Feb 2026 – Sep 2026, India)", type: "output", timestamp: getTimestamp() },
+          { text: "  [2] MERN Stack Developer Intern @ Graphura India Pvt Ltd (Dec 2025 – Feb 2026)", type: "output", timestamp: getTimestamp() },
+          { text: "  [3] Software Development Intern @ Infowizz Software Solutions (Aug 2022 – Sep 2022)", type: "output", timestamp: getTimestamp() },
+          { text: "Education:", type: "system", timestamp: getTimestamp() },
+          { text: "  • B.Tech CSE @ Gurugram University (2023–2026)", type: "output", timestamp: getTimestamp() },
+          { text: "  • Diploma CSE @ Govt. Polytechnic Adampur Mandi (2020–2023)", type: "output", timestamp: getTimestamp() },
         ];
         break;
       case "skills":
       case "/skills":
         replyLogs = [
           { text: "Connecting to Skill Database...", type: "system", timestamp: getTimestamp() },
-          { text: "GenAI    : OpenAI API, LangChain, LlamaIndex, AI Agents, RAG, Prompt Engineering", type: "output", timestamp: getTimestamp() },
-          { text: "Languages: JavaScript (ES6+), Python", type: "output", timestamp: getTimestamp() },
-          { text: "Frontend : React.js, Next.js, Redux Toolkit, Framer Motion, Tailwind CSS", type: "output", timestamp: getTimestamp() },
-          { text: "Backend  : Node.js, Express.js, RESTful APIs, JWT Auth, RBAC permissions", type: "output", timestamp: getTimestamp() },
-          { text: "Databases: MongoDB Atlas, Mongoose, MySQL", type: "output", timestamp: getTimestamp() },
-          { text: "DevOps   : Docker containerization, Git, GitHub Actions, Vercel", type: "output", timestamp: getTimestamp() },
+          { text: "Languages: JavaScript (ES6+), TypeScript, Python, Java, SQL", type: "output", timestamp: getTimestamp() },
+          { text: "Frontend : React.js, Next.js, Redux Toolkit, Tailwind CSS, HTML5, CSS3", type: "output", timestamp: getTimestamp() },
+          { text: "Backend  : Node.js, Express.js, REST API, JWT Auth, RBAC, Microservices, WebSockets", type: "output", timestamp: getTimestamp() },
+          { text: "Databases: MongoDB, MongoDB Atlas, Mongoose, MySQL, Redis", type: "output", timestamp: getTimestamp() },
+          { text: "Cloud/Ops: AWS (EC2, S3), Azure, Docker, CI/CD, Git, GitHub, Postman, Vercel, Render", type: "output", timestamp: getTimestamp() },
+          { text: "AI/ML    : LangGraph, LangChain, RAG Pipelines, Groq, Gemini API, Qdrant Vector DB", type: "output", timestamp: getTimestamp() },
+          { text: "Core     : DSA, OOP, SDLC, System Design, Agile/Scrum, Problem Solving", type: "output", timestamp: getTimestamp() },
         ];
         break;
       case "projects":
       case "/projects":
         replyLogs = [
-          { text: "Parsing active deployments...", type: "system", timestamp: getTimestamp() },
-          { text: "[01] Multi-AI Agent Platform (React, LangChain, OpenAI, Docker, Microservices)", type: "output", timestamp: getTimestamp() },
-          { text: "     - Orchestrates autonomous agents for conversation support & workflow automation.", type: "output", timestamp: getTimestamp() },
-          { text: "[02] Task Management System (React, Node.js, REST APIs, Context API, Tailwind)", type: "output", timestamp: getTimestamp() },
-          { text: "     - Role-based dashboard (Admin, Team Leader, Employee) tracking deadlines.", type: "output", timestamp: getTimestamp() },
-          { text: "[03] VR & Sons E-Commerce (React, Next.js, Tailwind) - Import-Export business catalogue.", type: "output", timestamp: getTimestamp() },
+          { text: "Parsing verified deployments...", type: "system", timestamp: getTimestamp() },
+          { text: "[01] NexusAI – Multi-Agent AI Platform (LangGraph, Groq Llama, Gemini, Qdrant, Docker)", type: "output", timestamp: getTimestamp() },
+          { text: "     - Microservices AI platform with API Gateway, LangGraph agent orchestration & RAG.", type: "output", timestamp: getTimestamp() },
+          { text: "[02] Hackathon Management Platform @ Athenura (React.js, Node.js, Express.js, MongoDB)", type: "output", timestamp: getTimestamp() },
+          { text: "     - End-to-end platform for registrations, submissions, evaluations & certs.", type: "output", timestamp: getTimestamp() },
+          { text: "[03] Billing & CRM SaaS Platform @ Athenura (React.js, Node.js, Express.js, MongoDB)", type: "output", timestamp: getTimestamp() },
+          { text: "     - Multi-client SaaS invoicing, CRM, and case tracking workflows.", type: "output", timestamp: getTimestamp() },
+          { text: "[04] Task Management & RBAC System (React, Tailwind CSS, Node.js, Express.js, REST APIs)", type: "output", timestamp: getTimestamp() },
         ];
         break;
       case "contact":
       case "/contact":
         replyLogs = [
           { text: "Loading developer credentials...", type: "system", timestamp: getTimestamp() },
+          { text: "Name     : Lalbabu Singh", type: "output", timestamp: getTimestamp() },
           { text: "Email    : lalbabusingh.dev@gmail.com", type: "output", timestamp: getTimestamp() },
-          { text: "Phone    : +91 9113382362", type: "output", timestamp: getTimestamp() },
-          { text: "Location : Delhi, India", type: "output", timestamp: getTimestamp() },
-          { text: "GitHub   : github.com/Lalbabu-Coder", type: "output", timestamp: getTimestamp() },
+          { text: "Phone    : +91-9113382362", type: "output", timestamp: getTimestamp() },
+          { text: "Location : Bengaluru, India", type: "output", timestamp: getTimestamp() },
+          { text: "GitHub   : https://github.com/Lalbabu-Coder", type: "output", timestamp: getTimestamp() },
+          { text: "LinkedIn : https://www.linkedin.com/in/lalbabu-singh-b39308277/", type: "output", timestamp: getTimestamp() },
+          { text: "LeetCode : https://leetcode.com/u/lalbabu/", type: "output", timestamp: getTimestamp() },
         ];
         break;
       case "clear":

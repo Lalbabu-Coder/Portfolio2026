@@ -4,44 +4,44 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import DecryptedText from "@/components/DecryptedText";
 import AITerminal from "@/components/AITerminal";
-import { ArrowRight, Terminal as TerminalIcon, Sparkles } from "lucide-react";
+import { ArrowRight, Terminal as TerminalIcon, Sparkles, FileText, Download } from "lucide-react";
 
 const roles = [
   { 
-    badge: "AI Agents & MERN Stack",
-    main: "GenAI & MERN Stack", 
-    sub: "Developer", 
+    badge: "MERN Stack & Scalable Systems",
+    main: "Software", 
+    sub: "Engineer", 
     gradient: "from-orange-400 via-amber-300 to-yellow-400",
     glow: "rgba(249, 115, 22, 0.5)"
   },
   { 
-    badge: "React & Next.js Architecture",
+    badge: "React.js & Node.js Architecture",
     main: "Full Stack", 
     sub: "Developer", 
     gradient: "from-cyan-400 via-sky-300 to-emerald-400",
     glow: "rgba(6, 182, 212, 0.5)"
   },
   { 
-    badge: "Backend & Systems",
-    main: "Software", 
+    badge: "MongoDB & RESTful APIs & RBAC",
+    main: "MERN Stack", 
     sub: "Developer", 
-    gradient: "from-purple-400 via-fuchsia-300 to-indigo-400",
-    glow: "rgba(168, 85, 247, 0.5)"
+    gradient: "from-emerald-400 via-teal-300 to-cyan-400",
+    glow: "rgba(16, 185, 129, 0.5)"
   },
   { 
-    badge: "LangChain & Vector DBs",
-    main: "Autonomous AI", 
+    badge: "LangGraph & Vector DBs & Docker",
+    main: "Multi-Agent AI", 
     sub: "Engineer", 
-    gradient: "from-rose-400 via-orange-300 to-amber-300",
-    glow: "rgba(244, 63, 94, 0.5)"
+    gradient: "from-purple-400 via-fuchsia-300 to-rose-400",
+    glow: "rgba(168, 85, 247, 0.5)"
   }
 ];
 
 const bottomSkills = [
-  { num: "#01", title: "Autonomous AI Agents" },
-  { num: "#02", title: "MERN Stack Architecture" },
-  { num: "#03", title: "Docker & Microservices" },
-  { num: "#04", title: "RESTful APIs & Cloud" }
+  { num: "#01", title: "MERN Stack & Next.js" },
+  { num: "#02", title: "Multi-Agent AI & LangGraph" },
+  { num: "#03", title: "REST APIs & RBAC Security" },
+  { num: "#04", title: "AWS, Azure & Docker" }
 ];
 
 export default function Hero() {
@@ -157,7 +157,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto"
+            className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto"
           >
             <a
               href="#contact"
@@ -167,6 +167,17 @@ export default function Hero() {
               <div className="w-6 h-6 rounded-full bg-white text-orange-600 flex items-center justify-center font-bold">
                 <ArrowRight size={13} />
               </div>
+            </a>
+
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-slate-900/80 hover:bg-slate-800 text-white font-semibold text-sm sm:text-base border border-white/10 hover:border-orange-500/40 transition-all duration-300 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.4)] cursor-pointer text-center"
+            >
+              <FileText size={16} className="text-orange-400" />
+              <span>View Resume</span>
+              <Download size={14} className="text-slate-400" />
             </a>
           </motion.div>
 
