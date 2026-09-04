@@ -93,13 +93,13 @@ export default function AITerminal() {
       case "/projects":
         replyLogs = [
           { text: "Parsing verified deployments...", type: "system", timestamp: getTimestamp() },
-          { text: "[01] NexusAI – Multi-Agent AI Platform (LangGraph, Groq Llama, Gemini, Qdrant, Docker)", type: "output", timestamp: getTimestamp() },
-          { text: "     - Microservices AI platform with API Gateway, LangGraph agent orchestration & RAG.", type: "output", timestamp: getTimestamp() },
-          { text: "[02] Hackathon Management Platform @ Athenura (React.js, Node.js, Express.js, MongoDB)", type: "output", timestamp: getTimestamp() },
-          { text: "     - End-to-end platform for registrations, submissions, evaluations & certs.", type: "output", timestamp: getTimestamp() },
-          { text: "[03] Billing & CRM SaaS Platform @ Athenura (React.js, Node.js, Express.js, MongoDB)", type: "output", timestamp: getTimestamp() },
-          { text: "     - Multi-client SaaS invoicing, CRM, and case tracking workflows.", type: "output", timestamp: getTimestamp() },
-          { text: "[04] Task Management & RBAC System (React, Tailwind CSS, Node.js, Express.js, REST APIs)", type: "output", timestamp: getTimestamp() },
+          { text: "[01] ATH Hackathon 2026 Platform -> https://hackathon.athenura.in/", type: "output", timestamp: getTimestamp() },
+          { text: "     - Candidate registrations, live challenge evaluations, RBAC & MERN backend.", type: "output", timestamp: getTimestamp() },
+          { text: "[02] Athenura TaskFlow (TMS) -> https://task-management-system-1foc.vercel.app/", type: "output", timestamp: getTimestamp() },
+          { text: "     - Role-based project management, real-time analytics & JWT auth.", type: "output", timestamp: getTimestamp() },
+          { text: "[03] Athenura Billing & CRM SaaS -> https://athenura-billing-system-f.vercel.app/", type: "output", timestamp: getTimestamp() },
+          { text: "     - Multi-tenant client invoicing, financial analytics & MongoDB aggregation.", type: "output", timestamp: getTimestamp() },
+          { text: "[04] NexusAI – Multi-Agent AI Platform -> https://nexus-ai-tau-black.vercel.app/", type: "output", timestamp: getTimestamp() },
         ];
         break;
       case "contact":

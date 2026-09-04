@@ -16,6 +16,45 @@ interface ProjectItem {
 
 const projects: ProjectItem[] = [
   {
+    title: "ATH Hackathon 2026 Platform",
+    image: "/Projects/ath_hackathon.jpg",
+    description: "National-level hackathon & challenge ecosystem developed at Athenura handling registrations, evaluations, and certificates.",
+    bullets: [
+      "Built an end-to-end hackathon management platform covering candidate registration, team formation, submission tracking, and evaluation.",
+      "Implemented Role-Based Access Control (RBAC) for organizers, judges, and participants with a scalable MERN backend.",
+      "Engineered high-performance REST APIs supporting live global hackathon competitions and real-time announcements."
+    ],
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "RBAC", "REST APIs"],
+    link: "https://hackathon.athenura.in/",
+    github: "https://github.com/Lalbabu-Coder",
+  },
+  {
+    title: "Athenura TaskFlow (TMS)",
+    image: "/Projects/athenura_tms.jpg",
+    description: "Enterprise role-based project and task management system with intelligent team monitoring and analytics.",
+    bullets: [
+      "Built a secure role-based hierarchy featuring Admin, Team Leader, and Employee dashboards with distinct permission tiers.",
+      "Designed and integrated 10+ RESTful APIs for team performance metrics, real-time activity feeds, and secure JWT authentication.",
+      "Engineered responsive UI dashboards in React.js and Tailwind CSS with persistent state management."
+    ],
+    tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "REST APIs", "Context API"],
+    link: "https://task-management-system-1foc.vercel.app/",
+    github: "https://github.com/Lalbabu-Coder",
+  },
+  {
+    title: "Athenura Billing & CRM SaaS",
+    image: "/Projects/athenura_billing.jpg",
+    description: "A multi-tenant SaaS billing and client relationship management platform automating invoicing and access control.",
+    bullets: [
+      "Developed a SaaS-based billing and CRM platform enabling client management, automated invoicing, and case tracking workflows.",
+      "Built REST APIs and designed MongoDB schemas to support multi-client data handling and financial analytics.",
+      "Streamlined client onboarding with automated invoice generation, payment status tracking, and secure JWT authorization."
+    ],
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT Auth", "REST APIs"],
+    link: "https://athenura-billing-system-f.vercel.app/",
+    github: "https://github.com/Lalbabu-Coder",
+  },
+  {
     title: "NexusAI – Multi-Agent AI Platform",
     image: "/Projects/multi_ai_agent_platform.png",
     description: "A microservices-based AI platform orchestrating autonomous multi-agent systems and real-time RAG pipelines.",
@@ -27,45 +66,6 @@ const projects: ProjectItem[] = [
     tech: ["LangGraph", "Groq", "Gemini", "Qdrant", "MongoDB", "Docker", "Node.js"],
     link: "https://nexus-ai-tau-black.vercel.app/",
     github: "https://github.com/Lalbabu-Coder/Nexus-AI",
-  },
-  {
-    title: "Hackathon Management Platform",
-    image: "/Projects/Task management interface overview.png",
-    description: "An end-to-end hackathon ecosystem developed at Athenura handling registration, evaluations, and certifications.",
-    bullets: [
-      "Built an end-to-end hackathon management platform covering candidate registration, submission tracking, evaluation, and certificate generation.",
-      "Implemented Role-Based Access Control (RBAC) for organizers, judges, and participants with a robust MERN backend.",
-      "Engineered responsive UI dashboards in React.js connected to scalable Express.js REST APIs."
-    ],
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "RBAC", "REST APIs"],
-    link: "https://task-management-liart-nu.vercel.app",
-    github: "https://github.com/Lalbabu-Coder",
-  },
-  {
-    title: "Billing & CRM SaaS Platform",
-    image: "/Projects/crm.png",
-    description: "A multi-tenant SaaS billing and customer relationship management platform engineered at Athenura.",
-    bullets: [
-      "Developed a SaaS-based billing and CRM platform enabling client management, invoicing, and case tracking workflows.",
-      "Built REST APIs and designed MongoDB schemas to support multi-client data handling and analytics.",
-      "Streamlined client onboarding with automated invoice generation and secure JWT authorization."
-    ],
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT Auth", "REST APIs"],
-    link: "https://your-crm-link.vercel.app",
-    github: "https://github.com/Lalbabu-Coder",
-  },
-  {
-    title: "Task Management & RBAC System",
-    image: "/Projects/Task management interface overview.png",
-    description: "A secure role-based workflow manager with granular permission levels and live progress monitoring.",
-    bullets: [
-      "Built a role-based authorization hierarchy featuring Admin, Team Leader, and Employee dashboards.",
-      "Designed and integrated 10+ RESTful APIs for performance monitoring, task assignments, and secure logins.",
-      "Created fully responsive interfaces using Tailwind CSS with persistent state management."
-    ],
-    tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "REST APIs", "Context API"],
-    link: "https://task-management-liart-nu.vercel.app",
-    github: "https://github.com/Lalbabu-Coder",
   },
   {
     title: "VR AND Sons E-Commerce",
