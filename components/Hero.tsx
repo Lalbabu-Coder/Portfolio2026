@@ -60,23 +60,23 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-transparent text-white w-full max-w-full pt-24 sm:pt-28 pb-8 sm:pb-10">
       
-      {/* 1. CLEAN HIGH-CONTRAST PORTRAIT BACKGROUND WITH AMBIENT NEON GLOW */}
+      {/* 1. DESKTOP-ONLY HIGH-CONTRAST PORTRAIT BACKGROUND */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         
-        {/* Ambient Neon Glows BEHIND the Image */}
+        {/* Ambient Neon Glows */}
         <div className="absolute -left-20 top-1/3 w-[50vw] sm:w-[35vw] max-w-[450px] h-[50vw] sm:h-[35vw] max-h-[450px] bg-violet-600/25 blur-[120px] sm:blur-[140px] rounded-full" />
         <div className="absolute right-0 top-1/4 w-[50vw] sm:w-[40vw] max-w-[500px] h-[50vw] sm:h-[40vw] max-h-[500px] bg-cyan-600/20 blur-[130px] sm:blur-[150px] rounded-full" />
         <div className="absolute left-1/3 top-1/2 w-[35vw] max-w-[350px] h-[35vw] max-h-[350px] bg-orange-600/15 blur-[150px] rounded-full" />
 
-        {/* Mobile & Desktop High-Visibility Portrait Container */}
-        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[54%] h-full opacity-85 sm:opacity-90 lg:opacity-100">
+        {/* Desktop-Only High-Visibility Side Portrait */}
+        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[48%] h-full opacity-95">
           <img
             src="/hero-bg.png"
             alt="Lalbabu Singh"
             className="w-full h-full object-cover object-top filter contrast-105 brightness-110 saturate-105"
           />
           {/* Smooth Left Side Blend */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#02040a] via-[#02040a]/80 sm:via-[#02040a]/65 to-transparent lg:via-[#02040a]/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#02040a] via-[#02040a]/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#02040a]/70 via-transparent to-transparent" />
         </div>
@@ -84,10 +84,10 @@ export default function Hero() {
       </div>
 
       {/* 2. MAIN HERO CONTENT GRID */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 my-auto grid lg:grid-cols-12 gap-8 items-center pt-4 sm:pt-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 my-auto grid lg:grid-cols-12 gap-8 items-center pt-2 sm:pt-6">
         
-        {/* LEFT COLUMN: MAIN HEADLINE */}
-        <div className="lg:col-span-8 flex flex-col justify-center">
+        {/* LEFT COLUMN: MAIN HEADLINE & ACTIONS */}
+        <div className="lg:col-span-7 flex flex-col justify-center">
           
           {/* TOP ACCENT BADGE */}
           <motion.div
@@ -102,8 +102,8 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* DYNAMIC STYLISH SWITCHING HEADLINE - OPTIMIZED FOR MOBILE */}
-          <div className="min-h-[130px] sm:min-h-[160px] md:min-h-[190px] flex flex-col justify-center">
+          {/* DYNAMIC STYLISH SWITCHING HEADLINE */}
+          <div className="min-h-[110px] sm:min-h-[150px] md:min-h-[180px] flex flex-col justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={roleIndex}
@@ -120,7 +120,7 @@ export default function Hero() {
                 </div>
 
                 {/* Stylish Gradient Role Title */}
-                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[5rem] font-black leading-[1.05] tracking-tight font-display">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.75rem] font-black leading-[1.05] tracking-tight font-display">
                   <span 
                     className={`block bg-gradient-to-r ${currentRole.gradient} bg-clip-text text-transparent pb-1`}
                     style={{
@@ -153,12 +153,31 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* CLEAN HIGH-IMPACT PRIMARY CTA BUTTON */}
+          {/* MOBILE-ONLY DEDICATED PORTRAIT CARD (Zero Overlap with Text/Buttons) */}
+          <div className="lg:hidden flex justify-center my-4 sm:my-6">
+            <div className="relative w-56 h-64 sm:w-68 sm:h-80 rounded-3xl overflow-hidden border border-orange-500/30 shadow-[0_0_40px_rgba(249,115,22,0.2)] bg-slate-950/80 backdrop-blur-xl">
+              <img
+                src="/hero-bg.png"
+                alt="Lalbabu Singh"
+                className="w-full h-full object-cover object-top filter contrast-105 brightness-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-2.5 inset-x-2.5 px-3 py-1.5 rounded-full bg-slate-950/80 border border-white/10 backdrop-blur-md flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-bold">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Open to Work</span>
+                </div>
+                <span className="text-[11px] text-slate-300 font-mono">Full Stack Dev</span>
+              </div>
+            </div>
+          </div>
+
+          {/* CLEAN HIGH-IMPACT PRIMARY CTA BUTTONS */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto"
+            className="mt-2 sm:mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto"
           >
             <a
               href="#contact"
