@@ -68,17 +68,21 @@ export default function Hero() {
         <div className="absolute right-0 top-1/4 w-[50vw] sm:w-[40vw] max-w-[500px] h-[50vw] sm:h-[40vw] max-h-[500px] bg-cyan-600/20 blur-[130px] sm:blur-[150px] rounded-full" />
         <div className="absolute left-1/3 top-1/2 w-[35vw] max-w-[350px] h-[35vw] max-h-[350px] bg-orange-600/15 blur-[150px] rounded-full" />
 
-        {/* Mobile & Desktop High-Visibility Portrait Container */}
-        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[54%] h-full opacity-85 sm:opacity-90 lg:opacity-100">
+        {/* Seamless Soft-Blended Portrait (Zero Harsh Black Shadow Lines) */}
+        <div 
+          className="absolute right-0 top-0 bottom-0 w-full md:w-[70%] lg:w-[58%] h-full pointer-events-none"
+          style={{
+            maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.2) 12%, rgba(0,0,0,0.8) 32%, black 50%, black 100%), linear-gradient(to top, transparent 0%, black 18%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.2) 12%, rgba(0,0,0,0.8) 32%, black 50%, black 100%), linear-gradient(to top, transparent 0%, black 18%)",
+            maskComposite: "intersect",
+            WebkitMaskComposite: "destination-in"
+          }}
+        >
           <img
             src="/hero-bg.png"
             alt="Lalbabu Singh"
             className="w-full h-full object-cover object-top filter contrast-105 brightness-110 saturate-105"
           />
-          {/* Smooth Left Side Blend */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#02040a] via-[#02040a]/80 sm:via-[#02040a]/65 to-transparent lg:via-[#02040a]/25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#02040a]/70 via-transparent to-transparent" />
         </div>
 
       </div>
