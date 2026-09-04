@@ -16,11 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans bg-[#070709] text-gray-200 antialiased relative min-h-screen selection:bg-orange-500 selection:text-white`}>
-        
-        {/* Subtle Ambient Background Mesh */}
-        <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden select-none bg-[#070709]" />
-
+      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans bg-[#02040a] text-slate-100 antialiased relative min-h-screen selection:bg-orange-500 selection:text-white`}>
         {children}
       </body>
     </html>

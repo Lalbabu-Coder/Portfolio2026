@@ -9,7 +9,7 @@
 
 /* ROOT & OVERFLOW LOCKING */
 :root {
-  --background: #05050a;
+  --background: #02040a;
   --foreground: #f3f4f6;
 }
 
@@ -23,40 +23,41 @@ html, body {
 }
 
 body {
-  background-color: var(--background);
+  background-color: #02040a;
   color: var(--foreground);
   min-height: 100vh;
 }
 
 @keyframes floatGradients {
   0% {
-    background-position: 0px 0px, 0px 0px, 0% 20%, 80% 80%, 50% 50%;
+    background-position: 0px 0px, 0px 0px, 0% 15%, 85% 85%, 50% 50%, 90% 10%;
   }
   50% {
-    background-position: 0px 0px, 0px 0px, 10% 30%, 70% 70%, 45% 55%;
+    background-position: 0px 0px, 0px 0px, 15% 35%, 70% 65%, 45% 60%, 80% 25%;
   }
   100% {
-    background-position: 0px 0px, 0px 0px, 0% 20%, 80% 80%, 50% 50%;
+    background-position: 0px 0px, 0px 0px, 0% 15%, 85% 85%, 50% 50%, 90% 10%;
   }
 }
 
-/* Animated Mesh Background - Attached to body for global effect */
+/* Animated Midnight Obsidian & Deep Cosmic Glow Mesh */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-color: #030712;
+  background-color: #02040a;
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-    radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 85% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
-  background-size: 60px 60px, 60px 60px, 100% 100%, 100% 100%, 100% 100%;
+    radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    radial-gradient(circle at 12% 18%, rgba(124, 58, 237, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 88% 82%, rgba(6, 182, 212, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 50% 45%, rgba(59, 130, 246, 0.12) 0%, transparent 55%),
+    radial-gradient(circle at 80% 15%, rgba(249, 115, 22, 0.1) 0%, transparent 40%);
+  background-size: 36px 36px, 72px 72px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
   background-attachment: fixed;
   pointer-events: none;
-  animation: floatGradients 25s ease infinite;
+  animation: floatGradients 28s ease-in-out infinite;
 }
 
 /* Premium Scrollbar */

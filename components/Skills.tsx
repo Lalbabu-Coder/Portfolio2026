@@ -210,11 +210,12 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-16 overflow-hidden bg-[#070709] text-white w-full max-w-full border-t border-white/10"
+      className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-16 overflow-hidden bg-transparent text-white w-full max-w-full border-t border-white/10"
     >
       {/* Background Ambient Glows */}
-      <div className="absolute right-[-10%] top-[10%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-orange-600/15 blur-[170px] rounded-full pointer-events-none z-0" />
-      <div className="absolute left-[-10%] bottom-[10%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-purple-900/20 blur-[170px] rounded-full pointer-events-none z-0" />
+      <div className="absolute right-[-10%] top-[10%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-cyan-600/18 blur-[170px] rounded-full pointer-events-none z-0" />
+      <div className="absolute left-[-10%] bottom-[10%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-violet-600/20 blur-[170px] rounded-full pointer-events-none z-0" />
+      <div className="absolute left-1/3 top-1/2 w-[35vw] max-w-[350px] h-[35vw] max-h-[350px] bg-blue-600/10 blur-[180px] rounded-full pointer-events-none z-0" />
 
       {/* CONTINUOUS INFINITE TICKER MARQUEE */}
       <div className="relative z-10 w-full overflow-hidden mb-16 py-3 border-y border-white/10 bg-slate-950/40 backdrop-blur-md">

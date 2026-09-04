@@ -45,11 +45,11 @@ export default function FAQs() {
   const [active, setActive] = useState<number | null>(0);
 
   return (
-    <section id="faqs" className="py-24 sm:py-32 px-4 sm:px-6 md:px-16 overflow-hidden bg-[#070709] text-white w-full max-w-full border-t border-white/10 relative">
+    <section id="faqs" className="py-24 sm:py-32 px-4 sm:px-6 md:px-16 overflow-hidden bg-transparent text-white w-full max-w-full border-t border-white/10 relative">
       
       {/* Background Ambient Glows */}
-      <div className="absolute left-[-10%] top-[20%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-purple-900/20 blur-[170px] rounded-full pointer-events-none z-0" />
-      <div className="absolute right-[-10%] bottom-[20%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-cyan-600/15 blur-[170px] rounded-full pointer-events-none z-0" />
+      <div className="absolute left-[-10%] top-[20%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-violet-600/20 blur-[170px] rounded-full pointer-events-none z-0" />
+      <div className="absolute right-[-10%] bottom-[20%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-cyan-600/18 blur-[170px] rounded-full pointer-events-none z-0" />
 
       {/* HEADING */}
       <div className="relative z-10 text-center max-w-3xl mx-auto">

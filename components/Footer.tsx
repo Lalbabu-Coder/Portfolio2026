@@ -9,7 +9,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-white/10 bg-[#070709] text-white backdrop-blur-xl transition-colors duration-300 overflow-hidden w-full max-w-full">
+    <footer className="relative border-t border-white/10 bg-[#02040a]/90 text-white backdrop-blur-2xl transition-colors duration-300 overflow-hidden w-full max-w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 py-12 sm:py-16 grid md:grid-cols-3 gap-8 md:gap-12 items-center">
 
         {/* LEFT: BRAND & DESCRIPTION */}

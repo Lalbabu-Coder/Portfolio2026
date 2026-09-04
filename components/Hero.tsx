@@ -58,26 +58,27 @@ export default function Hero() {
   const currentRole = roles[roleIndex];
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-[#070709] text-white w-full max-w-full pt-24 sm:pt-28 pb-8 sm:pb-10">
+    <section className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-transparent text-white w-full max-w-full pt-24 sm:pt-28 pb-8 sm:pb-10">
       
       {/* 1. CLEAN HIGH-CONTRAST PORTRAIT BACKGROUND WITH AMBIENT NEON GLOW */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         
         {/* Ambient Neon Glows BEHIND the Image */}
-        <div className="absolute -left-20 top-1/3 w-[50vw] sm:w-[35vw] max-w-[450px] h-[50vw] sm:h-[35vw] max-h-[450px] bg-purple-600/20 blur-[120px] sm:blur-[140px] rounded-full" />
-        <div className="absolute right-0 top-1/4 w-[50vw] sm:w-[40vw] max-w-[500px] h-[50vw] sm:h-[40vw] max-h-[500px] bg-orange-600/20 blur-[130px] sm:blur-[150px] rounded-full" />
+        <div className="absolute -left-20 top-1/3 w-[50vw] sm:w-[35vw] max-w-[450px] h-[50vw] sm:h-[35vw] max-h-[450px] bg-violet-600/25 blur-[120px] sm:blur-[140px] rounded-full" />
+        <div className="absolute right-0 top-1/4 w-[50vw] sm:w-[40vw] max-w-[500px] h-[50vw] sm:h-[40vw] max-h-[500px] bg-cyan-600/20 blur-[130px] sm:blur-[150px] rounded-full" />
+        <div className="absolute left-1/3 top-1/2 w-[35vw] max-w-[350px] h-[35vw] max-h-[350px] bg-orange-600/15 blur-[150px] rounded-full" />
 
         {/* Mobile & Desktop High-Visibility Portrait Container */}
-        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[54%] h-full opacity-80 sm:opacity-90 lg:opacity-100">
+        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[54%] h-full opacity-85 sm:opacity-90 lg:opacity-100">
           <img
             src="/hero-bg.png"
             alt="Lalbabu Singh"
             className="w-full h-full object-cover object-top filter contrast-105 brightness-110 saturate-105"
           />
           {/* Smooth Left Side Blend */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#070709] via-[#070709]/75 sm:via-[#070709]/60 to-transparent lg:via-[#070709]/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#070709] via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#070709]/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#02040a] via-[#02040a]/80 sm:via-[#02040a]/65 to-transparent lg:via-[#02040a]/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#02040a]/70 via-transparent to-transparent" />
         </div>
 
       </div>

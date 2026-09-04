@@ -74,11 +74,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-16 overflow-hidden bg-[#070709] text-white w-full max-w-full border-t border-white/10">
+    <section id="contact" className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-16 overflow-hidden bg-transparent text-white w-full max-w-full border-t border-white/10">
       
       {/* Background Ambient Glows */}
-      <div className="absolute left-[-5%] top-[15%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-orange-600/15 blur-[170px] rounded-full pointer-events-none z-0" />
-      <div className="absolute right-[-5%] bottom-[15%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-purple-900/20 blur-[170px] rounded-full pointer-events-none z-0" />
+      <div className="absolute left-[-5%] top-[15%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-cyan-600/18 blur-[170px] rounded-full pointer-events-none z-0" />
+      <div className="absolute right-[-5%] bottom-[15%] w-[45vw] max-w-[500px] h-[45vw] max-h-[500px] bg-violet-600/20 blur-[170px] rounded-full pointer-events-none z-0" />
 
       {/* HEADING */}
       <div className="relative z-10 text-center max-w-3xl mx-auto">
