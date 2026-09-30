@@ -1,221 +1,203 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-import { ArrowRight, Sparkles, FileText, Download, Terminal as TerminalIcon } from "lucide-react";
+import { motion } from "framer-motion";
+import { 
+  Download, 
+  Play, 
+  ChevronUp, 
+  Github, 
+  Linkedin, 
+  Code2, 
+  MessageCircle, 
+  Mail,
+  ArrowRight
+} from "lucide-react";
 
-const Hero3DVisualizer = dynamic(
-  () => import("@/components/canvas/Hero3DVisualizer"),
-  { ssr: false }
-);
-
-const specializations = [
-  {
-    tag: "MERN Stack & Scalable Systems",
-    primary: "Software",
-    secondary: "Engineer",
-    gradient: "from-orange-400 via-amber-300 to-yellow-400",
-    glow: "rgba(249, 115, 22, 0.4)",
-    subtext: "Full Stack Developer · MERN · AI · Scalable Systems",
-  },
-  {
-    tag: "React 19 & Next.js 15 App Architecture",
-    primary: "Full Stack",
-    secondary: "Developer",
-    gradient: "from-cyan-400 via-sky-300 to-emerald-400",
-    glow: "rgba(6, 182, 212, 0.4)",
-    subtext: "High-throughput REST APIs, SSR, and microservices",
-  },
-  {
-    tag: "LangGraph Multi-Agent & RAG Systems",
-    primary: "Autonomous AI",
-    secondary: "Engineer",
-    gradient: "from-purple-400 via-fuchsia-300 to-rose-400",
-    glow: "rgba(168, 85, 247, 0.4)",
-    subtext: "LangGraph state graphs, Qdrant vector DB, and Groq LLMs",
-  },
-  {
-    tag: "MongoDB, Redis & Cloud DevOps",
-    primary: "Backend & Cloud",
-    secondary: "Architect",
-    gradient: "from-emerald-400 via-teal-300 to-cyan-400",
-    glow: "rgba(16, 185, 129, 0.4)",
-    subtext: "RBAC security matrices, Docker containerization, and AWS",
-  },
-];
-
-const capabilities = [
-  { num: "#01", title: "MERN Stack & Next.js 15", desc: "Full-Stack Enterprise Applications" },
-  { num: "#02", title: "Multi-Agent AI & LangGraph", desc: "Autonomous Swarms & RAG" },
-  { num: "#03", title: "REST APIs & RBAC Security", desc: "High-Throughput Microservices" },
-  { num: "#04", title: "AWS, Azure & Docker", desc: "Cloud & Container Deployments" },
-];
-
-export default function Hero({ onOpenTerminal }: { onOpenTerminal?: () => void }) {
-  const [roleIndex, setRoleIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % specializations.length);
-    }, 3600);
-    return () => clearInterval(interval);
-  }, []);
-
-  const current = specializations[roleIndex];
+export default function Hero() {
+  const scrollToAbout = () => {
+    const el = document.getElementById("about");
+    el?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-transparent text-white w-full max-w-full pt-28 sm:pt-36 pb-12 sm:pb-16 pointer-events-auto select-none"
+      className="relative min-h-screen bg-[#1d212c] text-white flex flex-col justify-between pt-28 sm:pt-36 pb-12 px-6 sm:px-12 overflow-hidden"
     >
-      {/* MAIN HERO CONTENT: 2-COLUMN BALANCED LAYOUT */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 my-auto grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      {/* BACKGROUND CONCENTRIC ORBITAL RINGS (LENDEX SIGNATURE DESIGN) */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 lg:translate-x-10 w-[700px] sm:w-[900px] lg:w-[1100px] h-[700px] sm:h-[900px] lg:h-[1100px] pointer-events-none -z-0">
+        <div className="absolute inset-0 rounded-full border border-white/[0.05]" />
+        <div className="absolute inset-16 sm:inset-24 rounded-full border border-white/[0.06]" />
+        <div className="absolute inset-32 sm:inset-48 rounded-full border border-white/[0.07]" />
+        <div className="absolute inset-48 sm:inset-72 rounded-full border border-white/[0.08]" />
+      </div>
+
+      {/* MAIN 2-COLUMN BALANCED HERO GRID */}
+      <div className="max-w-7xl mx-auto w-full my-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center relative z-10">
         
-        {/* LEFT COLUMN: HERO HEADLINES & CALLS TO ACTION */}
-        <div className="lg:col-span-7 flex flex-col justify-center space-y-4">
-          
-          {/* Top Greeting Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-white/10 backdrop-blur-md w-fit shadow-[0_0_20px_rgba(0,0,0,0.5)]"
-          >
-            <Sparkles size={14} className="text-orange-400 animate-pulse shrink-0" />
-            <span className="text-orange-400 font-bold text-xs sm:text-sm tracking-wide font-mono">
-              Hey, I'm Lalbabu Singh
-            </span>
-          </motion.div>
-
-          {/* DYNAMIC ROLE SWITCHER */}
-          <div className="min-h-[140px] sm:min-h-[160px] md:min-h-[180px] flex flex-col justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={roleIndex}
-                initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -15, scale: 0.98 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="space-y-1.5"
-              >
-                {/* Specialization Category Tag */}
-                <div className="text-xs sm:text-sm font-semibold tracking-wider uppercase font-mono text-slate-400 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-orange-400 animate-ping shrink-0" />
-                  <span>{current.tag}</span>
-                </div>
-
-                {/* Main Gradient Role Title */}
-                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.8rem] font-black leading-[1.02] tracking-tight font-display">
-                  <span
-                    className={`block bg-gradient-to-r ${current.gradient} bg-clip-text text-transparent pb-1`}
-                    style={{ filter: `drop-shadow(0 0 30px ${current.glow})` }}
-                  >
-                    {current.primary}
-                  </span>
-                  <span className="block text-white font-extrabold tracking-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
-                    {current.secondary}
-                  </span>
-                </h1>
-
-                <p className="text-xs sm:text-sm md:text-base font-mono text-cyan-300 font-semibold pt-1">
-                  {current.subtext}
-                </p>
-              </motion.div>
-            </AnimatePresence>
+        {/* LEFT COLUMN: GREETING, SERIF NAME & CTAS */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="lg:col-span-6 flex flex-col justify-center space-y-7"
+        >
+          {/* Main Title - Lendex Serif Typography */}
+          <div className="space-y-1">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif text-white leading-[1.08] tracking-tight">
+              Hello! I’m <br />
+              <span className="relative inline-block font-normal">
+                Lalbabu Singh
+                
+                {/* Hand-drawn decorative wave underline from Lendex */}
+                <svg 
+                  className="absolute -bottom-2 sm:-bottom-3 left-0 w-full text-slate-400/60" 
+                  viewBox="0 0 250 14" 
+                  fill="none"
+                >
+                  <path 
+                    d="M3 9 C 40 2, 60 14, 100 5 C 140 -2, 170 12, 210 5 C 225 2, 240 8, 248 6" 
+                    stroke="currentColor" 
+                    strokeWidth="2.5" 
+                    strokeLinecap="round" 
+                  />
+                </svg>
+              </span>
+            </h1>
           </div>
 
-          {/* Role switcher indicator pills */}
-          <div className="flex items-center gap-2 pt-1">
-            {specializations.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setRoleIndex(idx)}
-                aria-label={`Select role ${idx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  idx === roleIndex
-                    ? "w-8 bg-orange-500 shadow-[0_0_12px_rgba(249,115,22,0.8)]"
-                    : "w-2 bg-white/20 hover:bg-white/40"
-                }`}
-              />
-            ))}
-          </div>
+          {/* Subtitle / Focus Statement */}
+          <p className="text-slate-300/90 text-base sm:text-lg leading-relaxed max-w-lg font-sans">
+            Software Developer specializing in the MERN Stack, Scalable Microservices & Autonomous AI Systems.
+          </p>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="pt-4 flex flex-wrap items-center gap-3.5"
-          >
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:brightness-110 text-white font-bold text-sm sm:text-base transition-all duration-300 shadow-[0_0_30px_rgba(249,115,22,0.45)] hover:shadow-[0_0_45px_rgba(249,115,22,0.65)] cursor-pointer"
-            >
-              <span>Let's Build Together</span>
-              <div className="w-5 h-5 rounded-full bg-white text-orange-600 flex items-center justify-center font-bold">
-                <ArrowRight size={11} />
-              </div>
-            </a>
-
+          {/* Action CTAs */}
+          <div className="pt-2 flex flex-wrap items-center gap-6">
+            
+            {/* 1. Get Resume Button (Pill with border) */}
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full bg-slate-900/80 hover:bg-slate-800 text-white font-semibold text-sm sm:text-base border border-white/10 hover:border-orange-500/40 transition-all duration-300 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.4)] cursor-pointer"
+              className="px-7 py-3.5 rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/10 text-white text-sm font-medium transition-all duration-200 inline-flex items-center gap-2.5 shadow-sm cursor-pointer"
             >
-              <FileText size={16} className="text-orange-400" />
-              <span>View Resume</span>
-              <Download size={13} className="text-slate-400" />
+              <span>Get Resume</span>
+              <Download size={15} className="text-slate-300" />
             </a>
 
-            {onOpenTerminal && (
-              <button
-                onClick={onOpenTerminal}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:py-4 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white font-mono text-xs sm:text-sm border border-white/10 transition-all cursor-pointer"
-              >
-                <TerminalIcon size={14} className="text-cyan-400" />
-                <span>Launch CLI</span>
-              </button>
-            )}
-          </motion.div>
-
-        </div>
-
-        {/* RIGHT COLUMN: CLEAN & PROFESSIONAL 3D TECH CORE */}
-        <div className="lg:col-span-5 flex items-center justify-center">
-          <Hero3DVisualizer />
-        </div>
-
-      </div>
-
-      {/* BOTTOM NUMBERED CAPABILITY PILLS */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-12 pt-6 border-t border-white/10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-          {capabilities.map((cap, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="flex flex-col space-y-0.5 group cursor-default"
+            {/* 2. Interactive Video / Explore Work Button (Nested Concentric Circles) */}
+            <button
+              onClick={scrollToAbout}
+              className="flex items-center gap-3.5 group cursor-pointer"
             >
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wide font-sans">
-                <span className="text-orange-500 font-extrabold font-mono text-sm group-hover:scale-110 transition-transform">
-                  {cap.num}
-                </span>
-                <span className="text-slate-200 group-hover:text-white transition-colors">
-                  {cap.title}
-                </span>
+              <div className="w-13 h-13 rounded-full border border-white/20 bg-white/[0.03] p-1 flex items-center justify-center transition-transform group-hover:scale-105">
+                <div className="w-full h-full rounded-full border border-white/30 flex items-center justify-center bg-white/10 text-white">
+                  <Play size={14} className="fill-white translate-x-0.5" />
+                </div>
               </div>
-              <span className="text-[11px] text-slate-400 font-mono pl-7 hidden sm:inline">
-                {cap.desc}
+              <span className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">
+                Explore Work
               </span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+            </button>
 
+          </div>
+        </motion.div>
+
+        {/* RIGHT COLUMN: CUTOUT PHOTO & ORBITAL SOCIAL CHANNELS */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="lg:col-span-6 flex items-center justify-center relative pt-4"
+        >
+          {/* Main Photo Wrapper */}
+          <div className="relative w-full max-w-[440px] aspect-[3/4] flex items-end justify-center">
+            
+            {/* Cutout Photo seamlessly blending into #1d212c */}
+            <img
+              src="/hero-transparent.png"
+              alt="Lalbabu Singh - Software Developer"
+              className="w-full h-full object-cover object-top filter brightness-100 contrast-102 select-none pointer-events-none drop-shadow-2xl"
+            />
+
+            {/* Subtle bottom fade */}
+            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#1d212c] to-transparent pointer-events-none" />
+          </div>
+
+          {/* CIRCULAR SOCIAL BUTTONS PLACED ALONG THE ORBITAL ARC (LENDEX SIGNATURE) */}
+          <div className="hidden sm:flex flex-col items-center gap-5 absolute -right-2 sm:right-0 lg:-right-4 top-1/2 -translate-y-1/2 z-20">
+            {/* GitHub */}
+            <a
+              href="https://github.com/Lalbabu-Coder"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="w-11 h-11 rounded-full border border-white/20 bg-[#1d212c]/90 backdrop-blur-md flex items-center justify-center text-white hover:border-white hover:scale-110 transition shadow-lg"
+              title="GitHub"
+            >
+              <Github size={16} />
+            </a>
+
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/in/lalbabu-singh-b39308277/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="w-11 h-11 rounded-full border border-white/20 bg-[#1d212c]/90 backdrop-blur-md flex items-center justify-center text-white hover:border-white hover:scale-110 transition shadow-lg font-mono text-xs font-bold"
+              title="LinkedIn"
+            >
+              in
+            </a>
+
+            {/* LeetCode */}
+            <a
+              href="https://leetcode.com/u/lalbabu/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LeetCode"
+              className="w-11 h-11 rounded-full border border-white/20 bg-[#1d212c]/90 backdrop-blur-md flex items-center justify-center text-white hover:border-white hover:scale-110 transition shadow-lg"
+              title="LeetCode"
+            >
+              <Code2 size={16} />
+            </a>
+
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/919113382362"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="WhatsApp"
+              className="w-11 h-11 rounded-full border border-white/20 bg-[#1d212c]/90 backdrop-blur-md flex items-center justify-center text-white hover:border-white hover:scale-110 transition shadow-lg"
+              title="WhatsApp"
+            >
+              <MessageCircle size={16} />
+            </a>
+
+            {/* Email */}
+            <a
+              href="mailto:lalbabusingh.dev@gmail.com"
+              aria-label="Email"
+              className="w-11 h-11 rounded-full border border-white/20 bg-[#1d212c]/90 backdrop-blur-md flex items-center justify-center text-white hover:border-white hover:scale-110 transition shadow-lg"
+              title="Email"
+            >
+              <Mail size={16} />
+            </a>
+          </div>
+
+          {/* Bottom Right Floating Scroll-to-Top Button from Lendex */}
+          <div className="absolute right-0 bottom-0 hidden lg:block">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              aria-label="Scroll to top"
+              className="w-10 h-10 rounded-xl bg-white/[0.08] hover:bg-white/15 border border-white/15 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+            >
+              <ChevronUp size={18} />
+            </button>
+          </div>
+        </motion.div>
+
+      </div>
     </section>
   );
 }

@@ -2,20 +2,98 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Sparkles, Layers, ArrowUpRight, Cpu, ShieldCheck } from "lucide-react";
+import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
 import ProjectDetailModal, { DetailedProject } from "./ProjectDetailModal";
 
 const allProjects: DetailedProject[] = [
   {
+    title: "NexusAI – Multi-Agent AI Platform",
+    category: "AI & Microservices",
+    tagline: "Autonomous Multi-Agent Orchestration & Real-Time RAG Pipeline",
+    image: "/Projects/multi_ai_agent_platform.png",
+    description: "A microservices-based platform (API Gateway, Auth, Chat, Agent Orchestration, Billing) with React, Node/Express, and MongoDB Atlas; orchestrated multiple AI agents via LangGraph across Groq Llama 3.3 70B, DeepSeek, and Gemini 2.5 Flash.",
+    problem: "Executing multi-step automated workflows across disparate LLMs while enabling sub-second context retrieval from large proprietary document stores.",
+    solution: "Engineered microservices for decoupled routing, LangGraph state graph agents, and an ultra-fast RAG pipeline with Gemini Embeddings and Qdrant Vector DB.",
+    architecture: {
+      frontend: "React.js 19, Next.js, Tailwind CSS",
+      backend: "Node.js, Express.js, LangGraph State Graphs",
+      database: "Qdrant Vector DB & MongoDB Atlas",
+      auth: "Firebase Auth & Redis Session Cache",
+      infra: "Docker Containers, Render & Vercel",
+    },
+    features: [
+      "Microservices architecture: API Gateway, Auth, Chat, Agent Orchestration & Billing",
+      "Multi-agent coordination via LangGraph across Groq Llama 3.3 70B, DeepSeek & Gemini",
+      "Semantic search RAG pipeline using Gemini Embeddings and Qdrant Vector DB",
+      "Firebase authentication and Redis session caching deployed with Docker",
+    ],
+    tech: ["LangGraph", "Groq Llama 3.3", "Gemini", "Qdrant", "MongoDB", "Docker", "Redis"],
+    link: "https://nexus-ai-tau-black.vercel.app/",
+    github: "https://github.com/Lalbabu-Coder/Nexus-AI",
+    highlightMetric: "LangGraph Multi-Agent Swarms",
+  },
+  {
+    title: "MultiCard E-Commerce Platform",
+    category: "Full Stack MERN",
+    tagline: "High-Performance Multi-Vendor E-Commerce Platform",
+    image: "/Projects/multicard.png",
+    description: "A MERN-based e-commerce platform supporting 100+ products with JWT authentication and OTP verification, improving order processing efficiency by 25%.",
+    problem: "Handling high concurrency checkout requests, multi-vendor product approvals, and secure real-time digital payments without order dropped states.",
+    solution: "Integrated Razorpay payment gateway, automated vendor onboarding approval workflows, an administrative telemetry dashboard, and Cloudinary media uploads.",
+    architecture: {
+      frontend: "React.js, Tailwind CSS, Redux Toolkit",
+      backend: "Node.js, Express.js REST APIs",
+      database: "MongoDB Atlas with Mongoose Schemas",
+      auth: "JWT Authentication & OTP Verification",
+      infra: "Vercel & Render Cloud Hosting",
+    },
+    features: [
+      "100+ product catalog with instant category filtering and search",
+      "Seamless Razorpay payment gateway integration with webhook validation",
+      "Vendor approval workflow and comprehensive admin revenue dashboard",
+      "Cloudinary media optimization improving media management efficiency by 20%",
+    ],
+    tech: ["MERN Stack", "JWT Auth", "Razorpay", "Cloudinary", "Node.js", "Express.js", "MongoDB"],
+    link: "https://github.com/Lalbabu-Coder",
+    github: "https://github.com/Lalbabu-Coder",
+    highlightMetric: "25% Order Efficiency Boost",
+  },
+  {
+    title: "Task Management System (TMS)",
+    category: "Enterprise SaaS",
+    tagline: "Hierarchical Role-Based Task Delegation & Analytics Hub",
+    image: "/Projects/athenura_tms.jpg",
+    description: "A role-based task management system with Firebase Google Authentication for Admin, Team Lead, and Employee roles, designed with hierarchical task delegation.",
+    problem: "Complex multi-tier corporate hierarchies struggle with unauthorized task manipulation and delayed visibility on sprint bottlenecks.",
+    solution: "Architected a secure permission hierarchy (Admin → Team Lead → Employee) with role-tailored tracking dashboards and granular state management.",
+    architecture: {
+      frontend: "React.js, Tailwind CSS, Context API",
+      backend: "Node.js, Express.js MVC Controllers",
+      database: "MongoDB with Schema Validation",
+      auth: "Firebase Google Authentication & RBAC",
+      infra: "Vercel Cloud Deployment",
+    },
+    features: [
+      "Hierarchical delegation workflow: Admin → Team Lead → Employee",
+      "Dedicated role-specific dashboards with distinct permission boundaries",
+      "Firebase Google Authentication integration with secure token verification",
+      "Real-time status updates and team productivity tracking metrics",
+    ],
+    tech: ["MERN Stack", "Firebase", "Google Auth", "React.js", "Node.js", "Express.js", "RBAC"],
+    link: "https://task-management-system-1foc.vercel.app/",
+    github: "https://github.com/Lalbabu-Coder",
+    highlightMetric: "Three-Tier RBAC Architecture",
+  },
+  {
     title: "ATH Hackathon 2026 Platform",
     category: "Full Stack MERN",
-    tagline: "National-Level Hackathon Management & Submission Ecosystem",
+    tagline: "National Hackathon Management & Automated Scoring Ecosystem",
     image: "/Projects/ath_hackathon.jpg",
-    description: "National-level hackathon and developer challenge ecosystem developed at Athenura handling registrations, evaluations, team formation, and automated certificate generation.",
-    problem: "Managing thousands of hackathon participants with live project submissions, multi-judge scoring tiers, and automated leaderboards without latency bottlenecks.",
-    solution: "Engineered an end-to-end MERN platform featuring Role-Based Access Control (RBAC) for organizers, judges, and participants with optimized MongoDB indexing and REST APIs.",
+    description: "National-level hackathon and developer challenge ecosystem developed at Athenura handling registrations, evaluations, team formation, and dynamic certificate generation.",
+    problem: "Coordinating thousands of participant registrations, multi-stage judge evaluations, and automated certificate distribution under strict deadlines.",
+    solution: "Engineered an end-to-end MERN platform featuring Role-Based Access Control for organizers, judges, and participants with indexed MongoDB collections.",
     architecture: {
-      frontend: "React.js 19, Tailwind CSS",
+      frontend: "React.js, Tailwind CSS",
       backend: "Node.js, Express.js REST APIs",
       database: "MongoDB Atlas with Aggregations",
       auth: "JWT & Multi-Tier RBAC",
@@ -30,48 +108,22 @@ const allProjects: DetailedProject[] = [
     tech: ["React.js", "Node.js", "Express.js", "MongoDB", "RBAC", "REST APIs"],
     link: "https://hackathon.athenura.in/",
     github: "https://github.com/Lalbabu-Coder",
-    highlightMetric: "Production Hackathon Infrastructure",
-  },
-  {
-    title: "Athenura TaskFlow (TMS)",
-    category: "Enterprise SaaS",
-    tagline: "Role-Based Task Management System & Analytics Hub",
-    image: "/Projects/athenura_tms.jpg",
-    description: "Enterprise role-based project and task management system with intelligent team monitoring, sprint metrics, and permission-isolated administrative views.",
-    problem: "Coordinating multi-tier company structures with varying permission levels while maintaining real-time task status synchronization.",
-    solution: "Constructed a secure role-based hierarchy featuring Admin, Team Leader, and Employee dashboards with distinct permission tiers and persistent state management.",
-    architecture: {
-      frontend: "React.js, Tailwind CSS, Context API",
-      backend: "Node.js, Express.js Controllers",
-      database: "MongoDB with Schema Validation",
-      auth: "Stateless JWT Authentication",
-      infra: "Cloud Deployment",
-    },
-    features: [
-      "Three-tier dashboard suite (Admin, Team Leader, Employee)",
-      "Integrated 10+ RESTful APIs for team velocity and performance analytics",
-      "Real-time activity audit logs and status transition workflows",
-      "Persistent state management with client caching",
-    ],
-    tech: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "REST APIs", "Context API"],
-    link: "https://task-management-system-1foc.vercel.app/",
-    github: "https://github.com/Lalbabu-Coder",
-    highlightMetric: "10+ Custom REST Endpoints",
+    highlightMetric: "Production Hackathon Infra",
   },
   {
     title: "Athenura Billing & CRM SaaS",
-    category: "Multi-Tenant SaaS",
-    tagline: "Automated Invoicing & Client Lifecycle Platform",
+    category: "Enterprise SaaS",
+    tagline: "Automated Invoicing & Multi-Client Lifecycle Platform",
     image: "/Projects/athenura_billing.jpg",
     description: "A multi-tenant SaaS billing and client relationship management platform automating invoicing, recurring client subscriptions, case tracking, and financial analytics.",
-    problem: "Manual billing and client onboarding led to inconsistent invoice generation, missed renewal tracking, and disjointed client communication.",
-    solution: "Developed a centralized CRM and financial SaaS platform enabling automated invoice PDF generation, payment status tracking, and secure multi-client data partitioning.",
+    problem: "Manual invoicing and tracking client contracts resulted in billing errors and untracked subscription renewals.",
+    solution: "Constructed a centralized SaaS CRM featuring automated PDF invoice generation, payment status workflows, and segregated client data collections.",
     architecture: {
       frontend: "React.js, Lucide Icons, Tailwind CSS",
       backend: "Node.js, Express.js MVC",
       database: "MongoDB Atlas Multi-Tenant Collections",
       auth: "JWT Authorization with Role Guards",
-      infra: "Vercel / Cloud Database",
+      infra: "Vercel Cloud Deployment",
     },
     features: [
       "Automated tax and subtotal computation with printable invoice outputs",
@@ -85,44 +137,18 @@ const allProjects: DetailedProject[] = [
     highlightMetric: "Automated Financial Workflows",
   },
   {
-    title: "NexusAI – Multi-Agent AI Platform",
-    category: "AI & Microservices",
-    tagline: "Autonomous Agent Swarms & Real-Time RAG Pipeline",
-    image: "/Projects/multi_ai_agent_platform.png",
-    description: "A microservices-based AI platform orchestrating autonomous multi-agent systems, real-time RAG pipelines, and high-performance LLM routing across Groq and Gemini.",
-    problem: "Complex multi-step generative tasks require coordination across different specialized LLMs and instant retrieval from high-dimensional vector documents.",
-    solution: "Engineered microservices for API Gateway, Auth, Chat, Agent Orchestration via LangGraph, and integrated ultra-fast semantic search with Qdrant Vector DB.",
-    architecture: {
-      frontend: "Next.js 15, React 19, Tailwind CSS",
-      backend: "Node.js, LangGraph, Python Scripts",
-      database: "Qdrant Vector DB & MongoDB",
-      auth: "JWT & API Key Ingestion",
-      infra: "Docker Containerization & GitHub CI/CD",
-    },
-    features: [
-      "Multi-agent coordination via LangGraph state graphs",
-      "Dynamic routing between Groq Llama 3.3 70B, DeepSeek, and Gemini 2.5 Flash",
-      "Ultra-fast semantic RAG pipeline using Qdrant Vector database",
-      "Dockerized microservices deployment with decoupled gateways",
-    ],
-    tech: ["LangGraph", "Groq", "Gemini", "Qdrant", "MongoDB", "Docker", "Node.js"],
-    link: "https://nexus-ai-tau-black.vercel.app/",
-    github: "https://github.com/Lalbabu-Coder/Nexus-AI",
-    highlightMetric: "LangGraph Multi-Agent Swarms",
-  },
-  {
-    title: "VR AND Sons E-Commerce",
-    category: "E-Commerce",
-    tagline: "Luxury Import-Export Product Showcase & Catalog",
+    title: "VR AND Sons E-Commerce Platform",
+    category: "Full Stack Web",
+    tagline: "Luxury Product Showcase & Global Trade Catalog",
     image: "/Projects/VR AND Sons e-commerce homepage design.png",
-    description: "A premium import-export business catalog showing luxury product galleries, international trade collections, and fluid responsive interactions.",
-    problem: "Showcasing high-end handcrafted goods with high-resolution visual fidelity without compromising mobile load speeds.",
-    solution: "Designed a responsive luxury catalog with Next.js image optimization, progressive image blur placeholders, and smooth transitions.",
+    description: "A responsive product catalog and trade inquiry platform showcasing luxury export collections with fluid animations and responsive interactions.",
+    problem: "Delivering high-resolution visual catalogs across global markets without sacrificing mobile load performance.",
+    solution: "Architected a responsive luxury catalog with Next.js image optimization, fast page rendering, and direct trade inquiry portals.",
     architecture: {
-      frontend: "Next.js, React, Tailwind CSS",
-      backend: "REST API Endpoint Layer",
-      database: "Product Catalog Store",
-      auth: "Inquiry Management Auth",
+      frontend: "React.js, Next.js, Tailwind CSS",
+      backend: "RESTful API Endpoints",
+      database: "Catalog Data Store",
+      auth: "Inquiry Management Layer",
       infra: "Vercel Global Edge Network",
     },
     features: [
@@ -130,181 +156,170 @@ const allProjects: DetailedProject[] = [
       "Export product specification filters and direct trade inquiry portals",
       "Optimized asset loading and mobile touch support",
     ],
-    tech: ["React", "Next.js", "Tailwind CSS", "REST APIs"],
+    tech: ["React.js", "Next.js", "Tailwind CSS", "REST APIs"],
     link: "https://vrandsons.com",
     github: "https://github.com/Lalbabu-Coder",
-  },
-  {
-    title: "Food Delivery Platform",
-    category: "Full Stack Web",
-    tagline: "Real-Time Food Ordering & Cart Management Platform",
-    image: "/Projects/food.png",
-    description: "Full-stack food ordering platform featuring interactive menus, persistent checkout cart systems, and authenticated customer ordering flows.",
-    problem: "Real-time state synchronization between menu selection, dynamic cart price calculation, and order dispatching.",
-    solution: "Engineered Express order routing with MongoDB collections and client-side persistent cart storage.",
-    architecture: {
-      frontend: "React.js, Next.js, Tailwind CSS",
-      backend: "Node.js, Express.js",
-      database: "MongoDB Atlas",
-      auth: "User Authentication",
-      infra: "Vercel / Cloud Backend",
-    },
-    features: [
-      "Interactive menu categorization with live search and price filters",
-      "Persistent cart checkout with total recalculations",
-      "Authenticated customer order dashboard",
-    ],
-    tech: ["React.js", "Next.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
-    link: "https://your-food-link.vercel.app",
-    github: "https://github.com/Lalbabu-Coder",
+    highlightMetric: "Global Edge Network",
   },
 ];
 
+const categories = ["All", "AI & Microservices", "Full Stack MERN", "Enterprise SaaS"];
+
 export default function Projects() {
+  const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState<DetailedProject | null>(null);
+
+  const filteredProjects = allProjects.filter((p) => {
+    if (activeCategory === "All") return true;
+    return p.category === activeCategory;
+  });
 
   return (
     <section
       id="projects"
-      className="relative py-28 sm:py-36 px-4 sm:px-6 md:px-16 overflow-hidden bg-transparent text-white w-full max-w-full border-t border-white/10"
+      className="relative py-24 sm:py-32 px-6 sm:px-10 bg-[#1a1e28] text-white border-t border-white/5"
     >
-      {/* SECTION HEADER */}
-      <div className="relative z-10 text-center max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-mono uppercase tracking-wider mb-4"
-        >
-          <Sparkles size={14} />
-          <span>Featured Portfolio</span>
-        </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight font-display tracking-tight"
-        >
-          Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500">Engineering Systems</span>
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-3 sm:mt-4 text-slate-300 text-sm sm:text-base font-sans"
-        >
-          Full-stack CRM architectures, national hackathon platforms, autonomous AI swarms, and responsive production SaaS.
-        </motion.p>
-      </div>
-
-      {/* 3D PROJECT CARDS GRID */}
-      <div className="mt-14 sm:mt-20 grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto relative z-10">
-        {allProjects.map((project, i) => (
-          <motion.div
-            key={project.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="group relative flex flex-col justify-between bg-slate-950/70 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-[0_4px_25px_rgba(0,0,0,0.5)] hover:border-orange-500/40 hover:shadow-[0_0_40px_rgba(249,115,22,0.2)] transition-all duration-300"
-          >
-            <div>
-              {/* Image banner with scanline overlay */}
-              <div
-                onClick={() => setSelectedProject(project)}
-                className="relative h-[210px] overflow-hidden bg-black/50 border-b border-white/10 cursor-pointer"
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent pointer-events-none" />
-
-                {/* Category badge */}
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase bg-slate-950/80 backdrop-blur-md border border-white/15 text-orange-400">
-                  {project.category}
-                </div>
-
-                {/* Inspect hint overlay */}
-                <div className="absolute top-3 right-3 p-2 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/15 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ArrowUpRight size={14} />
-                </div>
-              </div>
-
-              {/* Text details */}
-              <div className="p-6 space-y-3">
-                <h3
-                  onClick={() => setSelectedProject(project)}
-                  className="text-lg sm:text-xl font-bold text-white font-display group-hover:text-orange-400 transition-colors cursor-pointer"
-                >
-                  {project.title}
-                </h3>
-
-                <p className="text-xs text-slate-300 font-sans leading-relaxed line-clamp-2">
-                  {project.description}
-                </p>
-
-                {/* Bullet Highlights */}
-                <ul className="space-y-1.5 pt-1 text-xs text-slate-400 font-sans">
-                  {project.features.slice(0, 2).map((feat, idx) => (
-                    <li key={idx} className="flex items-start gap-1.5 truncate">
-                      <span className="text-orange-400 shrink-0">▹</span>
-                      <span className="truncate">{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      <div className="max-w-7xl mx-auto space-y-12">
+        
+        {/* SECTION HEADER */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-3 max-w-2xl">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-slate-300">
+              <span className="text-blue-500 font-extrabold text-sm">/</span>
+              <span>MY WORK</span>
             </div>
 
-            {/* Bottom Footer */}
-            <div className="p-6 pt-0 space-y-4">
-              {/* Tech stack badges */}
-              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/10">
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="px-2.5 py-0.5 text-[11px] font-mono rounded-md bg-white/5 border border-white/10 text-slate-300"
+            <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight font-display tracking-tight">
+              Featured Projects & Systems
+            </h2>
+
+            <p className="text-slate-400 text-sm sm:text-base font-sans">
+              Production-ready web applications, autonomous AI agent platforms, and scalable SaaS solutions.
+            </p>
+          </div>
+
+          {/* Filter Pills */}
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
+                  activeCategory === cat
+                    ? "bg-blue-600 text-white font-bold"
+                    : "bg-[#14171f] text-slate-400 hover:text-white border border-white/5"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* PROJECTS GRID */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {filteredProjects.map((project, i) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              className="group flex flex-col justify-between bg-[#14171f] border border-white/5 rounded-2xl overflow-hidden hover:border-blue-500/40 transition-all duration-300"
+            >
+              <div>
+                {/* Image */}
+                <div
+                  onClick={() => setSelectedProject(project)}
+                  className="relative h-48 overflow-hidden bg-black/40 border-b border-white/5 cursor-pointer"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded text-[10px] font-mono font-bold uppercase bg-[#14171f]/90 text-blue-400 border border-white/10">
+                    {project.category}
+                  </div>
+                  <div className="absolute top-3 right-3 p-1.5 rounded-full bg-[#14171f]/80 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ArrowUpRight size={14} />
+                  </div>
+                </div>
+
+                {/* Details */}
+                <div className="p-6 space-y-3">
+                  <h3
+                    onClick={() => setSelectedProject(project)}
+                    className="text-lg font-bold text-white font-display group-hover:text-blue-400 transition-colors cursor-pointer"
                   >
-                    {t}
-                  </span>
-                ))}
+                    {project.title}
+                  </h3>
+
+                  <p className="text-xs text-slate-400 font-sans leading-relaxed line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  <ul className="space-y-1.5 pt-1 text-xs text-slate-400 font-sans">
+                    {project.features.slice(0, 2).map((feat, idx) => (
+                      <li key={idx} className="flex items-start gap-1.5 truncate">
+                        <span className="text-blue-400 shrink-0">▹</span>
+                        <span className="truncate">{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="grid grid-cols-2 gap-2.5 pt-1">
-                {project.link !== "#" && (
+              {/* Footer */}
+              <div className="p-6 pt-0 space-y-4">
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2 py-0.5 text-[10px] font-mono rounded bg-white/5 text-slate-300"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-2 gap-2.5 pt-1">
+                  {project.link !== "#" && project.link.startsWith("http") ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-1.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition-all text-xs font-bold cursor-pointer"
+                    >
+                      <ExternalLink size={13} />
+                      <span>Live Demo</span>
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => setSelectedProject(project)}
+                      className="flex items-center justify-center gap-1.5 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white transition-all text-xs font-semibold cursor-pointer border border-white/5"
+                    >
+                      <span>Details</span>
+                    </button>
+                  )}
+
                   <a
-                    href={project.link}
+                    href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white shadow-[0_0_15px_rgba(249,115,22,0.3)] transition-all text-xs font-bold cursor-pointer"
+                    className="flex items-center justify-center gap-1.5 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 transition-all text-xs font-semibold cursor-pointer border border-white/5"
                   >
-                    <ExternalLink size={13} />
-                    <span>Live Demo</span>
+                    <Github size={13} />
+                    <span>GitHub</span>
                   </a>
-                )}
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/10 border border-white/10 text-white hover:bg-white/20 transition-all text-xs font-semibold cursor-pointer"
-                >
-                  <Github size={13} />
-                  <span>Source</span>
-                </a>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
+
       </div>
 
-      {/* DETAILED PROJECT MODAL */}
       <ProjectDetailModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}

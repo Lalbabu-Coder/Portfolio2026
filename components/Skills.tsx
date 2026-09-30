@@ -3,8 +3,6 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Sparkles,
-  Cpu,
   Code2,
   Database,
   ShieldCheck,
@@ -13,175 +11,324 @@ import {
   Bot,
   Zap,
   Boxes,
-  Grid,
   Search,
   X,
-  LayoutGrid,
-  Globe2,
+  Layers,
+  Terminal,
+  Cloud,
+  Cpu
 } from "lucide-react";
-import Skills3DSphere from "./Skills3DSphere";
 
-export interface SkillCard {
+export interface SkillItem {
   name: string;
-  category: "ai" | "frontend" | "backend" | "devops";
-  badge: "Mastery" | "Expert" | "Specialized" | "Advanced";
-  level: number;
+  category: "languages" | "frontend" | "backend" | "databases" | "ai" | "devops";
+  badge: string;
   description: string;
-  lucideIcon?: any;
-  tags: string[];
+  icon: any;
 }
 
-export const allSkills: SkillCard[] = [
-  // AI & Autonomous Agents
+export const skillCategories = [
+  { id: "all", label: "All Skills" },
+  { id: "languages", label: "Languages" },
+  { id: "frontend", label: "Frontend" },
+  { id: "backend", label: "Backend & APIs" },
+  { id: "databases", label: "Databases" },
+  { id: "ai", label: "AI/ML Integration" },
+  { id: "devops", label: "DevOps & Tools" },
+];
+
+export const allSkillsList: SkillItem[] = [
+  // 1. Languages
   {
-    name: "LangGraph & AI Agents",
-    category: "ai",
-    badge: "Mastery",
-    level: 95,
-    description: "Multi-agent coordination, LangGraph state graphs, sub-agent delegation & execution loops.",
-    lucideIcon: Cpu,
-    tags: ["LangGraph", "Multi-Agent", "State Graphs"],
+    name: "JavaScript (ES6+)",
+    category: "languages",
+    badge: "Core Language",
+    description: "Modern ES6+, async/await, closures, prototypes, event loops, DOM APIs, and functional patterns.",
+    icon: Code2,
   },
   {
-    name: "Groq & Gemini & OpenAI",
-    category: "ai",
-    badge: "Expert",
-    level: 94,
-    description: "LLM integration with Groq Llama 3.3 70B, Gemini 2.5 Flash, DeepSeek & OpenAI API.",
-    lucideIcon: Bot,
-    tags: ["Groq", "Gemini 2.5", "OpenAI", "DeepSeek"],
+    name: "TypeScript",
+    category: "languages",
+    badge: "Type Safety",
+    description: "Strict static typing, interfaces, generics, type guards, and TS configurations.",
+    icon: Code2,
   },
   {
-    name: "RAG & Qdrant Vector DB",
-    category: "ai",
-    badge: "Advanced",
-    level: 92,
-    description: "Semantic search pipelines, vector embeddings, chunking strategies & Qdrant vector database.",
-    lucideIcon: Database,
-    tags: ["Qdrant", "RAG Pipeline", "Vector DB"],
+    name: "Python",
+    category: "languages",
+    badge: "Proficient",
+    description: "Scripting, asynchronous programming, automation, AI agent frameworks, and backend logic.",
+    icon: Terminal,
   },
   {
-    name: "LangChain & Python",
-    category: "ai",
-    badge: "Advanced",
-    level: 90,
-    description: "Agentic workflows, context retrieval chains, Python scripting & async integrations.",
-    lucideIcon: Zap,
-    tags: ["LangChain", "Python", "Tool Calling"],
+    name: "Java",
+    category: "languages",
+    badge: "Object-Oriented",
+    description: "Core OOP concepts, multithreading, data structures, and foundational algorithms.",
+    icon: Code2,
   },
 
-  // Frontend & UI Engineering
+  // 2. Frontend
   {
-    name: "React.js & Next.js 15",
+    name: "React.js",
     category: "frontend",
-    badge: "Mastery",
-    level: 96,
-    description: "Component architecture, Next.js SSR/SSG, Server Actions, custom hooks & virtual DOM optimization.",
-    lucideIcon: Code2,
-    tags: ["React.js", "Next.js", "Custom Hooks"],
+    badge: "Specialized",
+    description: "Component architecture, hooks, virtual DOM reconciliation, custom hooks, and state management.",
+    icon: Code2,
   },
   {
-    name: "JavaScript (ES6+) & TypeScript",
+    name: "Next.js",
     category: "frontend",
-    badge: "Mastery",
-    level: 98,
-    description: "Async/Await, Promises, Closures, DOM manipulation, TypeScript interfaces & type safety.",
-    lucideIcon: Code2,
-    tags: ["JavaScript (ES6+)", "TypeScript", "Async"],
+    badge: "Advanced",
+    description: "App router, Server-Side Rendering (SSR), Server Components, and client hydration.",
+    icon: Globe,
   },
   {
     name: "Redux Toolkit",
     category: "frontend",
-    badge: "Advanced",
-    level: 90,
-    description: "Global state management, RTK Query caching & centralized store architecture.",
-    lucideIcon: Boxes,
-    tags: ["RTK Query", "Global Store", "State Slices"],
+    badge: "Global State",
+    description: "Centralized state management, RTK slices, and predictable data flow architectures.",
+    icon: Boxes,
   },
   {
-    name: "Tailwind CSS & Responsive UI",
+    name: "Context API",
     category: "frontend",
-    badge: "Mastery",
-    level: 96,
-    description: "Responsive layouts, HTML5/CSS3 semantic designs, dark mode themes & animations.",
-    lucideIcon: LayoutGrid,
-    tags: ["Tailwind CSS", "HTML5/CSS3", "Responsive"],
+    badge: "React State",
+    description: "Lightweight state broadcasting, theme/auth providers, and decoupled UI layers.",
+    icon: Layers,
+  },
+  {
+    name: "Tailwind CSS",
+    category: "frontend",
+    badge: "Modern Styling",
+    description: "Utility-first responsive layouts, custom design systems, dark modes, and CSS variables.",
+    icon: Layers,
+  },
+  {
+    name: "Framer Motion",
+    category: "frontend",
+    badge: "Interactions",
+    description: "Fluid micro-interactions, layout transitions, exit animations, and gesture controls.",
+    icon: Zap,
+  },
+  {
+    name: "HTML5 & CSS3",
+    category: "frontend",
+    badge: "Semantic Web",
+    description: "Semantic elements, modern flexbox/grid layouts, responsive typography, and accessibility.",
+    icon: Globe,
   },
 
-  // Backend & APIs
+  // 3. Backend
   {
-    name: "Node.js & Express.js",
+    name: "Node.js",
     category: "backend",
-    badge: "Mastery",
-    level: 95,
-    description: "High-throughput asynchronous servers, modular MVC controllers & RESTful API architecture.",
-    lucideIcon: Server,
-    tags: ["Node.js", "Express.js", "MVC Pattern"],
+    badge: "Backend Runtime",
+    description: "Asynchronous I/O, event-driven server design, streaming, and package management.",
+    icon: Server,
   },
   {
-    name: "JWT Auth & RBAC Permissions",
+    name: "Express.js",
     category: "backend",
-    badge: "Expert",
-    level: 94,
-    description: "Stateless JWT authentication, bcrypt password hashing, and granular Role-Based Access Control.",
-    lucideIcon: ShieldCheck,
-    tags: ["JWT Auth", "RBAC", "Authorization"],
+    badge: "Server Framework",
+    description: "Modular routing, middleware pipelines, error handling, and MVC controller patterns.",
+    icon: Server,
   },
   {
-    name: "REST API & Microservices",
+    name: "REST APIs",
     category: "backend",
-    badge: "Expert",
-    level: 92,
-    description: "Microservices architecture, API gateways, WebSockets, rate limiting, and Postman API testing.",
-    lucideIcon: Server,
-    tags: ["REST APIs", "Microservices", "WebSockets"],
+    badge: "API Architecture",
+    description: "Resource-oriented endpoint design, CRUD operations, query filtering, and HTTP standards.",
+    icon: Server,
+  },
+  {
+    name: "JWT Authentication",
+    category: "backend",
+    badge: "Security",
+    description: "Stateless JSON Web Tokens, cookie authentication, bcrypt password hashing, and token refresh.",
+    icon: ShieldCheck,
+  },
+  {
+    name: "Role-Based Access Control (RBAC)",
+    category: "backend",
+    badge: "Enterprise Security",
+    description: "Permission matrices, role guards, and resource-level access enforcement.",
+    icon: ShieldCheck,
+  },
+  {
+    name: "Firebase Authentication",
+    category: "backend",
+    badge: "Auth Provider",
+    description: "Google OAuth, social sign-ins, token verification, and session persistence.",
+    icon: ShieldCheck,
+  },
+  {
+    name: "Microservices Architecture",
+    category: "backend",
+    badge: "Scalable Systems",
+    description: "Decoupled service design, API gateways, inter-service communication, and fault tolerance.",
+    icon: Boxes,
+  },
+  {
+    name: "MVC Architecture",
+    category: "backend",
+    badge: "Clean Architecture",
+    description: "Model-View-Controller pattern enforcing clean separation of concerns and maintainability.",
+    icon: Layers,
+  },
+  {
+    name: "WebSockets",
+    category: "backend",
+    badge: "Real-Time",
+    description: "Bidirectional full-duplex communication channels, live notifications, and real-time status updates.",
+    icon: Zap,
   },
 
-  // Databases & Cloud / DevOps
+  // 4. Databases
   {
-    name: "MongoDB & Mongoose & Redis",
-    category: "devops",
-    badge: "Expert",
-    level: 92,
-    description: "MongoDB Atlas, Mongoose schemas, indexing strategies, aggregation pipelines, and Redis caching.",
-    lucideIcon: Database,
-    tags: ["MongoDB Atlas", "Mongoose", "Redis"],
+    name: "MongoDB",
+    category: "databases",
+    badge: "NoSQL DB",
+    description: "Document-oriented databases, flexible schemas, indexing strategies, and high-throughput queries.",
+    icon: Database,
   },
   {
-    name: "AWS & Microsoft Azure Cloud",
-    category: "devops",
-    badge: "Advanced",
-    level: 88,
-    description: "Cloud infrastructure deployment using AWS (EC2, S3), Microsoft Azure, Vercel & Render.",
-    lucideIcon: Globe,
-    tags: ["AWS EC2/S3", "Azure", "Cloud"],
+    name: "MongoDB Atlas",
+    category: "databases",
+    badge: "Cloud DB",
+    description: "Managed cloud clusters, replication, auto-scaling, backups, and security IP whitelisting.",
+    icon: Cloud,
   },
   {
-    name: "Docker & CI/CD Pipelines",
-    category: "devops",
-    badge: "Advanced",
-    level: 90,
-    description: "Docker containerization, multi-stage images, Git branching, GitHub Actions & CI/CD workflows.",
-    lucideIcon: Boxes,
-    tags: ["Docker", "CI/CD", "Git/GitHub"],
+    name: "Mongoose ODM",
+    category: "databases",
+    badge: "Schema Modeling",
+    description: "Data modeling, schema validation, middleware hooks, population, and query aggregation.",
+    icon: Database,
   },
   {
-    name: "Data Structures & System Design",
-    category: "devops",
-    badge: "Expert",
-    level: 92,
-    description: "DSA problem solving, OOPs principles, SDLC lifecycle, Agile/Scrum & scalable system design.",
-    lucideIcon: Code2,
-    tags: ["DSA", "OOP", "SDLC", "System Design"],
+    name: "Qdrant Vector DB",
+    category: "databases",
+    badge: "Vector Search",
+    description: "High-dimensional vector storage, HNSW indexing, and sub-second similarity search for RAG.",
+    icon: Database,
   },
-];
+  {
+    name: "Redis",
+    category: "databases",
+    badge: "In-Memory Store",
+    description: "In-memory key-value caching, session management, Pub/Sub messaging, and rate-limiting.",
+    icon: Database,
+  },
 
-const categories = [
-  { id: "all", label: "All Skills" },
-  { id: "ai", label: "AI & Autonomous Agents" },
-  { id: "frontend", label: "Frontend & UI" },
-  { id: "backend", label: "Backend Architecture" },
-  { id: "devops", label: "Database & DevOps" },
+  // 5. AI/ML Integration
+  {
+    name: "LangGraph",
+    category: "ai",
+    badge: "Agent Orchestration",
+    description: "Stateful multi-agent workflows, cyclical agent loops, human-in-the-loop, and condition branches.",
+    icon: Cpu,
+  },
+  {
+    name: "LangChain",
+    category: "ai",
+    badge: "AI Chains",
+    description: "Context retrieval chains, document loaders, prompt chaining, and tool integration.",
+    icon: Bot,
+  },
+  {
+    name: "Multi-Agent Systems",
+    category: "ai",
+    badge: "Autonomous Swarms",
+    description: "Coordinating specialized agents (Planner, Researcher, Coder, Critic) to solve complex goals.",
+    icon: Cpu,
+  },
+  {
+    name: "Groq Llama 3.3 70B",
+    category: "ai",
+    badge: "Fast Inference",
+    description: "Ultra-fast LPUs, structured JSON outputs, reasoning chains, and prompt optimization.",
+    icon: Bot,
+  },
+  {
+    name: "Gemini API & 2.5 Flash",
+    category: "ai",
+    badge: "Multimodal AI",
+    description: "Large context window reasoning, Gemini embeddings, and API function calling.",
+    icon: Bot,
+  },
+  {
+    name: "OpenAI API",
+    category: "ai",
+    badge: "LLM APIs",
+    description: "Chat completions, tool calling, embeddings, system prompts, and temperature tuning.",
+    icon: Bot,
+  },
+  {
+    name: "RAG Pipelines",
+    category: "ai",
+    badge: "Knowledge Retrieval",
+    description: "Semantic search, chunking strategies, vector embeddings, and hallucination reduction.",
+    icon: Database,
+  },
+  {
+    name: "Prompt Engineering",
+    category: "ai",
+    badge: "Model Steering",
+    description: "Few-shot prompting, chain-of-thought, zero-shot system instruction, and guardrailing.",
+    icon: Terminal,
+  },
+
+  // 6. DevOps & Tools
+  {
+    name: "Docker",
+    category: "devops",
+    badge: "Containerization",
+    description: "Containerizing microservices, multi-stage builds, Dockerfiles, and container networking.",
+    icon: Boxes,
+  },
+  {
+    name: "CI/CD & GitHub Actions",
+    category: "devops",
+    badge: "Automation",
+    description: "Automated test runs, build verification, and continuous deployment pipelines.",
+    icon: Zap,
+  },
+  {
+    name: "Git & GitHub",
+    category: "devops",
+    badge: "Version Control",
+    description: "Branching strategies, pull requests, merge conflict resolution, and collaborative workflows.",
+    icon: Code2,
+  },
+  {
+    name: "Postman",
+    category: "devops",
+    badge: "API Testing",
+    description: "REST API testing, automated collection runners, environment variables, and mock servers.",
+    icon: Terminal,
+  },
+  {
+    name: "Cloudinary",
+    category: "devops",
+    badge: "Media CDN",
+    description: "Cloud image/video upload APIs, transformations, responsive compression, and media pipelines.",
+    icon: Cloud,
+  },
+  {
+    name: "Vercel & Render",
+    category: "devops",
+    badge: "Cloud Hosting",
+    description: "Production deployments for frontend web apps, Node.js background workers, and web services.",
+    icon: Globe,
+  },
+  {
+    name: "AWS Basics",
+    category: "devops",
+    badge: "Cloud Infrastructure",
+    description: "Foundational cloud services including EC2 compute instances, S3 object storage, and IAM roles.",
+    icon: Cloud,
+  },
 ];
 
 interface SkillsProps {
@@ -190,139 +337,54 @@ interface SkillsProps {
 }
 
 export default function Skills({ activeCategory, onCategoryChange }: SkillsProps) {
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [viewMode, setViewMode] = useState<"grid" | "sphere" | "tags">("grid");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filteredSkills = useMemo(() => {
-    return allSkills.filter((skill) => {
-      const matchesCategory =
-        activeCategory === "all" || skill.category === activeCategory;
+    return allSkillsList.filter((s) => {
+      const matchesCat = activeCategory === "all" || s.category === activeCategory;
       const query = searchQuery.toLowerCase().trim();
       const matchesSearch =
         !query ||
-        skill.name.toLowerCase().includes(query) ||
-        skill.description.toLowerCase().includes(query) ||
-        skill.tags.some((tag) => tag.toLowerCase().includes(query));
-      return matchesCategory && matchesSearch;
+        s.name.toLowerCase().includes(query) ||
+        s.description.toLowerCase().includes(query) ||
+        s.badge.toLowerCase().includes(query);
+      return matchesCat && matchesSearch;
     });
   }, [activeCategory, searchQuery]);
 
   return (
     <section
       id="skills"
-      className="relative py-28 sm:py-36 px-4 sm:px-6 md:px-16 overflow-hidden bg-transparent text-white w-full max-w-full border-t border-white/10"
+      className="relative py-24 sm:py-32 px-6 sm:px-10 bg-[#14171f] text-white border-t border-white/5"
     >
-      {/* SECTION HEADER */}
-      <div className="relative z-10 text-center max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-mono uppercase tracking-wider mb-4"
-        >
-          <Sparkles size={14} />
-          <span>Technical Stack & Mastery</span>
-        </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight font-display tracking-tight"
-        >
-          Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">Skills & Architecture</span>
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-3 sm:mt-4 text-slate-300 text-sm sm:text-base font-sans"
-        >
-          Production-proven engineering stack built for high-performance web applications, autonomous AI agent pipelines, and scalable microservices.
-        </motion.p>
-      </div>
-
-      {/* CONTROLS BAR: CATEGORIES & SEARCH */}
-      <div className="relative z-10 mt-12 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto space-y-12">
         
-        {/* Category Tabs */}
-        <div className="flex flex-wrap items-center justify-center md:justify-start gap-1.5 p-1.5 rounded-2xl bg-slate-950/80 border border-white/10 backdrop-blur-xl w-full md:w-auto">
-          {categories.map((cat) => {
-            const isActive = activeCategory === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => onCategoryChange(cat.id)}
-                className={`relative px-4 py-2 rounded-xl text-xs font-mono transition-all duration-300 cursor-pointer ${
-                  isActive ? "text-white font-bold" : "text-slate-400 hover:text-white"
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeSkillCategoryTab"
-                    className="absolute inset-0 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl shadow-[0_0_20px_rgba(249,115,22,0.4)]"
-                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{cat.label}</span>
-              </button>
-            );
-          })}
-        </div>
+        {/* SECTION HEADER */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-3 max-w-2xl">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-slate-300">
+              <span className="text-blue-500 font-extrabold text-sm">/</span>
+              <span>TECHNICAL SKILLS</span>
+            </div>
 
-        {/* View Switcher & Search */}
-        <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
-          <div className="flex items-center p-1 rounded-xl bg-slate-950/80 border border-white/10 backdrop-blur-xl gap-1">
-            <button
-              onClick={() => setViewMode("grid")}
-              title="Grid View"
-              className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                viewMode === "grid"
-                  ? "bg-orange-500 text-white shadow-[0_0_12px_rgba(249,115,22,0.4)]"
-                  : "text-slate-400 hover:text-white"
-              }`}
-            >
-              <LayoutGrid size={14} />
-              <span className="hidden sm:inline">Cards</span>
-            </button>
-            <button
-              onClick={() => setViewMode("sphere")}
-              title="Interactive 3D Sphere"
-              className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                viewMode === "sphere"
-                  ? "bg-orange-500 text-white shadow-[0_0_12px_rgba(249,115,22,0.4)]"
-                  : "text-slate-400 hover:text-white"
-              }`}
-            >
-              <Globe2 size={14} />
-              <span className="hidden sm:inline">3D Sphere</span>
-            </button>
-            <button
-              onClick={() => setViewMode("tags")}
-              title="Compact Tags"
-              className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                viewMode === "tags"
-                  ? "bg-orange-500 text-white shadow-[0_0_12px_rgba(249,115,22,0.4)]"
-                  : "text-slate-400 hover:text-white"
-              }`}
-            >
-              <Grid size={14} />
-              <span className="hidden sm:inline">Tags</span>
-            </button>
+            <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight font-display tracking-tight">
+              Skills, Libraries & Tools
+            </h2>
+
+            <p className="text-slate-400 text-sm sm:text-base font-sans">
+              Categorized technical proficiencies spanning full-stack languages, backend APIs, vector databases, and AI frameworks.
+            </p>
           </div>
 
-          <div className="relative flex-1 md:w-56">
+          {/* Search bar */}
+          <div className="relative w-full md:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={14} />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search skills..."
-              className="w-full pl-9 pr-8 py-2 rounded-xl bg-slate-950/80 border border-white/10 text-white placeholder:text-slate-500 text-xs focus:outline-none focus:border-orange-500/50 transition-all font-sans"
+              className="w-full pl-9 pr-8 py-2 rounded-lg bg-[#1a1e28] border border-white/10 text-white placeholder:text-slate-500 text-xs focus:outline-none focus:border-blue-500 transition-all font-sans"
             />
             {searchQuery && (
               <button
@@ -335,116 +397,77 @@ export default function Skills({ activeCategory, onCategoryChange }: SkillsProps
           </div>
         </div>
 
-      </div>
+        {/* Category Tabs */}
+        <div className="flex flex-wrap gap-2">
+          {skillCategories.map((cat) => {
+            const isActive = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => onCategoryChange(cat.id)}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
+                  isActive
+                    ? "bg-blue-600 text-white font-bold"
+                    : "bg-[#1a1e28] text-slate-400 hover:text-white border border-white/5"
+                }`}
+              >
+                {cat.label}
+              </button>
+            );
+          })}
+        </div>
 
-      {/* SKILLS CARDS / 3D SPHERE / TAGS GRID */}
-      <div className="relative z-10 mt-10 max-w-7xl mx-auto">
-        {viewMode === "sphere" ? (
-          <div className="p-4 sm:p-8 rounded-3xl bg-slate-950/70 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] flex flex-col items-center justify-center">
-            <div className="w-full flex items-center justify-between mb-4 px-2 text-xs font-mono text-slate-400">
-              <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
-                <span className="font-bold text-slate-200">INTERACTIVE 3D SKILL GLOBE</span>
-              </span>
-              <span className="hidden sm:inline text-orange-400/80 bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
-                ✦ Click & Drag to spin · Hover to highlight
-              </span>
-            </div>
-            <Skills3DSphere />
-            <div className="mt-4 text-center">
-              <p className="text-xs text-slate-400 font-mono">
-                Interactive 3D Fibonacci skill sphere with dynamic inertia and depth z-sorting.
-              </p>
-            </div>
-          </div>
-        ) : viewMode === "tags" ? (
-          <div className="p-8 rounded-3xl bg-slate-950/70 backdrop-blur-xl border border-white/10 flex flex-wrap justify-center gap-3">
-            {filteredSkills.map((skill) => {
-              const IconComp = skill.lucideIcon || Zap;
+        {/* SKILLS CARDS GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+          <AnimatePresence mode="popLayout">
+            {filteredSkills.map((skill, index) => {
+              const Icon = skill.icon || Code2;
               return (
-                <div
+                <motion.div
+                  layout
                   key={skill.name}
-                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 hover:border-orange-500/40 hover:bg-orange-500/10 transition-all cursor-default"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.25, delay: index * 0.015 }}
+                  className="p-5 rounded-2xl bg-[#1a1e28] border border-white/5 hover:border-blue-500/40 transition-all duration-200 flex flex-col justify-between group"
                 >
-                  <IconComp className="w-4 h-4 text-orange-400" />
-                  <span className="text-xs sm:text-sm font-semibold text-white">{skill.name}</span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 text-orange-400 font-bold">
-                    {skill.badge}
-                  </span>
-                </div>
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="p-2.5 rounded-lg bg-blue-500/10 text-blue-400 group-hover:scale-105 transition-transform">
+                        <Icon size={18} />
+                      </div>
+
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400">
+                        {skill.badge}
+                      </span>
+                    </div>
+
+                    <h3 className="text-base font-bold text-white font-display group-hover:text-blue-400 transition-colors">
+                      {skill.name}
+                    </h3>
+
+                    <p className="mt-1.5 text-xs text-slate-400 font-sans leading-relaxed">
+                      {skill.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                    <span className="capitalize">{skill.category}</span>
+                    <span className="text-blue-400">✓ Production</span>
+                  </div>
+                </motion.div>
               );
             })}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            <AnimatePresence mode="popLayout">
-              {filteredSkills.map((skill, index) => {
-                const IconComp = skill.lucideIcon || Cpu;
-                return (
-                  <motion.div
-                    layout
-                    key={skill.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3, delay: index * 0.02 }}
-                    className="p-6 rounded-3xl bg-slate-950/70 backdrop-blur-xl border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)] hover:border-orange-500/40 hover:shadow-[0_0_30px_rgba(249,115,22,0.18)] transition-all duration-300 group flex flex-col justify-between"
-                  >
-                    <div>
-                      {/* Top Row: Icon & Badge */}
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-orange-500/30 group-hover:bg-orange-500/10 transition-colors">
-                          <IconComp className="w-5 h-5 text-orange-400 group-hover:scale-110 transition-transform duration-300" />
-                        </div>
+          </AnimatePresence>
+        </div>
 
-                        <span className="text-[10px] font-mono font-extrabold tracking-wider px-2.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 uppercase">
-                          {skill.badge}
-                        </span>
-                      </div>
-
-                      <h3 className="text-base font-bold text-white font-display group-hover:text-orange-400 transition-colors">
-                        {skill.name}
-                      </h3>
-
-                      <p className="mt-2 text-xs text-slate-300 font-sans leading-relaxed">
-                        {skill.description}
-                      </p>
-
-                      {/* Level Progress */}
-                      <div className="mt-4">
-                        <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1.5">
-                          <span>Proficiency</span>
-                          <span className="text-orange-400 font-bold">{skill.level}%</span>
-                        </div>
-                        <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.level}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, delay: 0.2 }}
-                            className="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Feature Tags */}
-                    <div className="mt-5 pt-3 border-t border-white/10 flex flex-wrap gap-1.5">
-                      {skill.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/5 border border-white/5 text-slate-400 group-hover:text-slate-200 transition-colors"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
+        {filteredSkills.length === 0 && (
+          <div className="text-center py-12 text-slate-400 text-sm font-sans">
+            No skills found matching "{searchQuery}".
           </div>
         )}
+
       </div>
     </section>
   );
