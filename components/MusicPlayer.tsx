@@ -127,6 +127,7 @@ export default function MusicPlayer() {
     audioRef.current.currentTime = newProgress * duration;
   };
 
+  // Format time display
   const formatTime = (secs: number) => {
     if (isNaN(secs)) return "0:00";
     const m = Math.floor(secs / 60);
@@ -134,15 +135,79 @@ export default function MusicPlayer() {
     return `${m}:${s < 10 ? "0" : ""}${s}`;
   };
 
-  // Listen to custom hero event if user clicks play anywhere
+  // AUTOMATIC START LOGIC (Browser Autoplay + First Interaction Fallback)
   useEffect(() => {
-    const handleGlobalPlay = () => {
-      if (audioRef.current) {
-        audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+    let hasStarted = false;
+
+    const startAudio = () => {
+      if (hasStarted || !audioRef.current) return;
+      
+      const audio = audioRef.current;
+      audio.volume = 0; // Start at 0 for gentle fade-in
+      
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            hasStarted = true;
+            setIsPlaying(true);
+            
+            // Smooth cinematic volume ramp-up
+            let currentVol = 0;
+            const targetVol = volume || 0.7;
+            const fadeInterval = setInterval(() => {
+              if (!audio || audio.paused) {
+                clearInterval(fadeInterval);
+                return;
+              }
+              currentVol += 0.05;
+              if (currentVol >= targetVol) {
+                audio.volume = targetVol;
+                clearInterval(fadeInterval);
+              } else {
+                audio.volume = currentVol;
+              }
+            }, 80);
+
+            // Remove all interaction listeners once started
+            cleanupListeners();
+          })
+          .catch((err) => {
+            console.log("Autoplay waiting for first visitor interaction...");
+          });
       }
     };
+
+    const cleanupListeners = () => {
+      window.removeEventListener("click", startAudio);
+      window.removeEventListener("scroll", startAudio);
+      window.removeEventListener("touchstart", startAudio);
+      window.removeEventListener("keydown", startAudio);
+      window.removeEventListener("wheel", startAudio);
+      window.removeEventListener("pointerdown", startAudio);
+    };
+
+    // 1. Try immediate autoplay
+    startAudio();
+
+    // 2. Attach immediate fallback to the very first user gesture (touch, scroll, click, key)
+    window.addEventListener("click", startAudio, { once: true });
+    window.addEventListener("scroll", startAudio, { once: true, passive: true });
+    window.addEventListener("touchstart", startAudio, { once: true, passive: true });
+    window.addEventListener("keydown", startAudio, { once: true });
+    window.addEventListener("wheel", startAudio, { once: true, passive: true });
+    window.addEventListener("pointerdown", startAudio, { once: true });
+
+    // 3. Listen to custom hero event if user clicks play button in Hero
+    const handleGlobalPlay = () => {
+      startAudio();
+    };
     window.addEventListener("portfolio-play-music", handleGlobalPlay);
-    return () => window.removeEventListener("portfolio-play-music", handleGlobalPlay);
+
+    return () => {
+      cleanupListeners();
+      window.removeEventListener("portfolio-play-music", handleGlobalPlay);
+    };
   }, []);
 
   return (
@@ -221,6 +286,16 @@ export default function MusicPlayer() {
             </div>
           </div>
         )}
+
+        {/* FLOATING AMBIENT BADGE */}
+        <div className="mb-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#171a23]/90 backdrop-blur-md border border-white/10 text-[11px] text-slate-300 shadow-lg pointer-events-none transition-all">
+          <span className={`w-1.5 h-1.5 rounded-full ${isPlaying ? "bg-emerald-400 animate-pulse" : "bg-amber-400"}`} />
+          {isPlaying ? (
+            <span>Playing: <strong className="text-white font-medium">{currentTrack.title}</strong></span>
+          ) : (
+            <span>🎵 Auto-starts on scroll or click</span>
+          )}
+        </div>
 
         {/* COMPACT FLOATING CONTROLLER PILL */}
         <div className="bg-[#171a23]/90 hover:bg-[#171a23] backdrop-blur-xl border border-white/15 hover:border-white/25 shadow-[0_10px_35px_rgba(0,0,0,0.5)] rounded-full px-3.5 py-2.5 flex items-center gap-3 transition-all duration-300 max-w-[92vw] sm:max-w-md">
