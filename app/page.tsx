@@ -13,6 +13,7 @@ import EducationHonors from "@/components/EducationHonors";
 import FAQs from "@/components/FAQs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import MusicPlayer from "@/components/MusicPlayer";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -56,7 +57,7 @@ export default function Home() {
 
   return (
     <SmoothScroll>
-      <div className="relative z-10 w-full min-h-screen bg-[#02040a] text-slate-100">
+      <div className="relative z-10 w-full min-h-screen bg-[#1d212c] text-slate-100">
         <Navbar activeSection={activeSection} />
 
         <main className="w-full">
@@ -75,6 +76,7 @@ export default function Home() {
         </main>
 
         <Footer />
+        <MusicPlayer />
       </div>
     </SmoothScroll>
   );

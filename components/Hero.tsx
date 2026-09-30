@@ -85,19 +85,30 @@ export default function Hero() {
               <Download size={15} className="text-slate-300" />
             </a>
 
-            {/* 2. Interactive Video / Explore Work Button (Nested Concentric Circles) */}
+            {/* 2. Interactive Audio / Explore Work Button (Nested Concentric Circles) */}
             <button
-              onClick={scrollToAbout}
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("portfolio-play-music"));
+                }
+                scrollToAbout();
+              }}
               className="flex items-center gap-3.5 group cursor-pointer"
+              title="Play English Soundtrack & Explore Work"
             >
               <div className="w-13 h-13 rounded-full border border-white/20 bg-white/[0.03] p-1 flex items-center justify-center transition-transform group-hover:scale-105">
                 <div className="w-full h-full rounded-full border border-white/30 flex items-center justify-center bg-white/10 text-white">
                   <Play size={14} className="fill-white translate-x-0.5" />
                 </div>
               </div>
-              <span className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">
-                Explore Work
-              </span>
+              <div className="flex flex-col text-left">
+                <span className="text-sm font-medium text-slate-200 group-hover:text-white transition-colors">
+                  Play Music
+                </span>
+                <span className="text-[11px] text-slate-400">
+                  Starboy / Blinding Lights
+                </span>
+              </div>
             </button>
 
           </div>
